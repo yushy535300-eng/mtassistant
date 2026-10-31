@@ -71,7 +71,80 @@
     });
   });
   activate('radar');
-  const sections=$$('main section[id]');
+
+  // Refined interaction layer; all motion is optional and GPU-friendly.
+  const reduceMotion=window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;
+  const meter=$('#scrollMeter');
+  let pendingScroll=false;
+  function updateScrollMeter(){
+    pendingScroll=false;
+    if(!meter)return;
+    const height=Math.max(1,document.documentElement.scrollHeight-window.innerHeight);
+    const ratio=Math.max(0,Math.min(1,window.scrollY/height));
+    meter.style.width=(ratio*100).toFixed(2)+'%';
+  }
+  window.addEventListener('scroll',()=>{
+    if(pendingScroll)return;
+    pendingScroll=true;
+    window.requestAnimationFrame(updateScrollMeter);
+  },{passive:true});
+  window.addEventListener('resize',updateScrollMeter,{passive:true});
+  updateScrollMeter();
+
+  // Reveal informational sections gently; show all immediately for reduced
+  // motion, older browsers, and without JavaScript.
+  const revealNodes=$('.section-head,.feature-large,.feature-compact,.showcase-copy,.showcase-stage,.auto-console,.auto-feature-copy,.auto-subfeatures,.how-grid>div,.faqs,.bottom-cta-inner,.identity-transition-inner');
+  if(!reduceMotion && 'IntersectionObserver' in window){
+    const revealObserver=new IntersectionObserver(entries=>{
+      for(const entry of entries){
+        if(!entry.isIntersecting)continue;
+        entry.target.classList.add('is-visible');
+        revealObserver.unobserve(entry.target);
+      }
+    },{rootMargin:'0px 0px -35px 0px',threshold:.08});
+    revealNodes.forEach((node,i)=>{
+      node.classList.add('reveal-up');
+      if(i%3)node.dataset.delay=String(i%3);
+      revealObserver.observe(node);
+    });
+  }
+  const finePointer=window.matchMedia?.('(pointer:fine)').matches ?? false;
+  if(finePointer&&!reduceMotion){
+    document.body.classList.add('has-fine-pointer');
+    const halo=$('#ambientHalo');
+    let x=0,y=0,requestPending=false;
+    document.addEventListener('pointermove',e=>{
+      if(e.pointerType&&e.pointerType!=='mouse')return;
+      x=e.clientX;y=e.clientY;
+      if(requestPending)return;
+      requestPending=true;
+      window.requestAnimationFrame(()=>{
+        requestPending=false;
+        if(halo){
+          halo.style.setProperty('--cursor-x',x+'px');
+          halo.style.setProperty('--cursor-y',y+'px');
+        }
+      });
+    },{passive:true});
+  }
+  const showcase=$('#showcase');
+  if(showcase&&finePointer&&!reduceMotion){
+    showcase.addEventListener('pointermove',e=>{
+      const bounds=showcase.getBoundingClientRect();
+      const px=((e.clientX-bounds.left)/Math.max(bounds.width,1)*100).toFixed(1);
+      const py=((e.clientY-bounds.top)/Math.max(bounds.height,1)*100).toFixed(1);
+      showcase.style.setProperty('--show-x',px+'%');
+      showcase.style.setProperty('--show-y',py+'%');
+    },{passive:true});
+  }
+  // Press feedback is limited to real navigation controls; it does not
+  // interfere with links or simulate the actual betting product.
+  $('a.primary-btn,a.outline-btn,a.head-entry').forEach(control=>{
+    control.addEventListener('pointerdown',()=>control.classList.add('is-pressed'),{passive:true});
+    for(const e of ['pointerup','pointerleave','pointercancel'])control.addEventListener(e,()=>control.classList.remove('is-pressed'),{passive:true});
+  });
+
+  const sections=$('main section[id]');
   if('IntersectionObserver' in window){
     const observer=new IntersectionObserver(entries=>{
       const first=entries.filter(e=>e.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];
