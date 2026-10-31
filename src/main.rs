@@ -5,6 +5,13 @@ use std::thread;
 use std::time::Duration;
 
 const HTML: &str = include_str!("../public/index.html");
+const FEATURES: &str = include_str!("../public/pages/features.html");
+const AUTO: &str = include_str!("../public/pages/auto.html");
+const GUIDE: &str = include_str!("../public/pages/guide.html");
+const FAQ: &str = include_str!("../public/pages/faq.html");
+const CONTACT: &str = include_str!("../public/pages/contact.html");
+const SITEMAP: &str = include_str!("../public/sitemap.xml");
+const AUTO_LOGO: &[u8] = include_bytes!("../public/assets/auto-logo.png");
 const CSS: &str = include_str!("../public/site.css");
 const JS: &str = include_str!("../public/site.js");
 const LOGO: &[u8] = include_bytes!("../public/assets/baccarat-logo.png");
@@ -42,14 +49,20 @@ fn handle(mut stream: TcpStream) {
         ("405 Method Not Allowed", "text/plain; charset=utf-8", b"Method Not Allowed")
     } else {
         match path {
-            "/" | "/index.html" | "/features" | "/mt" | "/auto" | "/guide" | "/faq" | "/contact" => {
-                ("200 OK", "text/html; charset=utf-8", HTML.as_bytes())
-            }
+            "/" | "/index.html" => ("200 OK", "text/html; charset=utf-8", HTML.as_bytes()),
+            "/features" | "/features/" => ("200 OK", "text/html; charset=utf-8", FEATURES.as_bytes()),
+            "/auto" | "/auto/" => ("200 OK", "text/html; charset=utf-8", AUTO.as_bytes()),
+            "/guide" | "/guide/" => ("200 OK", "text/html; charset=utf-8", GUIDE.as_bytes()),
+            "/faq" | "/faq/" => ("200 OK", "text/html; charset=utf-8", FAQ.as_bytes()),
+            "/contact" | "/contact/" => ("200 OK", "text/html; charset=utf-8", CONTACT.as_bytes()),
+            "/mt" => ("200 OK", "text/html; charset=utf-8", FEATURES.as_bytes()),
+            "/assets/auto-logo.png" => ("200 OK", "image/png", AUTO_LOGO),
+            "/sitemap.xml" => ("200 OK", "application/xml; charset=utf-8", SITEMAP.as_bytes()),
             "/site.css" => ("200 OK", "text/css; charset=utf-8", CSS.as_bytes()),
             "/site.js" => ("200 OK", "application/javascript; charset=utf-8", JS.as_bytes()),
             "/assets/baccarat-logo.png" | "/favicon.png" => ("200 OK", "image/png", LOGO),
             "/healthz" => ("200 OK", "text/plain; charset=utf-8", b"ok"),
-            "/robots.txt" => ("200 OK", "text/plain; charset=utf-8", b"User-agent: *\nAllow: /\n"),
+            "/robots.txt" => ("200 OK", "text/plain; charset=utf-8", b"User-agent: *\nAllow: /\nSitemap: https://mtassistant-oozm.onrender.com/sitemap.xml\n"),
             _ => if let Some((_, bytes)) = INTERFACE_IMAGES.iter().find(|(route, _)| *route == path) {
                 ("200 OK", "image/png", *bytes)
             } else {
