@@ -35,3 +35,35 @@
 @media(max-width:700px){.nav-wrap{width:calc(100% - 32px);gap:10px}.guide-hero-layout{grid-template-columns:1fr;gap:27px}.guide-hero-copy h1{font-size:40px}.guide-hero-copy>p{font-size:14px}.guide-hero-preview{width:100%;max-width:440px;margin:auto}.guide-preview-label{font-size:9px;margin-bottom:10px}.guide-preview-label b{font-size:9px}.guide-preview-screen{padding:5px;border-radius:8px}.guide-hero-preview>p{font-size:9px;text-align:left;margin-top:11px}.guide-hero{padding-block:39px}.guide-auto-composition{grid-template-columns:1fr 1.2fr;gap:15px}.guide-auto-checklist{display:block}.guide-auto-checklist>span{font-size:11px;line-height:1.6;margin-bottom:12px}.guide-auto-checklist>div{font-size:9px;gap:4px;padding:10px 0}.guide-auto-checklist svg{width:12px;height:12px}.guide-hero-preview-auto .guide-preview-screen{max-width:220px}.guide-hero-preview-auto>p{text-align:center}}
 .guide-hero-layout{min-height:540px}@media(max-width:1200px){.guide-hero-layout{min-height:480px}}@media(max-width:980px){.guide-hero-layout{min-height:400px}}@media(max-width:700px){.guide-hero-layout{min-height:0}.guide-hero-preview{min-height:340px}}@media(max-width:500px){.guide-hero-preview{min-height:calc(66.7vw + 22px)}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}}
+
+
+/* 2026-11-01: high-visibility LINE service CTA */
+.floating-service{
+  background:linear-gradient(130deg,#09cf70 0%,#06ad60 52%,#048c51 100%) !important;
+  color:#fff !important;
+  border:2px solid #ffe3a0 !important;
+  box-shadow:0 8px 0 rgba(1,83,46,.12),0 13px 32px rgba(0,144,79,.36),0 0 0 4px rgba(9,207,112,.11) !important;
+  font-weight:800 !important;
+  letter-spacing:.035em;
+  min-height:58px;
+  padding:0 24px !important;
+  gap:11px !important;
+  text-shadow:0 1px 2px rgba(0,70,35,.18);
+  transition:transform .22s ease,box-shadow .22s ease,filter .22s ease !important;
+  animation:service-entrance .55s ease-out both;
+}
+.floating-service svg{width:25px !important;height:25px !important;stroke-width:2.25 !important;flex-shrink:0}
+.floating-service span{font-size:16px !important;font-weight:800 !important;white-space:nowrap}
+.floating-service:hover,.floating-service:focus-visible{
+  transform:translateY(-4px) scale(1.035) !important;
+  filter:brightness(1.07);
+  box-shadow:0 16px 38px rgba(0,145,80,.46),0 0 0 5px rgba(9,207,112,.17) !important;
+}
+.floating-service:focus-visible{outline:3px solid #144f38;outline-offset:4px}
+@keyframes service-entrance{from{opacity:0;filter:brightness(.8)}to{opacity:1;filter:brightness(1)}}
+@media(max-width:640px){
+  .floating-service{min-height:54px;padding:0 17px !important;gap:8px !important}
+  .floating-service span{font-size:15px !important}
+  .floating-service svg{width:23px !important;height:23px !important}
+}
+@media(prefers-reduced-motion:reduce){.floating-service{animation:none !important;transition:none !important}}
