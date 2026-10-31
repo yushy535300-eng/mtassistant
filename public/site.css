@@ -423,3 +423,29 @@ body.has-fine-pointer .ambient-halo{opacity:1}
  .assist-app:hover,.features .feature-large:hover,.features .feature-compact:hover,.auto-console:hover{transform:none!important}
  .ambient-halo{display:none}
 }
+
+
+/* Finishing: precise tactile feedback, typographic rhythm, focus and sheen */
+.primary-btn,.head-entry{position:relative;overflow:hidden}
+.primary-btn::after,.head-entry::after{content:"";position:absolute;top:-40%;left:-85%;height:180%;width:30%;background:linear-gradient(90deg,transparent,#fff8df99,transparent);transform:skewX(-25deg);transition:left .6s ease;pointer-events:none}
+.primary-btn:hover::after,.head-entry:hover::after{left:140%}
+.primary-btn.is-pressed,.outline-btn.is-pressed,.head-entry.is-pressed{transform:translateY(1px) scale(.985)!important;box-shadow:none!important}
+.feature-large .feature-info,.feature-compact .feature-info{position:relative}
+.features .feature-number::after{content:"";display:inline-block;width:24px;height:1px;margin-left:10px;vertical-align:middle;background:#bb9b75}
+.features .radar-grid>div{transition:background .25s,border-color .25s,transform .25s}
+.features .radar-grid>div:hover{background:#17394a;border-color:#c6a173;transform:translateY(-3px)}
+.auto-steps>div{transition:padding .25s,background .25s}.auto-steps>div:hover{padding-left:8px;background:#e6b9830d}
+.faqs details[open] summary{color:#ffdfb0}
+.faqs details[open] summary span{color:#fad99c}
+.footer-nav a{transition:color .2s,transform .2s;display:inline-block}.footer-nav a:hover{transform:translateY(-2px)}
+.site-header:after{content:"";position:absolute;inset:auto 0 -1px;height:1px;background:linear-gradient(90deg,transparent,#f5d498a2,transparent);pointer-events:none}
+@media(max-width:720px){
+ .category-inner>div{flex-wrap:wrap;justify-content:center}
+ .feature-large .feature-info h3,.feature-compact .feature-info h3{line-height:1.38}
+ .identity-transition-links a{min-height:52px}
+ .stage-header>div strong{line-height:1.35}
+ .auto-console-layout{gap:10px}
+ .footer-nav{row-gap:14px}
+ .showcase-tabs button.selected{transform:none}
+}
+@media(prefers-reduced-motion:reduce){.primary-btn::after,.head-entry::after{display:none}}
