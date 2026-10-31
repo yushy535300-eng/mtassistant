@@ -8,8 +8,6 @@ const HTML: &str = include_str!("../public/index.html");
 const FEATURES: &str = include_str!("../public/pages/features.html");
 const AUTO: &str = include_str!("../public/pages/auto.html");
 const GUIDE: &str = include_str!("../public/pages/guide.html");
-const GUIDE_MATRIX: &str = include_str!("../public/pages/guide-matrix.html");
-const GUIDE_AUTO: &str = include_str!("../public/pages/guide-auto.html");
 const FAQ: &str = include_str!("../public/pages/faq.html");
 const CONTACT: &str = include_str!("../public/pages/contact.html");
 const SITEMAP: &str = include_str!("../public/sitemap.xml");
@@ -46,6 +44,12 @@ fn handle(mut stream: TcpStream) {
     let mut words = first.split_whitespace();
     let method = words.next().unwrap_or("");
     let path = words.next().unwrap_or("/").split('?').next().unwrap_or("/");
+    if (method == "GET" || method == "HEAD") && (path == "/guide/matrix" || path == "/guide/matrix/" || path == "/guide/auto" || path == "/guide/auto/") {
+        let destination = if path.starts_with("/guide/auto") { "/guide?system=auto" } else { "/guide?system=matrix" };
+        let response = format!("HTTP/1.1 301 Moved Permanently\r\nLocation: {}\r\nContent-Length: 0\r\nConnection: close\r\n\r\n", destination);
+        let _ = stream.write_all(response.as_bytes());
+        return;
+    }
     let head_only = method == "HEAD";
     let (status, mime, content): (&str, &str, &[u8]) = if method != "GET" && !head_only {
         ("405 Method Not Allowed", "text/plain; charset=utf-8", b"Method Not Allowed")
@@ -55,8 +59,6 @@ fn handle(mut stream: TcpStream) {
             "/features" | "/features/" => ("200 OK", "text/html; charset=utf-8", FEATURES.as_bytes()),
             "/auto" | "/auto/" => ("200 OK", "text/html; charset=utf-8", AUTO.as_bytes()),
             "/guide" | "/guide/" => ("200 OK", "text/html; charset=utf-8", GUIDE.as_bytes()),
-            "/guide/matrix" | "/guide/matrix/" => ("200 OK", "text/html; charset=utf-8", GUIDE_MATRIX.as_bytes()),
-            "/guide/auto" | "/guide/auto/" => ("200 OK", "text/html; charset=utf-8", GUIDE_AUTO.as_bytes()),
             "/faq" | "/faq/" => ("200 OK", "text/html; charset=utf-8", FAQ.as_bytes()),
             "/contact" | "/contact/" => ("200 OK", "text/html; charset=utf-8", CONTACT.as_bytes()),
             "/mt" => ("200 OK", "text/html; charset=utf-8", FEATURES.as_bytes()),
