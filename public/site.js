@@ -1,86 +1,83 @@
-(function websiteScript(){
-  "use strict";
-  const byId = id => document.getElementById(id);
-  // Demonstration only; never imply these are actual provider outcomes.
-  const samples=[
-    "BPBBPPBPPPBBBPPBPBBBPBBPPPBPPBBBPBPPBP",
-    "PBBPPPPBPPBBBPBBBPBBPPPBBPPBBPBBPPBPP",
-    "BBBPBBPPBBPPPPBBBPBPBBPBBPPPPBBPPBBB"
-  ].map(s=>s.split(""));
-  function makeDot(kind,bead=false){
-    if(bead)return `<span class="cell"><i class="${kind.toLowerCase()}">${kind==="B"?"莊":kind==="P"?"閒":"和"}</i></span>`;
-    return `<span class="cell"><i class="road-dot ${kind.toLowerCase()}"></i></span>`;
+(() => {
+  'use strict';
+  const $ = (selector, root=document) => root.querySelector(selector);
+  const $$ = (selector, root=document) => [...root.querySelectorAll(selector)];
+  const nav = $('#nav');
+  const menuButton = $('#mobileMenu');
+  if (nav && menuButton) {
+    const setOpen = open => {
+      nav.classList.toggle('is-open', open);
+      menuButton.setAttribute('aria-expanded', String(open));
+      menuButton.setAttribute('aria-label', open ? '關閉選單' : '展開選單');
+    };
+    menuButton.addEventListener('click', () => setOpen(!nav.classList.contains('is-open')));
+    $$('a', nav).forEach(link => link.addEventListener('click', () => setOpen(false)));
+    window.addEventListener('keydown', event => { if (event.key === 'Escape') setOpen(false); });
+    window.addEventListener('resize', () => { if (window.innerWidth > 1090) setOpen(false); }, { passive:true });
   }
-  function drawBeads(element,sample){
-    if(!element)return;
-    element.innerHTML=Array.from({length:36},(_,i)=>sample[i]?makeDot(sample[i],true):'<span class="cell"></span>').join("");
-  }
-  function drawRoad(element,sample,colsCount=15){
-    if(!element)return;
-    const cols=Array.from({length:colsCount},()=>Array(6).fill(null));
-    let col=-1,row=0,last="";
-    for(const kind of sample){
-      if(kind==="T")continue;
-      if(kind!==last){col++;row=0;last=kind}
-      else row++;
-      if(col>=colsCount)break;
-      if(row<6)cols[col][row]=kind;
+  const examples = [
+    ['BAV01', '閒', '高可信'],['BAV01_LIVE', '閒', '高可信'],['BAV02', '莊', '低可信'],
+    ['BAV02_LIVE', '莊', '低可信'],['BAV03', '莊', '低可信'],
+    ['BAV03A', '閒', '高可信'],['BAV05', '莊', '中可信'],['BAV06', '莊', '中可信'],
+    ['BAV07', '閒', '低可信'],['BAV08', '閒', '中可信']
+  ];
+  const tableParent = $('#previewTables');
+  if (tableParent) {
+    const fragment = document.createDocumentFragment();
+    for (const [index, table] of examples.entries()) {
+      const tile = document.createElement('div');
+      if (index===0) tile.className='chosen';
+      const direction = document.createElement('span');
+      direction.className = table[1] === '莊' ? 'bet-bank' : 'bet-player';
+      direction.textContent = '● ' + table[1];
+      const name = document.createElement('b');
+      name.textContent = table[0];
+      const confidence = document.createElement('small');
+      confidence.textContent = table[2];
+      tile.append(name, direction, confidence);
+      fragment.appendChild(tile);
     }
-    element.innerHTML=cols.flat().map(kind=>kind?makeDot(kind):'<span class="cell"></span>').join("");
+    tableParent.replaceChildren(fragment);
   }
-  function drawLower(element,sample){
-    if(!element)return;
-    element.innerHTML=Array.from({length:3},(_,group)=>{
-      const outcomes=sample.slice(group*3+2,group*3+32);
-      return `<div aria-hidden="true">${Array.from({length:30},(_,i)=>{
-        const kind=outcomes[i];
-        return kind?makeDot(i%5===4?(kind==="B"?"P":"B"):kind):'<span class="cell"></span>';
-      }).join("")}</div>`;
-    }).join("");
-  }
-  drawBeads(byId("heroBead"),samples[0]);
-  drawRoad(byId("heroRoad"),samples[0]);
-  drawRoad(byId("productRoad"),samples[1]);
-  function selectDemo(index){
-    const sample=samples[index]||samples[0];
-    drawBeads(byId("deepBead"),sample);
-    drawRoad(byId("deepRoad"),sample);
-    drawLower(byId("deepLower"),sample);
-    document.querySelectorAll("[data-table]").forEach(button=>{
-      const active=Number(button.getAttribute("data-table"))===index;
-      button.classList.toggle("active",active);
-      button.setAttribute("aria-pressed",String(active));
+  const tabButtons=$$('[data-preview]');
+  const titles={radar:'多桌雷達',analysis:'AI 綜合輔助',cards:'V38 四式算牌',parity:'終值奇偶模型'};
+  const activate=name=>{
+    if(!titles[name])return;
+    for(const tab of tabButtons){
+      const selected=tab.dataset.preview===name;
+      tab.classList.toggle('selected',selected);
+      tab.setAttribute('aria-selected',String(selected));
+      tab.tabIndex=selected?0:-1;
+    }
+    for(const [key] of Object.entries(titles)){
+      const panel=$('#panel-'+key);
+      if(panel){
+        const visible=key===name;
+        panel.hidden=!visible;
+        panel.classList.toggle('visible',visible);
+      }
+    }
+    const title=$('#stageTitle');
+    if(title)title.textContent=titles[name];
+  };
+  tabButtons.forEach((tab,index)=>{
+    tab.addEventListener('click',()=>activate(tab.dataset.preview));
+    tab.addEventListener('keydown',e=>{
+      if(e.key!=='ArrowDown'&&e.key!=='ArrowUp'&&e.key!=='ArrowRight'&&e.key!=='ArrowLeft')return;
+      e.preventDefault();
+      const step=(e.key==='ArrowDown'||e.key==='ArrowRight')?1:-1;
+      const next=tabButtons[(index+step+tabButtons.length)%tabButtons.length];
+      next?.focus();if(next)activate(next.dataset.preview);
     });
-  }
-  document.querySelectorAll("[data-table]").forEach(button=>button.addEventListener("click",()=>{
-    selectDemo(Number(button.getAttribute("data-table"))||0);
-  }));
-  selectDemo(0);
-  const menu=byId("menuButton"),nav=byId("nav");
-  function closeMenu(){
-    nav?.classList.remove("is-open");
-    menu?.setAttribute("aria-expanded","false");
-  }
-  if(menu&&nav){
-    menu.addEventListener("click",()=>{
-      const opening=!nav.classList.contains("is-open");
-      nav.classList.toggle("is-open",opening);
-      menu.setAttribute("aria-expanded",String(opening));
-    });
-    nav.querySelectorAll("a").forEach(a=>a.addEventListener("click",closeMenu));
-    window.addEventListener("keydown",e=>{if(e.key==="Escape")closeMenu()});
-    window.addEventListener("resize",()=>{if(window.innerWidth>960)closeMenu()},{passive:true});
-  }
-  if("IntersectionObserver" in window){
-    const links=[...document.querySelectorAll(".nav a[href^='#']")];
+  });
+  activate('radar');
+  const sections=$$('main section[id]');
+  if('IntersectionObserver' in window){
     const observer=new IntersectionObserver(entries=>{
-      const target=entries.filter(entry=>entry.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];
-      if(!target)return;
-      for(const link of links)link.classList.toggle("nav-active",link.hash==="#"+target.target.id);
-    },{rootMargin:"-15% 0px -55% 0px",threshold:[0,.1,.3,.6]});
-    for(const id of ["home","systems","live-preview","how-it-works","questions"]){
-      const target=byId(id);
-      if(target)observer.observe(target);
-    }
+      const first=entries.filter(e=>e.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];
+      if(!first)return;
+      $$('.navigation a').forEach(link=>link.classList.toggle('active',link.hash==='#'+first.target.id));
+    },{rootMargin:'-15% 0px -65% 0px',threshold:[0,.2,.5]});
+    sections.forEach(section=>observer.observe(section));
   }
 })();
