@@ -93,7 +93,7 @@
 
   // Reveal informational sections gently; show all immediately for reduced
   // motion, older browsers, and without JavaScript.
-  const revealNodes=$('.section-head,.feature-large,.feature-compact,.showcase-copy,.showcase-stage,.auto-console,.auto-feature-copy,.auto-subfeatures,.how-grid>div,.faqs,.bottom-cta-inner,.identity-transition-inner');
+  const revealNodes=$$('.section-head,.feature-large,.feature-compact,.showcase-copy,.showcase-stage,.auto-console,.auto-feature-copy,.auto-subfeatures,.how-grid>div,.faqs,.bottom-cta-inner,.identity-transition-inner');
   if(!reduceMotion && 'IntersectionObserver' in window){
     const revealObserver=new IntersectionObserver(entries=>{
       for(const entry of entries){
@@ -139,12 +139,12 @@
   }
   // Press feedback is limited to real navigation controls; it does not
   // interfere with links or simulate the actual betting product.
-  $('a.primary-btn,a.outline-btn,a.head-entry').forEach(control=>{
+  $$('a.primary-btn,a.outline-btn,a.head-entry').forEach(control=>{
     control.addEventListener('pointerdown',()=>control.classList.add('is-pressed'),{passive:true});
     for(const e of ['pointerup','pointerleave','pointercancel'])control.addEventListener(e,()=>control.classList.remove('is-pressed'),{passive:true});
   });
 
-  const sections=$('main section[id]');
+  const sections=$$('main section[id]');
   if('IntersectionObserver' in window){
     const observer=new IntersectionObserver(entries=>{
       const first=entries.filter(e=>e.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];
