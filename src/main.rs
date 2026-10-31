@@ -8,6 +8,8 @@ const HTML: &str = include_str!("../public/index.html");
 const FEATURES: &str = include_str!("../public/pages/features.html");
 const AUTO: &str = include_str!("../public/pages/auto.html");
 const GUIDE: &str = include_str!("../public/pages/guide.html");
+const GUIDE_MATRIX: &str = include_str!("../public/pages/guide-matrix.html");
+const GUIDE_AUTO: &str = include_str!("../public/pages/guide-auto.html");
 const FAQ: &str = include_str!("../public/pages/faq.html");
 const CONTACT: &str = include_str!("../public/pages/contact.html");
 const SITEMAP: &str = include_str!("../public/sitemap.xml");
@@ -53,6 +55,8 @@ fn handle(mut stream: TcpStream) {
             "/features" | "/features/" => ("200 OK", "text/html; charset=utf-8", FEATURES.as_bytes()),
             "/auto" | "/auto/" => ("200 OK", "text/html; charset=utf-8", AUTO.as_bytes()),
             "/guide" | "/guide/" => ("200 OK", "text/html; charset=utf-8", GUIDE.as_bytes()),
+            "/guide/matrix" | "/guide/matrix/" => ("200 OK", "text/html; charset=utf-8", GUIDE_MATRIX.as_bytes()),
+            "/guide/auto" | "/guide/auto/" => ("200 OK", "text/html; charset=utf-8", GUIDE_AUTO.as_bytes()),
             "/faq" | "/faq/" => ("200 OK", "text/html; charset=utf-8", FAQ.as_bytes()),
             "/contact" | "/contact/" => ("200 OK", "text/html; charset=utf-8", CONTACT.as_bytes()),
             "/mt" => ("200 OK", "text/html; charset=utf-8", FEATURES.as_bytes()),
