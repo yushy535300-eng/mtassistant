@@ -25,6 +25,7 @@
  function selectGuide(name,updateUrl=false,scroll=false){
   if(!['matrix','auto'].includes(name)||!guideTabs.length)return;
   for(const t of guideTabs){const active=t.dataset.guide===name;t.setAttribute('aria-selected',String(active));t.tabIndex=active?0:-1;$('#guide-panel-'+t.dataset.guide).hidden=!active;}
+  for(const system of ['matrix','auto']){const preview=$('#guide-preview-'+system);if(preview)preview.hidden=system!==name;}
   document.body.dataset.guideSystem=name;
   if(updateUrl){const url=new URL(location.href);url.searchParams.set('system',name);url.hash='';history.replaceState(null,'',url.pathname+url.search);}
   if(scroll)$('#guide-panel-'+name).scrollIntoView({block:'start',behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
