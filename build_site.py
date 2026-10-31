@@ -7,8 +7,8 @@ PUBLIC=ROOT/'public'
 ORIGIN='https://mtassistant-oozm.onrender.com'
 VERSION='20261101-guide-tabs'
 LINE='https://line.me/R/ti/p/%40116cfqfk'
-MATRIX='https://scarabheart.onrender.com/'
-AUTO='https://scarabheart.onrender.com/mt-auto'
+MATRIX='https://mt-assistant-web-v3.onrender.com/'
+AUTO='https://autotable-o6a2.onrender.com/'
 
 def icon(name):
  paths={'arrow':'M7 17 17 7M7 7h10v10','chevron':'m9 5 7 7-7 7','layers':'m12 3 10 5-10 5L2 8l10-5Zm-10 9 10 5 10-5M2 16l10 5 10-5','grid':'M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z','signal':'M3 17v4M9 12v9M15 7v14M21 2v19','shield':'m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6l8-3Zm-4 9 3 3 5-6','monitor':'M3 3h18v14H3zM8 21h8M12 17v4','play':'m8 5 11 7-11 7V5Z','plus':'M12 5v14M5 12h14','chat':'M21 11.5a8.5 8.5 0 0 1-8.5 8.5H3l2-5a8.5 8.5 0 1 1 16-3.5Z','check':'m5 12 4 4L19 6','close':'m6 6 12 12M6 18 18 6','search':'m21 21-5-5M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0Z'}
