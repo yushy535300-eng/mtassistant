@@ -77,7 +77,7 @@ def tutorial(auto,steps):
  route='/guide/auto' if auto else '/guide/matrix'
  title='自動下注教學' if auto else '百家輔助教學'
  desc='從配注策略、注額到停止條件，逐項確認後再執行。' if auto else '從連線狀態到多桌觀察，逐步認識百家輔助介面。'
- intro=simplehero(('MT AUTO' if auto else 'MT MATRIX')+' / 操作教學',title+'。<br/><em>一步一步，清楚操作。</em>',desc)
+ intro=simplehero(('MT AUTO' if auto else 'MT MATRIX')+' / 操作教學',title+'。<br/><em>看懂每一步。</em>',desc)
  switch=f'<nav class="tutorial-switch" aria-label="切換操作教學"><div class="wrap"><a href="/guide/matrix" {"aria-current=page" if not auto else ""}>{logo()}百家輔助教學</a><a href="/guide/auto" {"aria-current=page" if auto else ""}>{logo(True)}自動下注教學</a></div></nav>'
  nav=''.join(f'<a href="#step{i}">{i:02d} {short}</a>' for i,(short,heading_,description,shots) in enumerate(steps,1))
  articles=''
@@ -95,7 +95,7 @@ matrix_guide=tutorial(False,[
  ('終值奇偶','查看計算過程與終值。','由主面板的「奇偶」開啟終值奇偶模型。依序查看牌面、牌值、計算過程、終值與顯示方向；這些資訊不保證下一局結果。',[('parity-model','終值奇偶模型完整面板')]),
 ])
 auto_guide=tutorial(True,[
- ('登入與準備','登入自動下注，確認操作桌台。','由自動下注入口登入並確認帳號授權。開始前先確認使用的平台、桌台，以及面板顯示的連線與目前狀態。',[]),
+ ('登入與準備','登入並確認桌台。','由自動下注入口登入並確認帳號授權。開始前先確認使用的平台、桌台，以及面板顯示的連線與目前狀態。',[]),
  ('推薦與配注','設定配注方式與推薦來源。','在「推薦與配注」確認配注方式、開始方式及推薦來源。若選擇馬丁，請閱讀程式內的跨局階梯與多桌限制說明。',[('auto-strategy','自動下注推薦與配注設定')]),
  ('投注金額','確認基本單注與單筆上限。','在「投注金額」設定基本單注與單筆上限。開始前再次核對金額，避免沿用不符合本次操作需求的設定。',[('auto-amount','自動下注投注金額設定')]),
  ('停止時間','設定自動停止時間。','確認「自動停止時間（分鐘）」欄位及下方說明。時間到後停止新增下注，已接受注單的後續結算方式，以程式內顯示為準。',[('auto-timer','自動停止時間設定')]),
