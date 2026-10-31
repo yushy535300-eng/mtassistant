@@ -7,6 +7,7 @@ use std::time::Duration;
 const HTML: &str = include_str!("../public/index.html");
 const CSS: &str = include_str!("../public/site.css");
 const JS: &str = include_str!("../public/site.js");
+const LOGO: &[u8] = include_bytes!("../public/assets/baccarat-logo.png");
 
 fn handle(mut stream: TcpStream) {
     let _ = stream.set_read_timeout(Some(Duration::from_secs(5)));
@@ -22,30 +23,31 @@ fn handle(mut stream: TcpStream) {
     let method = words.next().unwrap_or("");
     let path = words.next().unwrap_or("/").split('?').next().unwrap_or("/");
     let head_only = method == "HEAD";
-    let (status, mime, content): (&str, &str, &str) = if method != "GET" && !head_only {
-        ("405 Method Not Allowed", "text/plain; charset=utf-8", "Method Not Allowed")
+    let (status, mime, content): (&str, &str, &[u8]) = if method != "GET" && !head_only {
+        ("405 Method Not Allowed", "text/plain; charset=utf-8", b"Method Not Allowed")
     } else {
         match path {
             "/" | "/index.html" | "/features" | "/mt" | "/auto" | "/guide" | "/faq" | "/contact" => {
-                ("200 OK", "text/html; charset=utf-8", HTML)
+                ("200 OK", "text/html; charset=utf-8", HTML.as_bytes())
             }
-            "/site.css" => ("200 OK", "text/css; charset=utf-8", CSS),
-            "/site.js" => ("200 OK", "application/javascript; charset=utf-8", JS),
-            "/healthz" => ("200 OK", "text/plain; charset=utf-8", "ok"),
-            "/robots.txt" => ("200 OK", "text/plain; charset=utf-8", "User-agent: *\nAllow: /\n"),
-            _ => ("404 Not Found", "text/plain; charset=utf-8", "Not Found"),
+            "/site.css" => ("200 OK", "text/css; charset=utf-8", CSS.as_bytes()),
+            "/site.js" => ("200 OK", "application/javascript; charset=utf-8", JS.as_bytes()),
+            "/assets/baccarat-logo.png" | "/favicon.png" => ("200 OK", "image/png", LOGO),
+            "/healthz" => ("200 OK", "text/plain; charset=utf-8", b"ok"),
+            "/robots.txt" => ("200 OK", "text/plain; charset=utf-8", b"User-agent: *\nAllow: /\n"),
+            _ => ("404 Not Found", "text/plain; charset=utf-8", b"Not Found"),
         }
     };
-    let body = if head_only { "" } else { content };
+    let body: &[u8] = if head_only { b"" } else { content };
     let headers = format!(
         "HTTP/1.1 {}\r\nContent-Type: {}\r\nContent-Length: {}\r\nConnection: close\r\nCache-Control: public, max-age=120\r\nX-Content-Type-Options: nosniff\r\nReferrer-Policy: strict-origin-when-cross-origin\r\nX-Frame-Options: SAMEORIGIN\r\n\r\n",
         status,
         mime,
-        if head_only { content.as_bytes().len() } else { body.as_bytes().len() }
+        content.len()
     );
     let _ = stream.write_all(headers.as_bytes());
     if !head_only {
-        let _ = stream.write_all(body.as_bytes());
+        let _ = stream.write_all(body);
     }
     let _ = stream.flush();
 }
