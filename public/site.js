@@ -15,30 +15,6 @@
     window.addEventListener('keydown', event => { if (event.key === 'Escape') setOpen(false); });
     window.addEventListener('resize', () => { if (window.innerWidth > 1090) setOpen(false); }, { passive:true });
   }
-  const examples = [
-    ['BAV01', '閒', '高可信'],['BAV01_LIVE', '閒', '高可信'],['BAV02', '莊', '低可信'],
-    ['BAV02_LIVE', '莊', '低可信'],['BAV03', '莊', '低可信'],
-    ['BAV03A', '閒', '高可信'],['BAV05', '莊', '中可信'],['BAV06', '莊', '中可信'],
-    ['BAV07', '閒', '低可信'],['BAV08', '閒', '中可信']
-  ];
-  const tableParent = $('#previewTables');
-  if (tableParent) {
-    const fragment = document.createDocumentFragment();
-    for (const [index, table] of examples.entries()) {
-      const tile = document.createElement('div');
-      if (index===0) tile.className='chosen';
-      const direction = document.createElement('span');
-      direction.className = table[1] === '莊' ? 'bet-bank' : 'bet-player';
-      direction.textContent = '● ' + table[1];
-      const name = document.createElement('b');
-      name.textContent = table[0];
-      const confidence = document.createElement('small');
-      confidence.textContent = table[2];
-      tile.append(name, direction, confidence);
-      fragment.appendChild(tile);
-    }
-    tableParent.replaceChildren(fragment);
-  }
   const tabButtons=$$('[data-preview]');
   const titles={radar:'多桌雷達',analysis:'AI 綜合輔助',cards:'V38 四式算牌',parity:'終值奇偶模型'};
   const activate=name=>{
@@ -144,6 +120,19 @@
     for(const e of ['pointerup','pointerleave','pointercancel'])control.addEventListener(e,()=>control.classList.remove('is-pressed'),{passive:true});
   });
 
+  const lightbox=$('#imageLightbox'), lightboxImage=$('#lightboxImage');
+  $$('[data-image]').forEach(button=>button.addEventListener('click',()=>{
+    if(!lightbox || !lightboxImage)return;
+    lightboxImage.src=button.dataset.image;
+    lightboxImage.alt=button.dataset.title+'原尺寸截圖';
+    $('#lightboxTitle').textContent=button.dataset.title;
+    lightbox.showModal();
+    document.body.classList.add('image-viewer-open');
+    $('.lightbox-scroll').scrollTo(0,0);
+  }));
+  $('#closeLightbox')?.addEventListener('click',()=>lightbox.close());
+  lightbox?.addEventListener('click',e=>{if(e.target===lightbox)lightbox.close();});
+  lightbox?.addEventListener('close',()=>document.body.classList.remove('image-viewer-open'));
   const sections=$$('main section[id]');
   if('IntersectionObserver' in window){
     const observer=new IntersectionObserver(entries=>{

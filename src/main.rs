@@ -9,6 +9,21 @@ const CSS: &str = include_str!("../public/site.css");
 const JS: &str = include_str!("../public/site.js");
 const LOGO: &[u8] = include_bytes!("../public/assets/baccarat-logo.png");
 
+const INTERFACE_IMAGES: &[(&str, &[u8])] = &[
+    ("/assets/interfaces/auto-history.png", include_bytes!("../public/assets/interfaces/auto-history.png")),
+    ("/assets/interfaces/auto-limits.png", include_bytes!("../public/assets/interfaces/auto-limits.png")),
+    ("/assets/interfaces/auto-timer.png", include_bytes!("../public/assets/interfaces/auto-timer.png")),
+    ("/assets/interfaces/auto-amount.png", include_bytes!("../public/assets/interfaces/auto-amount.png")),
+    ("/assets/interfaces/auto-strategy.png", include_bytes!("../public/assets/interfaces/auto-strategy.png")),
+    ("/assets/interfaces/auto-running.png", include_bytes!("../public/assets/interfaces/auto-running.png")),
+    ("/assets/interfaces/analysis-models.png", include_bytes!("../public/assets/interfaces/analysis-models.png")),
+    ("/assets/interfaces/multitable-radar.png", include_bytes!("../public/assets/interfaces/multitable-radar.png")),
+    ("/assets/interfaces/platform-connection.png", include_bytes!("../public/assets/interfaces/platform-connection.png")),
+    ("/assets/interfaces/parity-model.png", include_bytes!("../public/assets/interfaces/parity-model.png")),
+    ("/assets/interfaces/four-formulas.png", include_bytes!("../public/assets/interfaces/four-formulas.png")),
+    ("/assets/interfaces/matrix-assist.png", include_bytes!("../public/assets/interfaces/matrix-assist.png")),
+];
+
 fn handle(mut stream: TcpStream) {
     let _ = stream.set_read_timeout(Some(Duration::from_secs(5)));
     let _ = stream.set_write_timeout(Some(Duration::from_secs(5)));
@@ -35,7 +50,11 @@ fn handle(mut stream: TcpStream) {
             "/assets/baccarat-logo.png" | "/favicon.png" => ("200 OK", "image/png", LOGO),
             "/healthz" => ("200 OK", "text/plain; charset=utf-8", b"ok"),
             "/robots.txt" => ("200 OK", "text/plain; charset=utf-8", b"User-agent: *\nAllow: /\n"),
-            _ => ("404 Not Found", "text/plain; charset=utf-8", b"Not Found"),
+            _ => if let Some((_, bytes)) = INTERFACE_IMAGES.iter().find(|(route, _)| *route == path) {
+                ("200 OK", "image/png", *bytes)
+            } else {
+                ("404 Not Found", "text/plain; charset=utf-8", b"Not Found")
+            },
         }
     };
     let body: &[u8] = if head_only { b"" } else { content };
