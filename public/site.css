@@ -134,3 +134,30 @@
  .site-header{background:#0a1422!important;border-bottom:1px solid #e7c17a38!important}
  .header-actions .header-launch{background:linear-gradient(115deg,#f5dfb1,#d7ad6d)!important;color:#121b27!important;border-radius:9px!important}
 }
+
+
+/* YUCE premium site art direction / live integration, Nov 2026 */
+:root{--gold:#efce92;--bg:#07111d;--surface:#081827;--paper:#f5f2eb}
+body{background:#07111d}
+.site-header{background:rgba(7,16,29,.97)!important;border-bottom:1px solid rgba(236,203,147,.23)!important}
+.home-hero{position:relative;isolation:isolate;background:radial-gradient(ellipse at 75% 43%,#214355 0%,#102638 31%,#081524 67%,#07111d 93%)!important}
+.home-hero::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:-1;background:linear-gradient(90deg,rgba(5,14,26,.8),rgba(8,22,36,.16) 72%),repeating-linear-gradient(0deg,transparent 0 57px,rgba(236,203,147,.028) 58px),repeating-linear-gradient(90deg,transparent 0 57px,rgba(236,203,147,.026) 58px)}
+.home-hero::after{content:"";position:absolute;pointer-events:none;width:min(50vw,700px);height:min(50vw,700px);right:-7%;top:2%;border-radius:50%;border:1px solid rgba(237,201,141,.23);box-shadow:0 0 110px 55px rgba(202,148,68,.055),inset 0 0 80px rgba(218,166,89,.065);z-index:-1}
+.home-hero .hero-copy h1{letter-spacing:-.035em}
+.home-hero .hero-copy h1 em,.final-cta h2 em{background:linear-gradient(115deg,#ffe9bf,#cfa261);-webkit-background-clip:text;background-clip:text;color:transparent}
+.home-hero .hero-visual{position:relative;padding:16px;background:linear-gradient(155deg,rgba(255,255,255,.045),rgba(5,20,32,.28));border:1px solid rgba(231,199,145,.24);border-radius:22px;box-shadow:0 25px 65px rgba(0,0,0,.32),0 0 70px rgba(188,138,73,.08)}
+.home-hero .hero-visual::before{content:"";position:absolute;width:35%;aspect-ratio:1;right:0;top:0;border-radius:50%;background:rgba(226,171,98,.14);filter:blur(70px);pointer-events:none}
+.home-hero .hero-screen{overflow:hidden;border-radius:13px;border:1px solid rgba(228,194,137,.16);box-shadow:0 14px 42px #0006}
+.home-hero .hero-screen img{transition:transform .6s ease}
+.home-hero .hero-screen:hover img{transform:scale(1.025)}
+.product-entry-section{position:relative}
+.product-choice{border-radius:18px!important;box-shadow:0 20px 52px rgba(10,25,37,.095)!important;transition:transform .32s ease,box-shadow .32s ease!important}
+.product-choice:hover{transform:translateY(-6px);box-shadow:0 26px 64px rgba(10,25,37,.17)!important}
+.choice-identity .product-logo{filter:drop-shadow(0 6px 14px rgba(11,22,33,.18))}
+.focus-stage{border-radius:18px;box-shadow:0 22px 60px #0003}
+.final-cta{background:radial-gradient(ellipse at 70% 50%,rgba(166,120,64,.14),transparent 56%),#081524}
+.final-cta .button.gold,.hero-actions .button.gold{background:linear-gradient(125deg,#fbe6bd,#d8ac68)!important;color:#142337!important;border-color:#f3d6a0!important;box-shadow:0 10px 28px rgba(224,177,104,.2)}
+.button{transition:transform .25s ease,box-shadow .25s ease,filter .25s ease}
+.button:hover{transform:translateY(-2px);filter:brightness(1.055)}
+@media(max-width:760px){.home-hero::after{width:95vw;height:95vw;right:-45%;top:26%;opacity:.65}.home-hero .hero-visual{padding:9px;border-radius:16px}.product-choice:hover{transform:none}}
+@media(prefers-reduced-motion:reduce){.product-choice,.home-hero .hero-screen img,.button{transition:none!important}}
