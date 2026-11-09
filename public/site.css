@@ -198,7 +198,7 @@ body{background:#080e17}
 .button.outline{border-radius:8px;border-color:#d4b77c8c;background:#0f1d2a73;backdrop-filter:blur(14px)}
 .eyebrow{letter-spacing:.24em;color:#efc992}
 .home-hero{isolation:isolate;background:radial-gradient(ellipse at 76% 30%,#61503745,transparent 41%),radial-gradient(ellipse at 11% 75%,#19436380,transparent 54%),linear-gradient(125deg,#070d15 4%,#111d2b 53%,#080c13 100%);border-bottom:1px solid #cfaa6933}
-.home-hero:before{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,#070d18c9 0%,#09131ba8 43%,#0c16213b 100%),url('/assets/dealers/dealer-1.jpg');background-size:cover,cover;background-position:center,center 28%;opacity:.33;mix-blend-mode:screen;mask-image:linear-gradient(90deg,transparent 5%,#000 40%,#000 100%)}
+.home-hero:before{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,#070d18c9 0%,#09131ba8 43%,#0c16213b 100%),url('/assets/interfaces/matrix-assist.png');background-size:cover,cover;background-position:center,center 28%;opacity:.33;mix-blend-mode:screen;mask-image:linear-gradient(90deg,transparent 5%,#000 40%,#000 100%)}
 .home-hero:after{content:"";position:absolute;pointer-events:none;width:min(70vw,960px);aspect-ratio:1;right:-24%;top:-50%;border-radius:50%;background:radial-gradient(circle,#e3b86d21 0,transparent 69%);filter:blur(15px)}
 .hero-grid-lines{opacity:.38;background:linear-gradient(90deg,transparent calc(100% - 1px),#cfa86c14 1px) 0 0/12.5% 100%}
 .hero-layout{max-width:1500px;grid-template-columns:.89fr 1.11fr;min-height:790px;gap:5vw;padding-top:95px;padding-bottom:94px}
