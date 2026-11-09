@@ -185,3 +185,55 @@ body{background:#07111d}
 @media(max-width:1000px){.dealer-showcase{padding:65px 0}.dealer-showcase>.wrap:first-child{grid-template-columns:1fr;gap:30px}.dealer-gallery{min-height:0}.dealer-portrait{max-height:370px}}
 @media(max-width:600px){.dealer-showcase{padding:50px 0 45px}.dealer-heading h2{font-size:34px}.dealer-gallery{gap:6px}.dealer-portrait{border-radius:10px;aspect-ratio:3/5}.dealer-portrait:nth-child(2){transform:translateY(-8px)}.dealer-portrait:hover{transform:none}.dealer-portrait:nth-child(2):hover{transform:translateY(-8px)}.page-photo-accent{display:none}}
 @media(prefers-reduced-motion:reduce){.dealer-portrait{transition:none}}
+
+
+/* YUCE SIGNATURE EDITION · 2026-11 · isolated SEO site visual system */
+:root{--bg:#070b12;--surface:#111b2a;--gold:#eccd93;--blue:#8fc6e2;--paper:#f6f3ec;--ink:#18232d;--ease:cubic-bezier(.16,1,.3,1)}
+body{background:#080e17}
+::selection{background:#d8b577;color:#111a23}
+.site-header{height:82px;background:#070d17db;border-bottom:1px solid #dab77829;box-shadow:0 8px 48px #0003;backdrop-filter:blur(22px)}
+.brand b{letter-spacing:.06em}.brand small{letter-spacing:.22em;color:#d8bd90}.desktop-nav a{letter-spacing:.03em}
+.header-launch,.button.gold{border-radius:8px;background:linear-gradient(125deg,#f8e1b1,#d0a764 66%,#e8c58d);color:#16202a;box-shadow:inset 0 1px #fff8,0 8px 24px #a5783728}
+.header-launch:hover,.button.gold:hover{background:linear-gradient(135deg,#fff0d4,#e6bb79);box-shadow:0 12px 35px #d5ac5b43}
+.button.outline{border-radius:8px;border-color:#d4b77c8c;background:#0f1d2a73;backdrop-filter:blur(14px)}
+.eyebrow{letter-spacing:.24em;color:#efc992}
+.home-hero{isolation:isolate;background:radial-gradient(ellipse at 76% 30%,#61503745,transparent 41%),radial-gradient(ellipse at 11% 75%,#19436380,transparent 54%),linear-gradient(125deg,#070d15 4%,#111d2b 53%,#080c13 100%);border-bottom:1px solid #cfaa6933}
+.home-hero:before{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,#070d18c9 0%,#09131ba8 43%,#0c16213b 100%),url('/assets/interfaces/matrix-assist.png');background-size:cover,cover;background-position:center,center 28%;opacity:.33;mix-blend-mode:screen;mask-image:linear-gradient(90deg,transparent 5%,#000 40%,#000 100%)}
+.home-hero:after{content:"";position:absolute;pointer-events:none;width:min(70vw,960px);aspect-ratio:1;right:-24%;top:-50%;border-radius:50%;background:radial-gradient(circle,#e3b86d21 0,transparent 69%);filter:blur(15px)}
+.hero-grid-lines{opacity:.38;background:linear-gradient(90deg,transparent calc(100% - 1px),#cfa86c14 1px) 0 0/12.5% 100%}
+.hero-layout{max-width:1500px;grid-template-columns:.89fr 1.11fr;min-height:790px;gap:5vw;padding-top:95px;padding-bottom:94px}
+.hero-copy{position:relative;z-index:2}.hero-copy:before{content:"BACCARAT  ·  YUCE  ·  2026";display:block;color:#dab9828c;letter-spacing:.38em;font-size:10px;margin-bottom:27px}
+.hero-copy h1{font-size:clamp(56px,6vw,98px);line-height:1.11;font-weight:850;letter-spacing:-.066em;text-wrap:balance;text-shadow:0 14px 38px #0008}
+.hero-copy h1 em{background:linear-gradient(110deg,#fff6db 6%,#e9c58b 35%,#b58a4a 74%,#f9e3b4);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-copy>p{font-size:clamp(15px,1.2vw,19px);max-width:460px;color:#d3dae1;line-height:2.05}
+.hero-actions{gap:13px;margin-top:37px}.hero-actions .button{min-height:60px;padding:15px 25px;font-size:14px}
+.hero-index{margin-top:62px;border-top-color:#e9ca8c3d}.hero-index a{font-size:12px}.hero-index span{color:#f2d5a1;font-weight:900}
+.hero-visual{filter:drop-shadow(0 40px 48px #0008);transform:perspective(1450px) rotateY(-5deg) rotateX(2deg);transition:transform .8s var(--ease)}
+.hero-visual:hover{transform:perspective(1450px) rotateY(0) rotateX(0) translateY(-7px)}
+.hero-screen{padding:10px;border-radius:19px;background:linear-gradient(135deg,#fff5ca5c,#4f6c8650 43%,#b8946630);border:1px solid #edcb9382;box-shadow:0 35px 95px #000b,0 0 75px #deb26919,inset 0 1px #fff5}
+.hero-screen:after{inset:-20px;border-radius:30px;border-color:#ddbd7b24}
+.hero-screen .screen,.hero-screen .screen img{border-radius:12px}
+.visual-label{color:#f3dab0;letter-spacing:.18em}.visual-bottom{color:#d4dae2}.visual-bottom a{color:#f4ce8c}
+.hero-baseline{border-top-color:#d2b27f3b}.hero-baseline>span,.hero-baseline a{color:#d0d4d5}
+.dealer-showcase{padding:130px 0 110px;background:radial-gradient(circle at 78% 30%,#5f442d71,transparent 38%),linear-gradient(145deg,#090f17,#102435 55%,#09121c);border-block:1px solid #c7a26c63}
+.dealer-showcase:before{background:radial-gradient(circle at 78% 65%,#e5a65b21,transparent 46%),repeating-linear-gradient(90deg,transparent 0 120px,#e4c28d09 121px)}
+.dealer-heading h2{font-size:clamp(40px,4.6vw,72px);letter-spacing:-.06em}.dealer-heading p{font-size:16px;color:#c9d0d4}
+.dealer-showcase img{filter:saturate(1.12) contrast(1.06)}.dealer-showcase figure{box-shadow:0 24px 60px #0005}
+.product-entry-section{padding-block:115px;background:radial-gradient(circle at 10% 0%,#e7dfcf 0%,transparent 54%),#f6f3ec}
+.product-entry-section .section-heading h2{font-size:clamp(38px,4vw,59px)}
+.product-choice-grid{gap:28px}.product-choice{border-radius:19px;padding:38px;overflow:hidden;border:1px solid #d3c7af;background:linear-gradient(145deg,#fffdfa,#eff3f3 75%);box-shadow:0 22px 55px #23384b0d;transition:transform .55s var(--ease),box-shadow .55s var(--ease),border-color .3s}
+.product-choice.choice-auto{background:linear-gradient(145deg,#fffdfa,#f8f0de)}
+.product-choice:hover{transform:translateY(-10px);border-color:#c9a76a;box-shadow:0 34px 75px #2b314028}
+.product-choice:after{content:"";pointer-events:none;position:absolute;inset:0;background:radial-gradient(circle at 100% 0%,#f2d5a327,transparent 52%)}
+.focus-section{padding:135px 0;background:radial-gradient(ellipse at 73% 40%,#243d53 0,transparent 60%),linear-gradient(135deg,#07111b,#0d1726)}
+.focus-copy h2{font-size:clamp(38px,4vw,61px)}.focus-tabs button{border-bottom-color:#dcc69b29}.focus-tabs button[aria-selected=true]{background:linear-gradient(90deg,#d6b4781e,transparent)}
+.start-section{padding-block:115px;background:#f6f3ec}.start-steps{gap:22px}.start-steps li{padding:30px 27px;border:1px solid #dcd2bf;border-radius:16px;background:#fffcf7;box-shadow:0 15px 34px #2a3c4d09}.start-steps li>span{font-size:15px;color:#a28355;font-weight:900}.start-steps h3{margin-top:22px}
+.final-cta{position:relative;overflow:hidden;padding:110px 0;background:radial-gradient(circle at 80% 30%,#986d3f45,transparent 37%),radial-gradient(circle at 10% 100%,#24475e77,transparent 50%),#0b1420;border-color:#c9a36d45}
+.final-cta:before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.15;background:repeating-linear-gradient(135deg,transparent 0 88px,#f2d0a8 89px,transparent 90px)}
+.final-inner{position:relative}.final-inner h2{font-size:clamp(39px,4.2vw,64px)}footer{border-top:1px solid #d8b77a28;background:linear-gradient(140deg,#060c14,#101924)}
+/* all SEO subpages share the new color/material treatment */
+body:not(:has(.home-hero)) main{background:radial-gradient(circle at 85% 0%,#2a3c4b52,transparent 43%),#0a121c}
+body:not(:has(.home-hero)) .paper{background:#f6f3ec}
+@media(max-width:980px){.hero-layout{grid-template-columns:1fr;gap:56px;min-height:0;padding-block:80px 60px}.hero-visual{transform:none;max-width:760px;width:100%;margin:auto}.hero-copy h1{font-size:clamp(50px,9vw,78px)}.home-hero:before{opacity:.17}.dealer-showcase{padding:85px 0}.product-entry-section,.focus-section,.start-section{padding-block:80px}.final-cta{padding-block:80px}}
+@media(max-width:600px){.site-header{height:72px}.hero-layout{padding-top:57px;padding-bottom:38px;gap:45px}.hero-copy:before{font-size:8px;letter-spacing:.18em;margin-bottom:19px}.hero-copy h1{font-size:clamp(43px,11.7vw,63px)}.hero-copy>p{font-size:14px;line-height:1.85;margin-top:22px}.hero-actions{gap:9px;margin-top:26px}.hero-actions .button{min-height:50px;padding:12px 13px;font-size:12px;gap:8px}.hero-index{margin-top:39px;gap:13px}.hero-index a{font-size:10px;gap:5px}.hero-visual{filter:none}.hero-screen{padding:5px;border-radius:12px}.hero-screen .screen,.hero-screen .screen img{border-radius:7px}.visual-label{font-size:8px}.visual-label>span:last-child{font-size:7px}.visual-bottom{font-size:9px}.dealer-showcase{padding:68px 0}.dealer-heading h2{font-size:36px}.product-entry-section,.focus-section,.start-section{padding-block:67px}.product-choice-grid{gap:16px}.product-choice{padding:23px;border-radius:14px}.start-steps{gap:13px}.start-steps li{padding:23px}.final-cta{padding:65px 0}}
+@media(prefers-reduced-motion:reduce){.hero-visual,.product-choice,.button{transition:none!important;transform:none!important}}
