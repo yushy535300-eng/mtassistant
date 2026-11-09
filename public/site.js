@@ -32,4 +32,23 @@
  }
  guideTabs.forEach((t,i)=>{t.addEventListener('click',()=>selectGuide(t.dataset.guide,true,false));t.addEventListener('keydown',e=>{if(!['ArrowLeft','ArrowRight','Home','End'].includes(e.key))return;e.preventDefault();const next=guideTabs[e.key==='Home'?0:e.key==='End'?1:1-i];next.focus();selectGuide(next.dataset.guide,true,false);});});
  if(guideTabs.length){const requested=new URLSearchParams(location.search).get('system');selectGuide(requested==='auto'||location.hash.startsWith('#auto-step')?'auto':'matrix');}
+
+ // Editorial interactions: progressive enhancement, safe for reduced-motion and unsupported browsers.
+ const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+ if(!reduced&&'IntersectionObserver' in window){
+  const reveals=$$('.editorial-copy,.editorial-stack,.cockpit-tile,.feature-cinema-layout,.manifesto-grid,.faq-paths a,.contact-band-copy,.guide-intro-inner,.story-copy,.story-image,.product-choice');
+  document.body.classList.add('js-motion');
+  reveals.forEach(el=>el.setAttribute('data-reveal',''));
+  const observer=new IntersectionObserver(entries=>{for(const entry of entries){if(entry.isIntersecting){entry.target.classList.add('is-visible');observer.unobserve(entry.target)}}},{threshold:.08,rootMargin:'0px 0px -24px 0px'});
+  reveals.forEach(el=>observer.observe(el));
+ }
+ $$('[data-faq-filter]').forEach(link=>link.addEventListener('click',()=>{
+  const search=$('#faqSearch');if(!search)return;
+  search.value=link.dataset.faqFilter||'';
+  search.dispatchEvent(new Event('input',{bubbles:true}));
+  requestAnimationFrame(()=>search.focus({preventScroll:true}));
+ }));
+ // Mark active documentation section for keyboard and mouse visitors without changing existing links.
+ const sectionLinks=$$('.section-nav a[href^="#"],.guide-layout aside a[href^="#"]');
+ sectionLinks.forEach(link=>link.addEventListener('click',()=>{sectionLinks.forEach(el=>el.removeAttribute('aria-current'));link.setAttribute('aria-current','location')}));
 })();
