@@ -555,7 +555,7 @@ footer a:hover{color:#f3ce8f}
  .dealer-showcase.mt-dealer-edition .dealer-gallery{min-height:0;gap:8px}
  .dealer-showcase.mt-dealer-edition .dealer-portrait{height:245px;max-height:245px;border-radius:9px;transform:none!important}
  .dealer-showcase.mt-dealer-edition .dealer-portrait:nth-child(2){height:280px;max-height:280px;transform:translateY(-7px)!important}
- ..mt-portrait-showcase{padding:55px 0 63px}
+ .mt-portrait-showcase{padding:55px 0 63px}
  .mt-portrait-heading{margin-bottom:27px;gap:20px}
  .mt-portrait-heading h2{font-size:37px}
  .mt-portrait-heading p{font-size:13px}
