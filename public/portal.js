@@ -296,3 +296,43 @@ document.addEventListener('DOMContentLoaded', () => {
     reduced.addEventListener('change',reset);
   });
 })();
+
+
+/* Mobile-only media carousel: original videos stay untouched. */
+(() => {
+  const root = document.querySelector('[data-video-carousel]');
+  if (!root) return;
+  const track = root.querySelector('#mt-video-track');
+  const cards = Array.from(track?.querySelectorAll('.mt-video-card') || []);
+  const buttons = Array.from(root.querySelectorAll('[data-video-index]'));
+  if (!track || cards.length !== 3) return;
+  const mobile = () => matchMedia('(max-width:640px)').matches;
+  const current = () => Math.max(0,Math.min(cards.length-1,Math.round(track.scrollLeft/Math.max(1,track.clientWidth))));
+  const mark = (index) => {
+    buttons.forEach((button,i) => {
+      if (i===index) button.setAttribute('aria-current','true');
+      else button.removeAttribute('aria-current');
+    });
+    cards.forEach((card,i) => {
+      const video=card.querySelector('video');
+      if (mobile() && i!==index && video && !video.paused) video.pause();
+    });
+  };
+  const jump = (index) => {
+    if (!mobile()) return;
+    const selected=Math.max(0,Math.min(cards.length-1,index));
+    const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+    track.scrollTo({left:cards[selected].offsetLeft-cards[0].offsetLeft,behavior:reduce?'instant':'smooth'});
+    mark(selected);
+  };
+  root.querySelector('[data-video-prev]')?.addEventListener('click',()=>jump(current()-1));
+  root.querySelector('[data-video-next]')?.addEventListener('click',()=>jump(current()+1));
+  buttons.forEach((button,i)=>button.addEventListener('click',()=>jump(i)));
+  let frame=0;
+  track.addEventListener('scroll',()=>{
+    if (frame) cancelAnimationFrame(frame);
+    frame=requestAnimationFrame(()=>{frame=0;mark(current());});
+  },{passive:true});
+  window.addEventListener('resize',()=>mark(current()),{passive:true});
+  mark(0);
+})();
