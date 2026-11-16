@@ -155,20 +155,6 @@ def _panel(system, steps, initial):
     </section>'''
 
 
-
-def _install_card(auto=False):
-    name = "百家自動下注" if auto else "多桌百家輔助"
-    url = AUTO if auto else MATRIX
-    key = "auto" if auto else "matrix"
-    def steps(ios):
-        labels = [("開啟 Safari", "開啟下方程式入口"), ("點選分享", "按 Safari 的分享圖示"), ("加入主畫面", "選擇加入主畫面，再點加入")] if ios else [("開啟 Chrome", "開啟下方程式入口"), ("點選選單", "點右上角 ⋮"), ("加入主畫面", "選擇安裝應用程式或加入主畫面，確認新增")]
-        marks = ["↗", "↑" if ios else "⋮", "+"]
-        return "".join(f'''<figure class="install-step"><svg viewBox="0 0 200 250" role="img" aria-label="步驟 {i+1}：{label}（操作示意）"><rect x="36" y="7" width="128" height="236" rx="17" fill="#202128" stroke="#555662" stroke-width="2"/><rect x="43" y="16" width="114" height="218" rx="12" fill="#30323b"/><rect x="76" y="18" width="48" height="8" rx="4" fill="#101116"/><rect x="50" y="42" width="100" height="15" rx="5" fill="#51535f"/><text x="100" y="53" text-anchor="middle" fill="#fff" font-size="8">{'Safari' if ios else 'Chrome'}</text><rect x="53" y="70" width="94" height="104" rx="8" fill="#19191f"/><image href="/assets/{'auto-logo' if auto else 'baccarat-logo'}.png" x="75" y="88" width="50" height="50"/><rect x="54" y="183" width="92" height="40" rx="8" fill="#a83765"/><text x="100" y="211" text-anchor="middle" font-size="27" fill="white">{marks[i]}</text><circle cx="148" cy="30" r="13" fill="#e04e86"/><text x="148" y="35" text-anchor="middle" font-size="13" font-weight="bold" fill="white">{i+1}</text></svg><figcaption><strong>{i+1}. {label}</strong><p>{detail}</p></figcaption></figure>''' for i,(label,detail) in enumerate(labels))
-    return f'''<article class="portal-panel install-card" id="install-{key}"><div class="product-heading">{logo(auto=auto)}<div><h3>{name}</h3><p>將此工具加入手機主畫面</p></div></div><div class="inline-actions">{button("開啟"+name, url)}</div><h4>iPhone｜Safari</h4><div class="install-steps">{steps(True)}</div><h4>Android｜Chrome</h4><div class="install-steps">{steps(False)}</div><p class="portal-notice">請從程式入口開啟瀏覽器，不要將御策官網加入主畫面。瀏覽器選單名稱可能因版本不同而異。</p></article>'''
-
-def _install_section():
-    return f'''<section class="portal-section" id="download-install" aria-labelledby="download-title" style="scroll-margin-top:100px"><div class="section-top"><div><p class="kicker">下載安裝／手機主畫面</p><h2 id="download-title">下載安裝教學</h2><p>選擇你的工具，依照手機系統完成加入主畫面。下方為操作示意圖。</p></div></div><style>.install-card{{margin-bottom:20px}}.install-card h4{{margin:20px 0 10px}}.install-steps{{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}}.install-step{{margin:0;padding:12px;border:1px solid #41414d;border-radius:14px;background:#202128;text-align:center}}.install-step svg{{width:100%;max-width:200px;height:auto}}.install-step p{{font-size:13px;margin:6px 0 0}}@media(max-width:600px){{.install-steps{{grid-template-columns:1fr}}.install-step{{display:grid;grid-template-columns:110px 1fr;align-items:center;text-align:left}}}}</style>{_install_card()}{_install_card(True)}</section>'''
-
 def render(system="matrix"):
     """Return the compact guide content for the portal shell."""
     initial = system if system in _SYSTEMS else "matrix"
@@ -201,7 +187,6 @@ def render(system="matrix"):
       </div>
     </section>
 
-    {_install_section()}
     {_panel("matrix", matrix_steps, initial)}
     {_panel("auto", auto_steps, initial)}
     '''

@@ -1,6 +1,6 @@
 from ..common import MATRIX, AUTO, LINE, THREADS, logo, arrow
 
-ROUTES = [('/', '首頁', 'home'), ('/features', '多桌輔助', 'layers'), ('/auto', '自動下注', 'play'), ('/guide', '操作教學', 'book'), ('/guide#download-install', '下載安裝', 'download'), ('/faq', '常見問題', 'help'), ('/contact', '客服中心', 'chat')]
+ROUTES = [('/', '首頁', 'home'), ('/features', '多桌輔助', 'layers'), ('/auto', '自動下注', 'play'), ('/guide', '操作教學', 'book'), ('/download', '下載安裝', 'download'), ('/faq', '常見問題', 'help'), ('/contact', '客服中心', 'chat')]
 ICONS = {
     'download': '<path d="M13 3v14m-6-6 6 6 6-6M4 19v5h18v-5"/>',
     'home': '<path d="M3 10 12 3l9 7v11h-6v-7H9v7H3z"/>',
@@ -30,7 +30,7 @@ def header(route):
 
 
 def footer():
-    return f'''<footer class="portal-footer"><div class="portal-footer-top"><a class="footer-brand" href="/">{logo()}<b>御策百家輔助</b></a><nav aria-label="頁尾導航"><a href="/features">多桌輔助</a><a href="/auto">自動下注</a><a href="/guide">操作教學</a><a href="/faq">常見問題</a><a href="/contact">客服中心</a></nav><div class="footer-social"><a href="{LINE}">LINE 客服 ↗</a><a href="{THREADS}">Threads · @hacklook__ ↗</a></div></div><p>牌路、分析與配注策略僅供輔助，不能保證預測下一局或獲利。請評估風險並遵守所在地法規；未成年人請勿參與。人物僅作情境裝飾，非御策代言或客服本人，圖片不是即時直播。</p><div class="portal-footer-bottom"><span>© 2026 御策百家輔助</span><span>獨立測試版本 · 不開放索引</span></div></footer>'''
+    return f'''<footer class="portal-footer"><div class="portal-footer-top"><a class="footer-brand" href="/">{logo()}<b>御策百家輔助</b></a><nav aria-label="頁尾導航"><a href="/features">多桌輔助</a><a href="/auto">自動下注</a><a href="/guide">操作教學</a><a href="/download">下載安裝</a><a href="/faq">常見問題</a><a href="/contact">客服中心</a></nav><div class="footer-social"><a href="{LINE}">LINE 客服 ↗</a><a href="{THREADS}">Threads · @hacklook__ ↗</a></div></div><p>牌路、分析與配注策略僅供輔助，不能保證預測下一局或獲利。請評估風險並遵守所在地法規；未成年人請勿參與。人物僅作情境裝飾，非御策代言或客服本人，圖片不是即時直播。</p><div class="portal-footer-bottom"><span>© 2026 御策百家輔助</span><span>V2.0 獨立測試 · 不開放索引</span></div></footer>'''
 
 
 def bottomnav(route):
