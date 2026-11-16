@@ -114,6 +114,7 @@ PHOTO_ASSETS = {
     "baccarat-commission-variants": ("https://commons.wikimedia.org/wiki/Special:FilePath/King_playing_card_and_casino_tokens_02.jpg?width=960", "https://commons.wikimedia.org/wiki/File:King_playing_card_and_casino_tokens_02.jpg", "Wikimedia Commons（請見來源頁）", "授權條款見來源頁"),
     "baccarat-record-reading": ("https://commons.wikimedia.org/wiki/Special:FilePath/BaccaratTables-Casino-MarinaBaySands-Singapore-20100507.jpg?width=960", "https://commons.wikimedia.org/wiki/File:BaccaratTables-Casino-MarinaBaySands-Singapore-20100507.jpg", "Wikimedia Commons（請見來源頁）", "授權條款見來源頁"),
     "baccarat-mobile-checklist": ("https://commons.wikimedia.org/wiki/Special:FilePath/MC_%E6%BE%B3%E9%96%80%E9%87%91%E6%B2%99_Sands_Macao_Casino_interior_%E7%99%BE%E5%AE%B6%E6%A8%82_Baccarate_cards_gamble_machine_terminals_dispaly_system_November_2016_Lnv_01.jpg?width=960", "https://commons.wikimedia.org/wiki/File:MC_%E6%BE%B3%E9%96%80%E9%87%91%E6%B2%99_Sands_Macao_Casino_interior_%E7%99%BE%E5%AE%B6%E6%A8%82_Baccarate_cards_gamble_machine_terminals_dispaly_system_November_2016_Lnv_01.jpg", "Wikimedia Commons（請見來源頁）", "授權條款見來源頁"),
+}
 
 def editorial_image(a):
     source = PHOTO_ASSETS.get(a['slug'])
