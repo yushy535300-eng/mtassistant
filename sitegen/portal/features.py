@@ -47,6 +47,7 @@ def render():
     <div class="pagehead-actions">
       {button("進入 MATRIX", MATRIX)}
       {button("閱讀操作教學", "/guide?system=matrix", "outline")}
+      {_link("觀看完整操作影片", "/#mt-videos")}
     </div>
   </section>
 

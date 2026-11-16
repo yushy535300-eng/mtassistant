@@ -141,3 +141,10 @@
   });
   size(); paint(0, true); sync();
 })();
+
+/* Real recordings: native audio controls; avoid overlapping sound. */
+document.addEventListener('DOMContentLoaded', () => {
+  const videos=Array.from(document.querySelectorAll('video.mt-full-video'));
+  videos.forEach(video=>video.addEventListener('play',()=>videos.forEach(other=>{if(other!==video&&!other.paused)other.pause();})));
+  document.addEventListener('visibilitychange',()=>{if(document.hidden)videos.forEach(video=>video.pause());});
+});

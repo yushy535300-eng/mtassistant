@@ -37,4 +37,30 @@ for asset in ["assets/install/yuce-auto-ios-install.webp", "assets/install/yuce-
     assert "/" + asset in embedded, asset
 assert '"/pages/download.html"' in embedded
 assert '"/pages/download.html"' in (ROOT / "src/main.rs").read_text(encoding="utf-8")
-print("MT transparent dealer audit: four alpha WebP assets, existing hero scenes, no full-table exhibition, installation route OK.")
+# Full recordings only: no resurrected raw screenshot gallery.
+import re
+assert 'id="mt-videos"' in home
+assert home.count('class="mt-full-video"') == 3
+assert '/#mt-videos' in matrix
+for tag in re.findall(r'<video\b[^>]*>', home):
+    if 'mt-full-video' in tag:
+        assert ' controls' in tag and ' playsinline' in tag
+        assert ' muted' not in tag and ' autoplay' not in tag
+assert '.mt-video-grid' in css and 'object-fit:contain' in css
+video_assets = {
+    "mt-gameplay-full.mp4": "4a8aa1cc78c4ddbdb939e815fdf64eb43763fbd891c7d9f0369db054ba910e97",
+    "mt-login-full.mp4": "df35e7f7472843f9fb4ba831f7352d1ecd0751dcc8909b9879f23ddb26e12dac",
+    "mt-model-full.mp4": "380bbcbc2be715d5626b8b46ad19bf2ee1c3718e097028b67811e17a4266ab7d",
+    "mt-gameplay-full.webp": "6c5828b7c68b8fc6ef6a9ffaedb95a33da84fcf171ebcd802717d487fd564e02",
+    "mt-login-full.webp": "8659a04e3574f1a6263a559de72598edba0dcc20c4fd0145ddfb1a94d95d4e11",
+    "mt-model-full.webp": "462af69db32701b3287feaa126a50f277522f0d7d1fd24ddbbe36e3f73b08046",
+}
+for filename, checksum in video_assets.items():
+    asset = "assets/mt-real/" + filename
+    data = (PUBLIC / asset).read_bytes()
+    assert hashlib.sha256(data).hexdigest() == checksum, asset
+    assert "/" + asset in embedded, asset
+    assert filename in home, asset
+    if filename.endswith(".mp4"):
+        assert b"mp4a" in data and b"soun" in data, asset
+print("MT final audit: transparent dealers, full original recordings, audio tracks and native controls, installation assets OK.")

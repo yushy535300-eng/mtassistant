@@ -11,3 +11,22 @@
 @media(pointer:fine){.portal-shortcuts a,.tool-tile,.button{transition:box-shadow .2s,border-color .2s}.portal-shortcuts a:hover,.tool-tile:hover{border-color:#b26c92;box-shadow:0 0 16px #d35d9020}}
 @media(max-width:640px){.brand-person.mt-original-dealer{width:153px;left:-22px;bottom:0}.scene-person.mt-original-dealer{filter:drop-shadow(0 5px 10px #0a071635)}}
 @media(prefers-reduced-motion:reduce){.portal-shortcuts a,.tool-tile,.button{transition:none!important}}
+
+/* One coherent gallery of original portrait recordings. No raw table-image exhibition. */
+.mt-original-videos{position:relative;margin-top:clamp(30px,4vw,54px)}
+.mt-videos-heading{align-items:flex-end;margin-bottom:18px}
+.mt-videos-heading h2{letter-spacing:-.025em}
+.mt-videos-heading p:not(.kicker){max-width:640px}
+.mt-video-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(12px,1.7vw,22px);max-width:1060px;margin:0 auto;align-items:stretch}
+.mt-video-card{min-width:0;display:flex;flex-direction:column;overflow:hidden;border:1px solid #574052;border-radius:16px;padding:9px;background:linear-gradient(155deg,#28212e 0%,#1b1922 64%,#1a1820 100%);box-shadow:0 10px 24px #08060d44;transition:border-color .2s ease,box-shadow .2s ease}
+.mt-video-frame{position:relative;display:flex;align-items:center;justify-content:center;min-width:0;aspect-ratio:472/960;overflow:hidden;border-radius:10px;background:#0a0b11;border:1px solid #382d3c}
+.mt-full-video{display:block;width:100%;height:100%;max-width:100%;object-fit:contain;background:#0a0b11;outline-offset:-3px}
+.mt-video-caption{flex:1;min-width:0;padding:15px 9px 10px}
+.mt-video-meta{display:flex;align-items:center;justify-content:space-between;gap:6px;color:#c4aebf;font-size:10px;line-height:1.4;letter-spacing:.035em}
+.mt-video-meta>span:first-child{color:#e995ba;font-weight:600}
+.mt-video-caption h3{margin:9px 0 6px;color:#f7edf5;font-size:clamp(16px,1.45vw,21px);line-height:1.35;letter-spacing:-.015em}
+.mt-video-caption p{margin:0;color:#c6bdcb;font-size:13px;line-height:1.6}
+@media(pointer:fine){.mt-video-card:hover{border-color:#ad6d92;box-shadow:0 14px 34px #09060c60}}
+@media(max-width:900px){.mt-video-grid{gap:10px}.mt-video-card{padding:6px;border-radius:13px}.mt-video-caption{padding:12px 5px 9px}.mt-video-meta{font-size:9px}.mt-video-caption h3{font-size:17px}.mt-video-caption p{font-size:12px}}
+@media(max-width:640px){.mt-videos-heading{align-items:flex-start}.mt-video-grid{grid-template-columns:minmax(0,1fr);max-width:410px;gap:16px}.mt-video-card{padding:9px;border-radius:15px}.mt-video-frame{border-radius:10px}.mt-video-caption{padding:13px 9px 10px}.mt-video-meta{font-size:11px}.mt-video-caption h3{font-size:19px}.mt-video-caption p{font-size:13px}}
+@media(prefers-reduced-motion:reduce){.mt-video-card{transition:none!important}}
