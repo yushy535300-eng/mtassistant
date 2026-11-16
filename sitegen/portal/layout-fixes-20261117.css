@@ -1,0 +1,75 @@
+/* Layout and advertisement remediation – scoped, responsive, reversible.
+   Original dealer art, real software screenshots and business links are unchanged. */
+:root{--line-brand:#06c755}
+@media(min-width:981px){
+  .portal-main{min-width:0}
+  .portal-pagehead p:not(.kicker),.portal-section>p,.journal-body p,.faq-item p,
+  .guide-step-panel p,.contact-checklist li,.editorial-copy>p:not(.kicker){font-size:clamp(16px,1.05vw,18px);line-height:1.8}
+  .portal-section h2,.section-top h2{font-size:clamp(28px,2.4vw,36px);line-height:1.35}
+  .portal-pagehead h1{font-size:clamp(32px,3vw,46px);line-height:1.3}
+  .portal-topbar a,.portal-category a,.portal-rail nav>a{font-size:15px}
+  .button,.tool-tile .button,.pagehead-actions .button,.launch-menu summary{font-size:16px;min-height:46px}
+  .editorial-copy h3{font-size:22px;line-height:1.5}
+  .yc-ad-slot-content .yc-ad-stage{min-height:235px}
+  .yc-ad-slot-content .yc-ad-content strong{font-size:clamp(28px,2.5vw,38px)}
+  .yc-ad-slot-content .yc-ad-summary{font-size:15px;line-height:1.65;max-width:61%}
+  .yc-ad-slot-content .yc-ad-campaign{font-size:15px}
+  .yc-ad-slot-content .yc-ad-brand{font-size:11px}
+  .yc-ad-slot-content .yc-ad-cta{font-size:15px;min-height:38px}
+  .yc-ad-slot-billboard .yc-ad-summary{font-size:16px;line-height:1.7}
+  .yc-ad-slot-billboard .yc-ad-cta{font-size:16px}
+}
+/* Never enlarge a compressed mobile rendition or distort the original mark. */
+.yc-ad-emblem{overflow:visible;min-width:0}
+.yc-ad-emblem img{display:block;width:100%;height:100%;object-fit:contain;object-position:center;image-rendering:auto;transform:none!important;filter:none!important}
+.yc-ad-stage,.yc-ad-art{isolation:isolate}
+.yc-ad-content,.yc-ad-content strong,.yc-ad-campaign,.yc-ad-summary,.yc-ad-cta{min-width:0;overflow-wrap:break-word}
+.yc-ad-slot-content .yc-ad-art,.yc-ad-slot-billboard .yc-ad-art{overflow:hidden}
+.yc-ad-slot-float .yc-ad-stage{min-height:0}
+.yc-ad-slot-float .yc-ad-emblem{flex:none}
+.yc-ad-slot-float .yc-ad-summary{font-size:12px;line-height:1.45}
+.yc-ad-slot-float .yc-ad-cta{font-size:13px;min-height:30px}
+.yc-ad-window-actions button{min-width:32px;min-height:32px}
+.yc-ad-slot-float{max-width:min(292px,calc(100vw - 24px))}
+a[data-line-link].button,.rail-contact[data-line-link],.topbar-help[data-line-link],
+.portal-bottom a[data-line-link],.welcome-dialog a.welcome-line[data-line-link]{
+ background:var(--line-brand);color:#fff;border-color:transparent;box-shadow:none
+}
+a[data-line-link]:hover{filter:brightness(.92)}
+/* Keep real screenshots legible; never crop their contents. */
+.screen img,.journal-lead-media img,.atelier-product-canvas .screen img{object-fit:contain;object-position:center}
+.screen,.journal-lead-media{max-width:100%;min-width:0}
+@media(max-width:980px){
+ .portal-pagehead p:not(.kicker),.editorial-copy>p:not(.kicker),.journal-body p{font-size:16px;line-height:1.8}
+ .tool-tile .button,.pagehead-actions .button{font-size:15px;min-height:46px}
+ .portal-section h2,.section-top h2{font-size:clamp(27px,4vw,34px)}
+}
+@media(max-width:640px){
+ .yc-ad-slot-content .yc-ad-stage{height:auto;min-height:270px;aspect-ratio:auto}
+ .yc-ad-slot-content .yc-ad-art{min-height:270px}
+ .yc-ad-slot-content .yc-ad-emblem{left:73%;top:26%;width:39%;height:40%;max-width:130px;opacity:1}
+ .yc-ad-slot-content .yc-ad-content{left:16px;right:16px;bottom:15px;top:auto;width:auto;gap:5px}
+ .yc-ad-slot-content .yc-ad-content strong{font-size:26px}
+ .yc-ad-slot-content .yc-ad-summary{font-size:12px;line-height:1.55;max-width:76%}
+ .yc-ad-slot-content .yc-ad-campaign{font-size:12px;max-width:78%}
+ .yc-ad-slot-content .yc-ad-brand{font-size:10px}
+ .yc-ad-slot-content .yc-ad-cta{font-size:13px;min-height:34px}
+ .yc-ad-slot-billboard .yc-ad-stage{height:auto;min-height:390px;aspect-ratio:auto}
+ .yc-ad-slot-billboard .yc-ad-emblem{width:49%;height:43%;left:72%;top:23%}
+ .yc-ad-slot-billboard .yc-ad-summary{font-size:13px;line-height:1.6}
+ .yc-ad-slot-float{display:none!important}
+ .yc-ad-open{display:none!important}
+ body.yc-ad-opened .portal-main{padding-bottom:0}
+ .portal-pagehead p:not(.kicker),.journal-body p,.editorial-copy>p:not(.kicker){font-size:16px}
+ .button,.tool-tile .button,.pagehead-actions .button{font-size:15px}
+}
+@media(prefers-reduced-motion:reduce){
+ .yc-ad-art,.yc-ad-emblem,.yc-ad-halo,.yc-ad-flare{animation:none!important;transition:none!important}
+}
+
+/* Editorial: real screen captures instead of synthetic number/grid placeholders. */
+.editorial-art.editorial-art-photo{position:relative;display:grid;place-items:center;overflow:hidden;aspect-ratio:16/9;background:radial-gradient(ellipse at 50% 45%,#3d3324,#121311 75%);padding:13px}
+.editorial-art-photo img{display:block;width:100%;height:100%;object-fit:contain;object-position:center;filter:none;transform:none}
+.editorial-photo-badge{position:absolute;left:12px;bottom:12px;padding:3px 9px;border:1px solid #a78a4c;color:#f2dbaa;background:#111c;border-radius:3px;font-size:12px;line-height:1.5}
+.editorial-card:hover .editorial-art-photo img{transform:none}
+@media(max-width:640px){.editorial-art.editorial-art-photo{padding:10px;aspect-ratio:16/10}.editorial-photo-badge{font-size:11px}}
