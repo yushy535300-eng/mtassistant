@@ -93,6 +93,8 @@ assert 'mt-new-dealer' not in home and 'png_style_cutout' not in home
 print("Homepage carousel: 11 source assets, five-second crossfade, intact video and installation routes OK.")
 
 # Original official ads are copied during build and served as embedded local assets.
+import sys
+sys.path.insert(0, str(ROOT))
 from sitegen.portal.ads import ASSETS, git_sha
 for name, (_, checksum) in ASSETS.items():
     asset = "assets/scarab-ads/" + name
