@@ -1,0 +1,166 @@
+/* Reference art direction: typography, ornament, proportions and motion are native UI. */
+@font-face{font-family:YuceDisplay;src:url('/assets/fonts/yuce-display-bold.woff2') format('woff2');font-weight:700 900;font-display:swap}
+@font-face{font-family:YuceUI;src:url('/assets/fonts/yuce-ui-bold.woff2') format('woff2');font-weight:600 900;font-display:swap}
+:root{--yc-display:YuceDisplay,'Noto Serif TC',serif;--yc-gold:#f3ce80;--yc-bright:#fff0c6}
+html{scroll-padding-top:22px}
+body{background:#080807;color:#f8f0db;line-height:1.65}
+.portal-main{background:radial-gradient(ellipse at 50% 13%,#c58a2512,transparent 35%),#090907}
+button,.button,.portal-rail nav>a,.mobile-nav>a,.rail-support strong,.rail-contact,.faq-item summary,.topbar-actions,.product-tab,.guide-tabs,.focus-tabs{font-family:YuceUI,PortalTC,sans-serif}
+h1,h2,h3,.portal-brand b,.mobile-brand b,.yc-service-strip b,.guide-number{font-family:var(--yc-display);font-weight:800}
+/* Gold is a layered metal treatment, not a flat yellow font. */
+.section-top h2,.portal-pagehead h1,.tool-tile .product-heading h3,.brand-copy h2,.mt-videos-heading h2,.yc-service-strip a b{color:#f4d99d;text-shadow:0 1px 0 #ffffcf,0 2px 0 #9b6728,0 3px 0 #46260f,0 4px 9px #000;letter-spacing:.02em}
+@supports(background-clip:text){
+.section-top h2,.portal-pagehead h1,.tool-tile .product-heading h3,.brand-copy h2,.mt-videos-heading h2,.yc-service-strip a b{background:linear-gradient(174deg,#fffdf0 0%,#fff0c1 22%,#ddb568 42%,#fff1b4 47%,#ae762a 67%,#ffe8a9 90%);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 2px 1px #563312);text-shadow:none}
+}
+.portal-rail{background:radial-gradient(ellipse at 10% 2%,#b8822814,transparent 45%),linear-gradient(100deg,#17130c,#080908);border-color:#755021}
+.portal-brand{border-bottom:1px solid #68502a;justify-content:center}
+.portal-brand b{font-size:20px;letter-spacing:.05em;color:#ffe4a4;text-shadow:0 1px #81531f}
+.portal-brand small{font-family:Georgia,serif;letter-spacing:.16em;color:#e4c479}
+.rail-label{display:none}
+.portal-rail nav>a{color:#eadbb3;font-size:15px;font-weight:700;letter-spacing:.04em;border-radius:0}
+.portal-rail nav>a[aria-current=page]{background:linear-gradient(100deg,#f6d998 0%,#ce9c49 30%,#9a6624 76%,#d9aa58 100%);border-color:#f2d18b;border-radius:0 25px 25px 0;box-shadow:inset 0 1px #fff4c9,0 0 11px #e9ab3b60}
+.rail-support{border:0;border-top:1px solid #785725;border-radius:0;background:transparent}
+.rail-support strong{font-size:16px;color:#f4d994}.rail-support p{font-size:12px;color:#dbd3bf}
+.rail-contact[data-line-link]{border:1px solid #80ec59;background:linear-gradient(#21a92a,#077d15);box-shadow:inset 0 1px #b7ffa955,0 0 15px #23c93445;border-radius:11px}
+.rail-foot{border-color:#423519}
+/* Remove the extra desktop masthead: the stage starts at the top, like the reference. */
+@media(min-width:981px){
+.portal-rail{width:186px;padding:14px 10px 8px}
+.portal-main{margin-left:186px}
+.portal-topbar,.portal-category{display:none}
+.portal-rail>.portal-brand{padding:0 0 15px;gap:7px;margin-bottom:13px}
+.portal-rail>.portal-brand .product-logo{width:35px;height:35px}
+.portal-rail>.portal-brand b{font-size:19px}
+.portal-rail>nav{gap:3px;margin-inline:-10px 0}
+.portal-rail>nav>a{min-height:35px;padding:6px 13px 6px 22px;font-size:14px}
+.portal-rail>.rail-support{margin:17px 1px 12px;padding:13px 5px 0}
+.portal-rail>.rail-support strong{font-size:15px}
+.portal-rail>.rail-support p{font-size:12px;line-height:1.7;margin:8px 0}
+.portal-rail>.rail-support .rail-contact[data-line-link]{min-height:38px;font-size:14px;margin-top:10px;padding:6px 10px}
+.page-home #main{padding:0 0 46px;max-width:1700px;margin-inline:auto}
+.page-home .portal-home>.portal-section,.page-home .portal-home>.portal-shortcuts{margin-inline:28px}
+.page-home .portal-home>.portal-banner{margin:0}
+.page-home .portal-home>.yc-tool-showcase{margin-top:15px!important}
+.page-home .portal-home>.yc-service-strip{margin-top:13px}
+#main{padding-top:18px}
+.skip-link{left:190px}
+}
+.portal-banner.has-scene-person{border:0;border-bottom:1px solid #c39445;border-radius:0;box-shadow:0 8px 25px #0008;min-height:340px;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);background:#0b0907}
+.portal-banner::after{inset:0;border:0;border-radius:0;background:linear-gradient(100deg,transparent 10%,#c68b32 36%,#fff1c2 49%,#b67d2a 60%,transparent 90%) bottom/220% 2px no-repeat;box-shadow:inset 0 -1px #f3c47444}
+.portal-banner .banner-art img{filter:grayscale(.7) sepia(.65) saturate(.8) brightness(1);object-position:center 57%}
+.portal-banner.has-scene-person::before{background:linear-gradient(90deg,#070706e8 0%,#0c0905b0 34%,#100b0638 63%,#0000000d)}
+.portal-banner .banner-copy{padding:30px 0 30px 58px!important;max-width:690px!important}
+.banner-label{font-family:Georgia,serif!important;font-size:13px;letter-spacing:.35em;text-align:center;margin:0 0 16px;color:#e5c782!important}
+.yc-art-title{width:95%;max-width:650px;margin:0;isolation:isolate;transform:skewX(-7deg)}
+.yc-art-title>img{position:relative;width:100%;height:auto;filter:drop-shadow(1px 2px 0 #935b20) drop-shadow(2px 5px 0 #43220f) drop-shadow(0 6px 14px #d88d172e);z-index:1}
+.yc-art-title .yc-laurel{position:absolute;top:-8%;height:125%;width:11%;overflow:visible;filter:drop-shadow(0 1px 3px #db9c263a)}
+.yc-laurel-left{left:-10.5%}.yc-laurel-right{right:-8.5%;transform:scaleX(-1)}
+.yc-art-title .yc-title-crown{position:absolute;left:8%;top:-26%;width:10%;height:auto;z-index:3;filter:drop-shadow(0 0 5px #f0bd4e66)}
+.yc-art-title::after{left:0;right:0;bottom:-8px;box-shadow:0 0 13px #eab55f99}
+.portal-banner .yc-hero-subtitle{font-size:clamp(19px,2.1vw,29px);font-family:var(--yc-display);font-style:italic;white-space:nowrap;margin:21px 0 0;letter-spacing:.02em;text-align:center;color:#fff1c5;text-shadow:0 2px 1px #80551e,0 0 12px #c98d292b}
+.portal-banner .yc-hero-description{font-family:YuceUI,PortalTC,sans-serif;font-size:15px;color:#e6d5ab;text-align:center;margin-top:12px;line-height:1.5}
+.banner-copy .button:not([data-line-link]){display:flex;width:210px;min-height:48px;margin:20px auto 0;font-family:var(--yc-display);font-size:23px;letter-spacing:.08em;border-radius:28px}
+.banner-risk{font-size:9px;text-align:center;opacity:.8;margin-top:9px}
+.portal-banner.has-scene-person>.mt-dealer-rotation{width:100%;height:335px;aspect-ratio:auto;max-width:450px;margin:0;justify-self:center;align-self:end;filter:drop-shadow(0 5px 15px #0008)}
+.mt-dealer-rotation>.scene-person img{height:100%;width:100%;aspect-ratio:auto;object-fit:contain;object-position:center bottom}
+.yc-hero-controls{left:52%;bottom:9px;gap:9px}.yc-hero-controls button{width:24px;height:24px;border:0;background:transparent;color:#f5d184;font-size:25px}.yc-hero-counter{font-size:9px}
+/* Horizontal feature panels, as in the supplied composition. No added tab menus. */
+.portal-tool-grid{gap:16px;align-items:stretch}
+.page-home .tool-tile{grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr);min-height:166px;gap:10px;padding:13px 15px;align-items:center;border:1px solid #bd934b;border-radius:20px;background:radial-gradient(ellipse at 8% 0%,#ecc46b1c,transparent 48%),linear-gradient(115deg,#1c170d,#080a08 70%);box-shadow:inset 0 1px #fff1c18c,inset 0 -2px 5px #b878232b,0 0 15px #c58b281d}
+.page-home .tool-tile.auto{background:radial-gradient(ellipse at 10% 0%,#e4b66018,transparent 50%),linear-gradient(115deg,#1b160d,#090a08 70%);border-color:#bd934b}
+.page-home .tool-tile::before{inset:1px;border-radius:18px;border:1px solid #c5953e25;background:none}
+.page-home .tool-tile::after{height:1px;left:6%;right:6%;background:linear-gradient(90deg,transparent,#e4b64f,#fff4ce,#d69b30,transparent);background-size:250% 100%;box-shadow:0 0 11px #f2ba45aa}
+.page-home .tool-tile .product-heading{gap:7px;align-items:center}
+.yc-tool-icon{width:42px;height:42px;color:#e8c679;filter:drop-shadow(0 1px 0 #7d511c) drop-shadow(0 0 6px #edb03b60);flex-shrink:0}
+.page-home .tool-tile .product-heading span{display:none}
+.page-home .tool-tile .product-heading h3{font-size:clamp(22px,2.3vw,34px);line-height:1.25;font-style:italic;letter-spacing:-.04em;white-space:nowrap}
+.page-home .tool-tile-copy>p{font-family:YuceUI,PortalTC,sans-serif;font-size:13px;line-height:1.65;margin:8px 0 0 49px;color:#ebe3ce;max-width:240px}
+.page-home .tool-tile .inline-actions{margin:10px 0 0 49px;gap:7px;flex-wrap:wrap}
+.page-home .tool-tile .inline-actions .button{min-height:34px;font-size:17px;font-family:var(--yc-display);padding:3px 17px;border-radius:22px}
+.page-home .tool-tile .inline-actions>.text-link{font-size:10px;min-height:23px}
+.page-home .tool-tile-preview .screen{border:1px solid #6e633c;background:#0d151a;border-radius:8px;box-shadow:0 0 12px #d3a9471a;max-width:100%!important}
+.page-home .tool-tile-preview .screen img{width:100%;height:132px;max-height:none;object-fit:contain}
+.page-home .tool-tile-preview .screen-zoom{font-size:8px;min-height:20px;padding:3px 5px;background:#14150f;color:#cfbb85;justify-content:center}
+.page-home .tool-tile.auto .tool-tile-preview .screen{max-width:135px!important}
+.page-home .tool-tile-preview{justify-self:stretch;width:100%;min-width:0}
+/* Same visual family throughout: framed section titles, gold symbols, readable body copy. */
+.section-top{border:0;align-items:center;position:relative;padding:13px 0 15px;gap:15px;margin-bottom:18px}
+.section-top>div{min-width:0;position:relative;padding-inline:30px}
+.section-top>div::before,.section-top>div::after{content:"";position:absolute;width:7px;height:7px;border:2px solid #e8c37b;top:18px;transform:rotate(45deg);box-shadow:0 0 8px #d8a4443b}
+.section-top>div::before{left:8px}.section-top>div::after{right:8px}
+.section-top::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:linear-gradient(90deg,transparent,#8a622b,#eac680,#8a622b,transparent);box-shadow:0 0 9px #dd9b3044}
+.section-top::after{display:none}
+.section-top h2{font-size:clamp(25px,2.4vw,34px);font-style:normal;line-height:1.35}
+.section-top p{font-family:PortalTC,sans-serif;font-size:13px;margin-top:7px}
+.section-top .kicker{font-family:Georgia,serif;font-size:10px;letter-spacing:.16em}
+.page-home section[aria-labelledby="guide-title"]>.section-top{display:flex;justify-content:center;padding-top:20px}
+.page-home section[aria-labelledby="guide-title"]>.section-top>div{padding:0 40px}
+.page-home section[aria-labelledby="guide-title"]>.section-top>div::before,.page-home section[aria-labelledby="guide-title"]>.section-top>div::after{width:7px;height:7px;background:none;top:19px;transform:rotate(45deg)}
+.page-home section[aria-labelledby="guide-title"]>.section-top>.text-link{display:none}
+.page-home section[aria-labelledby="guide-title"]>.section-top p{font-size:12px}
+.yc-service-strip{background:radial-gradient(ellipse at bottom,#b8822114,transparent 65%);padding:4px 0 17px;border-bottom:1px solid #c19346;box-shadow:0 9px 12px -12px #fff0b7}
+.yc-service-strip a{border:0;border-right:1px solid #80622d;border-radius:0;background:none!important;padding:5px 9px;gap:12px}
+.yc-service-strip a>svg{width:40px;height:40px;color:#f5d48e;filter:drop-shadow(0 0 7px #e5b34c70)}
+.yc-service-strip a b{font-size:21px;white-space:nowrap}.yc-service-strip a small{font-size:11px;color:#e0d0a9}
+.guide-entry,.portal-panel,.v2-resource{background:radial-gradient(ellipse at top left,#c4943f12,transparent 60%),linear-gradient(125deg,#18160e,#0b0c09);border-color:#8e6b36;box-shadow:inset 0 1px #f3da9420; border-radius:14px}
+.guide-entry{border-left:1px solid #bd934b;min-height:132px;position:relative;overflow:hidden}.guide-entry h3{font-size:23px;color:#ffe6ad}.guide-entry p{color:#d7c6a1;font-size:12px}.guide-number{font-style:italic;color:#d8b66d;font-size:53px;text-shadow:0 1px #fff2c9,0 3px #714719}
+.portal-pagehead{border-radius:0;border-width:0 0 1px;box-shadow:0 7px 17px #0005}
+.portal-pagehead h1{font-size:clamp(30px,3.5vw,47px);font-style:italic;letter-spacing:.02em}
+.portal-pagehead p:not(.kicker){color:#e2d3b4}
+.faq-item{background:#12130e;border-color:#73572d}.faq-item summary{color:#f2deae;font-size:16px}.faq-item p{color:#d4cab5}
+.tool-tile h3,.guide-entry h3,.portal-panel h3,.feature-list h3{color:#f6dfb2}
+/* Buttons carry the black-centred metal rim shown in the reference. */
+.button:not([data-line-link]):not(.outline):not(.outline-light){position:relative;isolation:isolate;overflow:hidden;background:radial-gradient(ellipse at 50% 110%,#c2852680,transparent 65%),linear-gradient(#503313,#1a150c 45%,#3b280f);color:#ffe4a6;border:1px solid #f7d28b;box-shadow:inset 0 1px 2px #fff0b5a6,inset 0 -2px 4px #bc741c,0 0 10px #e7a83144;text-shadow:0 1px #5c3610;font-weight:700}
+.button:not([data-line-link]):not(.outline):not(.outline-light):hover{background:radial-gradient(ellipse at bottom,#d5993670,transparent 75%),linear-gradient(#6c471b,#2a1e0d);color:#fff0c4;box-shadow:inset 0 1px 2px #fff2c4,0 0 19px #e7b14f80}
+.button::before{content:"";position:absolute;inset:-100% -60%;background:linear-gradient(112deg,transparent 40%,#fff5cd70 49%,transparent 58%);transform:translateX(-90%);pointer-events:none}
+.button>span,.button>svg{position:relative;z-index:1}
+.banner-copy .button::after{content:"❮❮";position:absolute;left:-28px;color:#dba44b;font-size:14px;letter-spacing:-6px}
+.text-link{color:#f0ce87}.text-link:hover{color:#fff0c4}
+.mt-video-meta>span:first-child{color:#dfb86d}.mt-video-caption h3{color:#f8dfac}.mt-video-caption p{color:#d8caaa}
+@media(prefers-reduced-motion:no-preference){
+.button::before{animation:yc-metal-sweep 5.8s ease-in-out infinite}
+@keyframes yc-metal-sweep{0%,60%{transform:translateX(-90%)}92%,100%{transform:translateX(90%)}}
+.portal-banner::after{animation:yc-reference-line 6s linear infinite}
+@keyframes yc-reference-line{to{background-position:-180% 100%}}
+.yc-title-crown,.yc-laurel{animation:yc-ornament-glow 4.8s ease-in-out infinite alternate}
+@keyframes yc-ornament-glow{from{filter:drop-shadow(0 0 2px #b87c2140)}to{filter:drop-shadow(0 0 7px #ffd07990)}}
+.yc-art-title>img{animation:yc-title-breathe 5s ease-in-out infinite alternate}
+@keyframes yc-title-breathe{from{filter:drop-shadow(1px 2px #935b20) drop-shadow(2px 5px #43220f) brightness(.98)}to{filter:drop-shadow(1px 2px #a66b22) drop-shadow(2px 5px #43220f) brightness(1.14)}}
+.motion-paused .button::before,.motion-paused .portal-banner::after,.motion-paused .yc-title-crown,.motion-paused .yc-laurel,.motion-paused .yc-art-title>img{animation-play-state:paused!important}
+}
+@media(hover:hover){.tool-tile:hover{transform:translateY(-2px);border-color:#f0d69b;box-shadow:inset 0 1px #fff1c18c,0 0 22px #c58b2840}.guide-entry:hover,.v2-resource:hover{border-color:#e5bf77;background:#241d0f}.portal-rail nav>a:hover{color:#ffeac0}}
+@media(min-width:1600px){.portal-banner.has-scene-person{min-height:420px}.portal-banner.has-scene-person>.mt-dealer-rotation{height:415px}.portal-banner .banner-copy{padding-left:85px!important}.page-home .tool-tile{min-height:210px}.page-home .tool-tile-preview .screen img{height:170px}.page-home .tool-tile.auto .tool-tile-preview .screen{max-width:160px!important}}
+@media(min-width:981px) and (max-width:1180px){.portal-banner .banner-copy{padding-left:42px!important}.portal-banner.has-scene-person{min-height:310px}.portal-banner.has-scene-person>.mt-dealer-rotation{height:305px}.page-home .tool-tile{padding:12px;gap:7px;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr)}.yc-tool-icon{width:28px;height:30px}.page-home .tool-tile .product-heading h3{font-size:24px}.page-home .tool-tile-copy>p,.page-home .tool-tile .inline-actions{margin-left:0}.page-home .tool-tile-copy>p{font-size:11px}.page-home .tool-tile .inline-actions .button{font-size:15px;padding:3px 12px}.yc-service-strip a{gap:7px}.yc-service-strip a b{font-size:18px}.yc-service-strip a>svg{width:32px;height:32px}}
+@media(max-width:980px){.portal-main{margin-left:0}.portal-topbar{background:#11100beb}.page-home #main{padding:0 0 35px}.page-home .portal-home>.portal-section,.page-home .portal-home>.portal-shortcuts{margin-inline:18px}.portal-banner .banner-copy{padding-left:50px!important}.portal-banner.has-scene-person{min-height:315px}.portal-banner.has-scene-person>.mt-dealer-rotation{height:310px}.page-home .tool-tile{min-height:180px}.page-home .tool-tile .product-heading h3{font-size:26px}.yc-tool-icon{width:32px;height:32px}.page-home .tool-tile-copy>p,.page-home .tool-tile .inline-actions{margin-left:0}.page-home .tool-tile-copy>p{font-size:12px}.yc-service-strip a b{font-size:18px}.yc-service-strip a>svg{width:30px;height:30px}}
+@media(max-width:640px){
+html{scroll-padding-top:105px}.portal-topbar{height:57px}.portal-category{background:#181309}
+.page-home .portal-home>.portal-section,.page-home .portal-home>.portal-shortcuts{margin-inline:12px}
+.portal-banner.has-scene-person{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);min-height:286px;padding:15px 8px 25px;gap:0}
+.portal-banner .banner-copy{padding:18px 0 10px 22px!important;z-index:3}
+.banner-label{font-size:7px;letter-spacing:.2em;margin:0 0 17px}
+.yc-art-title{width:108%;max-width:none;transform:skewX(-7deg)}
+.yc-art-title .yc-laurel{height:132%;width:12%;top:-13%}.yc-laurel-left{left:-11%}.yc-laurel-right{right:-10%}
+.yc-art-title .yc-title-crown{width:12%;top:-36%}
+.portal-banner .yc-hero-subtitle{font-size:clamp(11px,2.9vw,17px);white-space:normal;line-height:1.6;margin-top:14px;letter-spacing:0}
+.portal-banner .yc-hero-description{font-size:10px;line-height:1.65;margin-top:8px}
+.banner-copy .button:not([data-line-link]){width:130px;min-width:0;min-height:37px;font-size:16px;margin-top:14px;padding:5px 12px}
+.banner-risk{font-size:7px;line-height:1.5;margin-top:7px}
+.portal-banner.has-scene-person>.mt-dealer-rotation{height:245px;width:130%;max-width:225px;align-self:end;justify-self:center;margin:0 0 -25px -4px;pointer-events:none}
+.yc-hero-controls{bottom:4px;left:54%;gap:6px}.yc-hero-controls button{width:23px;height:23px;font-size:22px}
+.page-home .portal-tool-grid{grid-template-columns:1fr;gap:13px}
+.page-home .tool-tile{grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);padding:15px 12px;min-height:177px;gap:9px;border-radius:17px}
+.page-home .tool-tile .product-heading{gap:6px}.yc-tool-icon{width:29px;height:34px}
+.page-home .tool-tile .product-heading h3{font-size:clamp(23px,6vw,29px)}
+.page-home .tool-tile-copy>p{font-size:11px;line-height:1.7;margin-top:8px}.page-home .tool-tile .inline-actions{margin-top:10px;gap:5px}
+.page-home .tool-tile .inline-actions .button{min-height:35px;font-size:16px;padding:4px 13px}
+.page-home .tool-tile .inline-actions>.text-link{font-size:10px;min-height:25px}
+.page-home .tool-tile-preview .screen img{height:130px}.page-home .tool-tile-preview .screen-zoom{font-size:7px;padding:3px 2px}.page-home .tool-tile.auto .tool-tile-preview .screen{max-width:113px!important}
+.yc-service-strip{grid-template-columns:repeat(2,minmax(0,1fr));margin-top:13px;padding:4px 0 11px;gap:9px 0}
+.yc-service-strip a{justify-content:flex-start;padding:7px 8px;gap:8px}.yc-service-strip a:nth-child(2){border-right:0}.yc-service-strip a>svg{width:31px;height:31px}.yc-service-strip a b{font-size:18px}.yc-service-strip a small{font-size:9px}
+.section-top{padding-top:16px;gap:8px;align-items:start}.section-top>div{padding-inline:17px}.section-top>div::before,.section-top>div::after{width:5px;height:5px;top:16px;border-width:1px}.section-top>div::before{left:2px}.section-top>div::after{right:2px}
+.section-top h2{font-size:24px}.section-top p{font-size:12px}.section-top .text-link{font-size:10px;max-width:78px}
+.page-home section[aria-labelledby="guide-title"]>.section-top>div{padding-inline:26px}.page-home section[aria-labelledby="guide-title"]>.section-top>div::before,.page-home section[aria-labelledby="guide-title"]>.section-top>div::after{top:14px}
+.guide-entry{padding:17px 15px;min-height:112px;gap:13px}.guide-entry h3{font-size:21px}.guide-entry p{font-size:10px}.guide-number{font-size:43px}
+.portal-pagehead h1{font-size:30px}.portal-pagehead{padding-inline:18px}.mobile-brand b{font-size:16px;color:#f5d89b}
+}
+@media(prefers-reduced-motion:reduce){.button::before,.portal-banner::after,.yc-title-crown,.yc-laurel,.yc-art-title>img{animation:none!important}.tool-tile:hover{transform:none}}

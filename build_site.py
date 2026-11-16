@@ -84,12 +84,15 @@ def build():
     scarab_ads.ensure_assets()
     (PUBLIC / 'pages').mkdir(exist_ok=True)
     # Complete portal replacement: only the new source is rendered.
-    css = [(ROOT / 'sitegen/portal/portal.css').read_text(), (ROOT / 'sitegen/portal/detail-polish.css').read_text(), (ROOT / 'sitegen/portal/dealers.css').read_text(), (ROOT / 'sitegen/portal/v2.css').read_text(), (ROOT / 'sitegen/portal/download.css').read_text(), (ROOT / 'sitegen/portal/motion.css').read_text(), (ROOT / 'sitegen/portal/refined-layout.css').read_text(), (ROOT / 'sitegen/portal/ads.css').read_text()]
+    css = [(ROOT / 'sitegen/portal/portal.css').read_text(), (ROOT / 'sitegen/portal/detail-polish.css').read_text(), (ROOT / 'sitegen/portal/dealers.css').read_text(), (ROOT / 'sitegen/portal/v2.css').read_text(), (ROOT / 'sitegen/portal/download.css').read_text(), (ROOT / 'sitegen/portal/motion.css').read_text(), (ROOT / 'sitegen/portal/refined-layout.css').read_text(), (ROOT / 'sitegen/portal/ads.css').read_text(), (ROOT / 'sitegen/portal/reference.css').read_text()]
     minify = importlib.import_module('sitegen.css_build').minify
     # Preserve source readability; only the generated HTTP stylesheet is compressed.
     compiled_css = '\n'.join(css)
     for weight in ('regular', 'medium'):
         font = f'/assets/fonts/yuce-tc-{weight}.woff2'
+        compiled_css = compiled_css.replace(f"url('{font}')", f"url('{asset_url(font)}')")
+    for name in ('yuce-display-bold', 'yuce-ui-bold'):
+        font = f'/assets/fonts/{name}.woff2'
         compiled_css = compiled_css.replace(f"url('{font}')", f"url('{asset_url(font)}')")
     (PUBLIC / 'site.css').write_text(minify(compiled_css))
     for module, (route, title, description, label) in PAGE_INFO.items():
