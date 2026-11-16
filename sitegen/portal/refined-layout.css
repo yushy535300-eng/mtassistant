@@ -75,3 +75,110 @@ body{background:#17151c}
 .portal-rail>.rail-support{padding:4px 6px;margin:4px 0;line-height:1.2}.portal-rail>.rail-support strong{display:block;font-size:11px;line-height:1.2}.portal-rail>.rail-support p{font-size:10px;line-height:1.2}
 .portal-rail>.rail-support .rail-contact[data-line-link]{min-height:26px;margin-top:2px;padding:3px 5px;font-size:11px}.portal-rail>.rail-foot{padding-top:3px;line-height:1.2}
 }
+
+/* V4 editorial finish: actual original burgundy table artwork, warm ivory and bronze light.
+   Keep page content, controls, navigation and ad styles independent. */
+:root{--yc-ivory:#fff5ed;--yc-warm:#e7ba91;--yc-rose:#f08cb5;--yc-teal:#a0d9dc;--yc-surface:#29262d}
+.portal-main{background:radial-gradient(ellipse at 100% 0,#70402f30,transparent 32%),radial-gradient(ellipse at 0 42%,#8c355321,transparent 36%),linear-gradient(150deg,#201b22 0,#1a181e 48%,#241d24 100%)}
+.portal-topbar{background:#211c24f5;border-bottom-color:#64434e}
+.portal-category{background:#211c24;border-bottom-color:#4b3741}
+.portal-category a[aria-current=page]{background:#63364c;color:#ffe1ee}
+.portal-rail{background:linear-gradient(165deg,#29212a,#1c1921 70%);border-right-color:#59414d}
+.portal-rail nav>a[aria-current=page]{background:linear-gradient(90deg,#743850,#432a3c);color:#ffe4ef}
+#main{padding-top:clamp(19px,2.2vw,31px);padding-bottom:48px}
+.portal-banner.has-scene-person{min-height:clamp(350px,32vw,445px);grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);border-radius:20px;border-color:#a27775;background:#20151d;box-shadow:0 18px 44px #09070b66}
+.portal-banner .banner-art img{filter:brightness(1.25) saturate(1.08);object-position:center 62%}
+.portal-banner.has-scene-person::before{background:linear-gradient(90deg,#1b131af0 0%,#23171dbb 33%,#2c1a2255 57%,#19131a00 83%)}
+.portal-banner .banner-light{z-index:-2;inset:0;opacity:.85;background:radial-gradient(ellipse at 78% 16%,#ffddad72,transparent 42%),radial-gradient(ellipse at 62% 89%,#e555975c,transparent 43%);animation:yc-stage-light 7s ease-in-out infinite alternate}
+@keyframes yc-stage-light{0%{opacity:.46;transform:scale(1)}50%{opacity:.96;transform:scale(1.025)}100%{opacity:.64;transform:scale(1.045)}}
+.portal-banner::after{content:"";position:absolute;inset:0;z-index:4;pointer-events:none;border-radius:inherit;box-shadow:inset 0 1px 0 #ffe5b85c,inset 0 -1px 0 #e29cb355}
+.portal-banner.has-scene-person .banner-copy{padding:clamp(28px,3.3vw,48px)}
+.banner-label{display:inline-flex;align-items:center;gap:8px;color:#ffd5b6!important;font-size:12px;letter-spacing:.16em}
+.banner-label::before{content:"";width:24px;height:1px;background:#eac29b}
+.banner-copy h1{color:#fff6ef;font-size:clamp(34px,3.6vw,56px);line-height:1.18;font-weight:700;letter-spacing:-.045em;text-shadow:0 4px 25px #1a0d18cc}
+.banner-copy h1 .yc-hero-accent{color:#f2c6a5}
+.banner-copy>p:not(.banner-label){font-size:clamp(15px,1.3vw,18px);color:#f0dfe7;line-height:1.8;margin-top:15px}
+.portal-banner.has-scene-person>.mt-dealer-rotation{width:clamp(260px,32vw,414px);max-width:100%;margin-bottom:-10px;filter:drop-shadow(0 12px 20px #100a16a0) drop-shadow(0 0 22px #e1a67e43)}
+.portal-banner .banner-sparks{z-index:2;opacity:.95;pointer-events:none}
+.portal-shortcuts{margin-top:15px;background:linear-gradient(100deg,#30272f,#27232b);border-color:#654953;border-radius:12px}
+.portal-shortcuts a{padding-block:15px;border-right-color:#53404b}
+.portal-shortcuts a b{font-size:15px;color:#fff1f4}
+.portal-shortcuts a span{font-size:11px;letter-spacing:.03em}
+.portal-shortcuts a:nth-child(1) span{color:#a2dfe1}.portal-shortcuts a:nth-child(2) span{color:#edb0d3}.portal-shortcuts a:nth-child(3) span{color:#e9c39f}
+.portal-section,.page-home .portal-home>.portal-section{margin-top:clamp(32px,4vw,58px)}
+.section-top{position:relative;align-items:end;padding-bottom:12px;margin-bottom:19px;border-bottom:1px solid #59434c;gap:14px}
+.section-top::after{content:"";position:absolute;bottom:-1px;left:0;width:50px;height:2px;background:linear-gradient(90deg,#e9ba90,#d76b9d);border-radius:3px}
+.section-top h2{font-size:clamp(24px,2.3vw,31px);line-height:1.35;color:#fff4ed;letter-spacing:-.03em}
+.section-top .kicker{font-size:11px;color:#e4b68f;letter-spacing:.14em}
+.section-top p,.section-top>div>p:not(.kicker){color:#d9ccd5;font-size:14px;line-height:1.7}
+.portal-panel,.guide-entry,.contact-link{background:linear-gradient(145deg,#322a32,#28242c 65%);border-color:#68505b;box-shadow:0 8px 26px #100c132c,inset 0 1px 0 #fff1e608}
+.portal-panel p,.feature-list p,.tool-tile-copy>p{color:#dbd1d8}
+.portal-panel h3,.tool-tile h3,.guide-entry h3{color:#fff3ef}
+.page-home .portal-tool-grid{gap:20px}
+.page-home .tool-tile{display:grid;grid-template-columns:minmax(0,1fr);align-items:stretch;gap:16px;padding:clamp(17px,2.1vw,26px);border-color:#597c80;background:radial-gradient(ellipse at 96% 0,#78bfc326,transparent 58%),linear-gradient(145deg,#29373b,#29272e 72%)}
+.page-home .tool-tile.auto{background:radial-gradient(ellipse at 94% 0,#d46d982c,transparent 60%),linear-gradient(145deg,#403039,#2c272f 72%);border-color:#906779}
+.page-home .tool-tile .product-heading h3{font-size:clamp(19px,1.9vw,24px)}
+.page-home .tool-tile .product-heading .product-logo{width:49px;height:49px}
+.page-home .tool-tile .inline-actions{margin-top:16px}
+.page-home .tool-tile-preview{width:100%;max-width:100%;justify-self:stretch;display:grid;align-items:center;background:#15171c;border:1px solid #53676b;border-radius:10px;padding:10px}
+.page-home .tool-tile.auto .tool-tile-preview{border-color:#69505f}
+.page-home .tool-tile-preview .screen{max-width:100%!important;border-color:#829b9d55;box-shadow:0 5px 15px #0004}
+.page-home .tool-tile-preview .screen img{width:100%;height:clamp(170px,18vw,240px);max-height:none;object-fit:contain}
+.page-home .tool-tile-preview .screen-zoom{justify-content:center;font-size:11px}
+.page-home .tool-tile-copy>p{font-size:14px;line-height:1.7}
+.feature-list>article{border-bottom-color:#66505a}
+.feature-index,.v2-resource-number{color:#eec298}
+.matrix-overview>.portal-panel{border-color:#637e80}
+.auto-summary .portal-panel{border-color:#896176}
+.brand-section{background:radial-gradient(ellipse at 13% 25%,#9a5d7846,transparent 56%),linear-gradient(110deg,#47303b,#2d2830);border-color:#986c7a}
+.mt-video-grid{gap:clamp(12px,1.7vw,22px)}
+.mt-video-card{background:linear-gradient(155deg,#392d36,#29252d);border-color:#7b5668;box-shadow:0 10px 28px #120b1538}
+.mt-video-caption h3{color:#fff2ed}.mt-video-meta>span:first-child{color:#edb597}
+.portal-pagehead,.portal-pagehead.has-scene-person{min-height:210px;background:radial-gradient(ellipse at 80% 15%,#dd957f36,transparent 57%),linear-gradient(110deg,#3e2b36,#29252e 62%,#503542);border-color:#98717c;border-radius:18px}
+.page-features .portal-pagehead{background:radial-gradient(ellipse at 82% 10%,#82c9d44a,transparent 55%),linear-gradient(110deg,#2d393c,#262c34 63%,#456269);border-color:#72999a}
+.page-auto .portal-pagehead{background:radial-gradient(ellipse at 82% 10%,#e697bb42,transparent 55%),linear-gradient(110deg,#4c303c,#322831 63%,#614254);border-color:#ad7d91}
+.page-guide .portal-pagehead,.page-download .portal-pagehead{background:radial-gradient(ellipse at 82% 15%,#e5b47745,transparent 55%),linear-gradient(110deg,#4b3731,#30292f 63%,#624b3d);border-color:#a98465}
+.page-faq .portal-pagehead,.page-contact .portal-pagehead{background:radial-gradient(ellipse at 82% 12%,#d89aaa42,transparent 56%),linear-gradient(110deg,#48323b,#302730 63%,#664857);border-color:#a17a8d}
+.portal-pagehead h1{color:#fff5ed}.portal-pagehead .kicker{color:#f3c9aa}
+.portal-pagehead p:not(.kicker){color:#f0dfe7}
+.portal-pagehead::after{background:radial-gradient(ellipse,#ffd8a94f,transparent 68%);animation:yc-head-light 7.5s ease-in-out infinite alternate}
+.guide-entry{border-left:3px solid #d5a77f}.guide-number{color:#e1b88f}
+.guide-tabs [aria-selected=true],.product-tab[aria-selected=true],.faq-filter[aria-current=true]{border-color:#d08eb0;background:#60384d;color:#fff1fa}
+.faq-item{background:linear-gradient(105deg,#332a33,#2a252e);border-color:#6c505e}
+.faq-item summary{color:#fff0f5}
+.page-download .install-product{border-color:#91765d}
+.page-download .install-platform-tab[aria-selected=true]{background:#5a4036;border-color:#d3aa7d;color:#fff0da}
+.portal-footer{background:#282129;border-color:#694a57}
+.button:not([data-line-link]):not(.outline):not(.outline-light){background:linear-gradient(120deg,#de4c86,#b62663);border-color:#ed8bb0}
+.button:not([data-line-link]):not(.outline):not(.outline-light):hover{background:linear-gradient(120deg,#f46b9f,#c32d6c)}
+/* Real, localized motion: light changes inside the existing scene; no image pan. */
+@media(prefers-reduced-motion:no-preference){
+.yc-section-enter{animation:yc-content-rise .48s ease-out both}
+@keyframes yc-content-rise{from{opacity:.72;transform:translateY(9px)}to{opacity:1;transform:translateY(0)}}
+.page-home .tool-tile{position:relative;isolation:isolate}
+.page-home .tool-tile::after{content:"";position:absolute;top:0;left:0;right:0;height:2px;pointer-events:none;background:linear-gradient(90deg,transparent,#9de7e5b5,transparent);background-size:200% 100%;animation:yc-tile-sheen 5s linear infinite}
+.page-home .tool-tile.auto::after{background-image:linear-gradient(90deg,transparent,#f8a9c8b5,transparent);animation-delay:-2s}
+@keyframes yc-tile-sheen{to{background-position:200% 0}}
+.motion-paused .page-home .tool-tile::after,.motion-paused .yc-section-enter,.yc-effect-offscreen::after{animation-play-state:paused!important}
+}
+@media(hover:hover){.page-home .tool-tile,.guide-entry,.mt-video-card{transition:box-shadow .2s,border-color .2s,transform .2s}.page-home .tool-tile:hover,.guide-entry:hover,.mt-video-card:hover{transform:translateY(-2px);box-shadow:0 14px 35px #120b164d;border-color:#d39cae}}
+@media(max-width:980px){.portal-banner.has-scene-person{min-height:320px}.portal-banner.has-scene-person .banner-copy{padding:25px}}
+@media(max-width:640px){
+#main{padding:15px 14px 32px}
+.portal-banner.has-scene-person{grid-template-columns:minmax(0,1fr) 126px;min-height:0;padding:20px 16px 18px;gap:0 8px;border-radius:15px}
+.portal-banner.has-scene-person .banner-copy{padding:0}
+.banner-label{font-size:10px;letter-spacing:.12em}.banner-label::before{width:14px}
+.banner-copy h1{font-size:clamp(24px,6.3vw,30px);line-height:1.3}
+.banner-copy>p:not(.banner-label){font-size:13px;line-height:1.7;margin-top:10px}
+.portal-banner.has-scene-person>.mt-dealer-rotation{grid-column:2;grid-row:2/4;width:100%;max-width:135px;align-self:center;margin:0;filter:drop-shadow(0 5px 10px #100a1655)}
+.portal-banner .banner-art img{object-position:62% center}
+.portal-banner.has-scene-person::before{background:linear-gradient(90deg,#211720ef,#2a202b9d 53%,#241a2510)}
+.portal-shortcuts a{padding:10px 12px}.portal-shortcuts a b{font-size:13px}.portal-shortcuts a span{font-size:10px}
+.portal-section,.page-home .portal-home>.portal-section{margin-top:32px}
+.section-top{align-items:start;gap:9px;margin-bottom:14px;padding-bottom:10px}
+.section-top h2{font-size:22px}.section-top p,.section-top>div>p:not(.kicker){font-size:13px}
+.page-home .portal-tool-grid{gap:14px}.page-home .tool-tile{padding:15px;gap:13px}.page-home .tool-tile-preview .screen img{height:205px}.page-home .tool-tile .product-heading h3{font-size:20px}.page-home .tool-tile-copy>p{font-size:13px}
+.portal-pagehead,.portal-pagehead.has-scene-person{min-height:0;border-radius:14px}
+.page-download .install-pagehead{min-height:0}
+}
+@media(prefers-reduced-motion:reduce){.portal-banner .banner-light,.portal-pagehead::after,.yc-section-enter{animation:none!important}.page-home .tool-tile:hover,.guide-entry:hover,.mt-video-card:hover{transform:none}}

@@ -120,3 +120,15 @@ for slot in ("rail", "billboard", "content", "float"):
     assert markup.count('https://scarabheart.com/?') == 3
     assert '戰神賽特' not in markup and '下載安裝' not in markup and '免費試玩' not in markup
 print("Three brand-only campaigns, original emblem and sanctuary, homepage links OK.")
+
+# Visual release gate: all seven actual generated pages include the same local stylesheet,
+# the complete navigation, and original brand-only advertisement destinations.
+for name in ("index.html", "pages/features.html", "pages/auto.html", "pages/guide.html", "pages/download.html", "pages/faq.html", "pages/contact.html"):
+    html = read(name)
+    assert 'site.css?v=' in html, name
+    assert 'data-ad-carousel="rail"' in html and 'data-ad-carousel="float"' in html, name
+    assert 'https://scarabheart.com/?' in html, name
+    assert 'class="portal-rail"' in html and '下載安裝' in html and '客服中心' in html, name
+assert 'yc-stage-light' in css and 'yc-tile-sheen' in css and 'yc-section-enter' in css
+assert 'yc-hero-accent' in home
+print("All seven pages: original navigation, brand-only ad destinations, editorial light and motion release checks OK.")

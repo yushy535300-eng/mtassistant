@@ -228,3 +228,18 @@ document.addEventListener('DOMContentLoaded', () => {
    window.addEventListener('scroll',update,{passive:true});update();
  });
 })();
+
+/* Editorial section entrance: no content is hidden pending JS or intersection. */
+(() => {
+ if (!('IntersectionObserver' in window)) return;
+ const reduced=matchMedia('(prefers-reduced-motion: reduce)');
+ if(reduced.matches||new URLSearchParams(location.search).get('capture')==='1')return;
+ const observer=new IntersectionObserver(entries=>entries.forEach(e=>{
+   if(e.isIntersecting){e.target.classList.add('yc-section-enter');observer.unobserve(e.target);}
+ }),{threshold:.1});
+ document.querySelectorAll('#main .portal-section').forEach(el=>{
+   if(!el.hidden && el.getBoundingClientRect().top>innerHeight*.9)observer.observe(el);
+ });
+ const effects=new IntersectionObserver(entries=>entries.forEach(e=>e.target.classList.toggle('yc-effect-offscreen',!e.isIntersecting)));
+ document.querySelectorAll('.page-home .tool-tile').forEach(el=>effects.observe(el));
+})();
