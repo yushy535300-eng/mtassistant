@@ -135,7 +135,11 @@ assert 'yc-art-title' in home and 'yuce-gold-title.svg' in home
 assert 'data-dealer-step="-1"' in home and 'data-dealer-step="1"' in home
 # Homepage intentionally contains no duplicate section navigation, full tutorials, or FAQ.
 assert home.index('id="toolbox"') < home.index('id="journal-home-title"')
-assert 'class="portal-shortcuts yc-service-strip"' not in home
+assert 'class="portal-shortcuts yc-service-strip"' in home
+assert home.count('class="yc-quick-icon"') == 4
+assert '支援 MT、DG、SA、T9 平台' in home
+assert 'class="portal-category"' not in home
+assert 'class="line-official-icon"' in home
 assert 'aria-labelledby="guide-title"' not in home
 assert 'aria-labelledby="matrix-title"' not in home
 assert 'aria-labelledby="auto-title"' not in home
@@ -145,4 +149,19 @@ assert '/assets/brand/yuce-gold-title.svg' in embedded
 assert 'yc-ad-description' in home
 assert 'yc-ad-description' not in carousel('rail') and 'yc-ad-description' not in carousel('float')
 assert 'grid-template-columns:minmax(0,1.04fr) minmax(0,.96fr)' in css
+# V5: baccarat editorial images are real photographs, not giant overlay headings.
+from sitegen.portal.articles import ARTICLES, PHOTO_ASSETS
+article_index = read('pages/articles.html')
+for slug in PHOTO_ASSETS:
+    if slug not in {a['slug'] for a in ARTICLES}:
+        continue
+    page = read(f'pages/article-{slug}.html')
+    assert 'class="journal-photo"' in page and '圖片來源與授權' in page, slug
+    assert f'/articles/{slug}' in article_index, slug
+assert 'editorial-photo-badge' not in article_index
+assert 'class="portal-category"' not in home
+assert 'class="line-official-icon"' in home
+assert 'mt-video-track' in home and 'data-video-next' in home
+assert 'class="portal-shortcuts yc-service-strip"' in home
+print("V5: editorial photos, source credits, four quick links, official LINE emblem and one-at-a-time mobile video markup OK.")
 print("All seven pages: original navigation, brand-only ad destinations, editorial light and motion release checks OK.")

@@ -8,7 +8,7 @@ import re
 from html import escape
 from pathlib import Path
 from sitegen.common import DATA, LINE, THREADS, asset_url, viewer
-from sitegen.portal.articles import ARTICLES, BY_SLUG, render_article
+from sitegen.portal.articles import ARTICLES, BY_SLUG, PHOTO_ASSETS, render_article
 
 portal_shell = importlib.import_module("sitegen.portal.shell")
 scene_people = importlib.import_module("sitegen.portal.dealers")
@@ -29,7 +29,7 @@ PAGE_INFO = {
     'guide': ('/guide', '操作教學｜多桌輔助與自動下注使用流程・御策百家輔助', '分別閱讀 MT MATRIX 多桌輔助五步教學與 MT AUTO 自動下注六步教學。從帳號授權、平台連線到配注、停止條件與執行紀錄，逐項核對真實介面。', '操作教學'),
     'download': ('/download', '下載安裝教學｜多桌輔助・自動下注 iPhone／Android｜御策百家', '御策百家輔助手機下載安裝教學：選擇即時多桌牌路或百家樂自動下注，查看 iPhone Safari 與 Android Chrome 圖文步驟及對應程式入口。', '下載安裝'),
     'faq': ('/faq', '常見問題｜帳號授權、裝置與工具風險・御策百家輔助', '查詢御策百家輔助的帳號授權、瀏覽器與手機使用、兩套產品差異、自動下注設定及停止狀態。搜尋常見問題，了解牌路分析與策略無法保證獲利。', '常見問題'),
-    'articles': ('/articles', '使用指南與操作文章｜多桌輔助・自動下注・手機安裝｜御策百家', '閱讀御策百家輔助的原創操作指南，了解 MT MATRIX 多桌雷達、模型面板、MT AUTO 配注與停止設定，以及 iPhone、Android 使用方式與連線排查。', '文章專區'),
+    'articles': ('/articles', '百家樂規則・路單教學・機率知識與御策程式指南｜御策百家', '認識百家樂莊閒和、點數與補牌規則、珠盤路與大路、機率觀念；同時閱讀 MT MATRIX 與 MT AUTO 真實程式的使用說明與操作教學。', '文章專區'),
     'contact': ('/contact', '客服中心｜LINE 操作支援與聯繫方式・御策百家輔助', '透過指定 LINE 客服聯繫御策百家輔助，取得帳號授權、連線及操作說明協助。聯繫前整理系統名稱、裝置、發生時間與錯誤截圖，請勿提供密碼。', '客服中心'),
 }
 
@@ -97,7 +97,7 @@ def build():
     scarab_ads.ensure_assets()
     (PUBLIC / 'pages').mkdir(exist_ok=True)
     # Complete portal replacement: only the new source is rendered.
-    css = [(ROOT / 'sitegen/portal/portal.css').read_text(), (ROOT / 'sitegen/portal/detail-polish.css').read_text(), (ROOT / 'sitegen/portal/dealers.css').read_text(), (ROOT / 'sitegen/portal/v2.css').read_text(), (ROOT / 'sitegen/portal/download.css').read_text(), (ROOT / 'sitegen/portal/motion.css').read_text(), (ROOT / 'sitegen/portal/ads.css').read_text(), (ROOT / 'sitegen/portal/atelier.css').read_text(), (ROOT / 'sitegen/portal/layout-fixes-20261117.css').read_text(), (ROOT / 'sitegen/portal/scarab-ad-layout.css').read_text(), (ROOT / 'sitegen/portal/mobile-corrections.css').read_text()]
+    css = [(ROOT / 'sitegen/portal/portal.css').read_text(), (ROOT / 'sitegen/portal/detail-polish.css').read_text(), (ROOT / 'sitegen/portal/dealers.css').read_text(), (ROOT / 'sitegen/portal/v2.css').read_text(), (ROOT / 'sitegen/portal/download.css').read_text(), (ROOT / 'sitegen/portal/motion.css').read_text(), (ROOT / 'sitegen/portal/ads.css').read_text(), (ROOT / 'sitegen/portal/atelier.css').read_text(), (ROOT / 'sitegen/portal/layout-fixes-20261117.css').read_text(), (ROOT / 'sitegen/portal/scarab-ad-layout.css').read_text(), (ROOT / 'sitegen/portal/mobile-corrections.css').read_text(), (ROOT / 'sitegen/portal/v5-finish.css').read_text()]
     minify = importlib.import_module('sitegen.css_build').minify
     # Preserve source readability; only the generated HTTP stylesheet is compressed.
     compiled_css = '\n'.join(css)
@@ -117,7 +117,7 @@ def build():
             (PUBLIC / 'pages/guide-auto.html').write_text(page(route, title, description, auto_body, label, 'auto'), encoding='utf-8')
     for a in ARTICLES:
         route='/articles/'+a['slug']
-        (PUBLIC/'pages'/('article-'+a['slug']+'.html')).write_text(page(route,a['title']+'｜御策百家使用指南',a['summary']+' 依真實程式介面整理操作步驟，附相關圖文教學與客服入口。',render_article(a['slug']),a['title']),encoding='utf-8')
+        (PUBLIC/'pages'/('article-'+a['slug']+'.html')).write_text(page(route,a['title']+'｜御策百家知識專區',a['summary']+(' 本文介紹百家樂遊戲規則與知識，內容包含圖片、詳細說明與相關文章。' if a['slug'] in PHOTO_ASSETS else ' 依真實程式介面整理操作步驟，附相關圖文教學與客服入口。'),render_article(a['slug']),a['title']),encoding='utf-8')
     error_body = importlib.import_module('sitegen.portal.error').render()
     (PUBLIC / 'pages/404.html').write_text(page('/404', '找不到頁面｜御策百家輔助', '請確認網址，或返回御策百家輔助首頁繼續瀏覽。', error_body, '找不到頁面'), encoding='utf-8')
     urls = ''.join(f'<url><loc>{escape(ORIGIN + route)}</loc></url>' for route in [*[info[0] for info in PAGE_INFO.values()],*['/articles/'+a['slug'] for a in ARTICLES]]) if INDEXABLE else ''

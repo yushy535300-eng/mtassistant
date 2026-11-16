@@ -1,0 +1,82 @@
+/* V5 editorial/brand fixes. Do not replace original approved hero art or video assets. */
+:root{--yc-line-green:#06c755}
+body{font-size:16px;line-height:1.75}
+.page-home .portal-home>.portal-shortcuts.yc-service-strip{
+ display:grid;grid-template-columns:repeat(4,minmax(0,1fr));align-items:stretch;
+ gap:0;margin-top:23px;margin-bottom:4px;padding:13px 0 19px;border:0;border-bottom:1px solid #bfa46d56;
+ background:transparent;border-radius:0;box-shadow:none
+}
+.page-home .portal-home>.portal-shortcuts.yc-service-strip a{
+ display:flex;gap:12px;align-items:center;justify-content:center;min-height:64px;
+ padding:9px 12px;color:#e3d4b4;border:0;border-right:1px solid #bfa46d30;background:transparent;
+ text-decoration:none
+}
+.page-home .portal-home>.portal-shortcuts.yc-service-strip a:last-child{border-right:0}
+.page-home .portal-home>.portal-shortcuts.yc-service-strip a:hover{background:#d3ae6020}
+.page-home .portal-home>.portal-shortcuts.yc-service-strip b{display:block;font-size:15px;line-height:1.4;color:#f0deb5;font-weight:600}
+.page-home .portal-home>.portal-shortcuts.yc-service-strip small{display:block;font-size:12px;line-height:1.5;color:#b6afa0}
+.yc-quick-icon{font-size:29px;line-height:1;flex-shrink:0;color:#d7b674;font-family:Georgia,serif}
+.page-home .portal-banner .yc-hero-description{font-size:16px;line-height:1.8}
+.page-home .atelier-hero-tags{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin-top:17px}
+.page-home .atelier-hero-tags>span{font-size:14px;line-height:1.6;letter-spacing:.02em;color:#e4d0a1;padding:2px 7px;border:1px solid #c9b27b3d;border-radius:4px;background:#1314119c}
+.page-home .atelier-hero-tags>span::after{display:none}
+.page-home .banner-label{font-size:12px;letter-spacing:.18em}
+.portal-rail .rail-contact,.topbar-help,.footer-social>a[href*="line.me"],.welcome-line,.portal-bottom a[href*="line.me"]{
+ display:inline-flex;align-items:center;justify-content:center;gap:8px
+}
+.line-official-icon{display:inline-block;width:24px;height:24px;flex:0 0 24px;object-fit:contain;vertical-align:middle;filter:none;transform:none}
+.rail-contact .line-official-icon,.topbar-help .line-official-icon,.footer-social .line-official-icon{width:24px;height:24px;flex-basis:24px}
+.portal-bottom a[href*="line.me"] .line-official-icon{width:38px;height:38px;flex-basis:38px}
+.mobile-nav a[href*="line.me"] .line-official-icon,.welcome-line .line-official-icon{width:40px;height:40px;flex-basis:40px}
+.rail-contact{background:#06c755;color:#fff;font-size:14px;min-height:48px}
+.page-home .mt-video-grid{max-width:none}
+.editorial-art.editorial-art-photo{aspect-ratio:16/9;padding:0;display:block;background:#11120f;border:1px solid #726b56;overflow:hidden}
+.editorial-art.editorial-art-photo::after{display:none}
+.editorial-art-photo>img{display:block;width:100%;height:100%;object-fit:cover;object-position:center;filter:none;transform:none}
+.editorial-art-photo .editorial-photo-badge{display:none}
+.editorial-card:hover .editorial-art-photo>img{transform:none}
+.editorial-copy{padding-top:17px}
+.editorial-copy h3{font-size:clamp(19px,1.45vw,23px);line-height:1.5}
+.editorial-copy>p:not(.kicker){font-size:15px;line-height:1.75}
+.journal-photo{margin:0}
+.journal-photo img{display:block;width:100%;height:auto;max-height:520px;object-fit:contain;border-radius:12px;border:1px solid #84755752;background:#0d0e0c}
+.journal-photo figcaption{margin:9px 0;font-size:12px;color:#aba698;line-height:1.5}
+.journal-photo figcaption a{color:#ddc28c;text-underline-offset:3px}
+.portal-pagehead.has-scene-person{min-height:280px;overflow:hidden}
+.portal-pagehead.has-scene-person .scene-intro{position:relative;min-height:230px;padding-right:clamp(215px,25vw,360px)}
+.portal-pagehead.has-scene-person .scene-intro>.scene-person{
+ position:absolute;right:0;bottom:-31px;top:auto;left:auto;display:flex;align-items:flex-end;
+ width:clamp(200px,24vw,310px);height:100%;max-width:40%;margin:0;filter:none;transform:none;pointer-events:none
+}
+.portal-pagehead.has-scene-person .scene-intro>.scene-person img{width:100%;height:100%;object-fit:contain;object-position:center bottom}
+.portal-pagehead.has-scene-person h1{font-size:clamp(30px,3vw,46px)}
+.portal-pagehead.has-scene-person p:not(.kicker){font-size:16px;line-height:1.7}
+.portal-pagehead.has-scene-person .kicker{font-size:12px}
+@media(max-width:980px){
+ .page-home .portal-home>.portal-shortcuts.yc-service-strip{grid-template-columns:repeat(2,minmax(0,1fr));gap:0}
+ .page-home .portal-home>.portal-shortcuts.yc-service-strip a:nth-child(2){border-right:0}
+ .page-home .portal-home>.portal-shortcuts.yc-service-strip a{min-height:68px;justify-content:flex-start}
+ .portal-pagehead.has-scene-person>.scene-intro{display:block;position:relative;min-height:235px;padding-right:205px}
+ .portal-pagehead.has-scene-person .scene-intro>.scene-person{width:200px;max-width:48%;height:100%;bottom:-20px}
+}
+@media(max-width:640px){
+ body{font-size:15px}
+ .page-home .portal-home>.portal-shortcuts.yc-service-strip{margin-inline:14px;padding:7px 0 12px}
+ .page-home .portal-home>.portal-shortcuts.yc-service-strip a{gap:7px;min-height:62px;padding:8px}
+ .page-home .portal-home>.portal-shortcuts.yc-service-strip b{font-size:13px}
+ .page-home .portal-home>.portal-shortcuts.yc-service-strip small{font-size:11px}
+ .yc-quick-icon{font-size:24px}
+ .page-home .portal-banner .yc-hero-description{font-size:14px;line-height:1.65}
+ .page-home .banner-label{font-size:9px;letter-spacing:.08em}
+ .page-home .atelier-hero-tags>span{font-size:12px;line-height:1.5;padding:3px 7px}
+ .editorial-art.editorial-art-photo{aspect-ratio:16/9}
+ .editorial-copy h3{font-size:19px}
+ .editorial-copy>p:not(.kicker){font-size:14px}
+ .portal-pagehead.has-scene-person{min-height:300px;padding:22px 18px}
+ .portal-pagehead.has-scene-person>.scene-intro{position:relative;min-height:245px;padding:0 0 150px;display:block}
+ .portal-pagehead.has-scene-person .scene-intro>.scene-person{right:-10px;bottom:-18px;width:48%;height:165px;max-width:210px}
+ .portal-pagehead.has-scene-person h1{font-size:27px;line-height:1.4}
+ .portal-pagehead.has-scene-person p:not(.kicker){font-size:14px;line-height:1.65;max-width:95%}
+ .portal-pagehead.has-scene-person .kicker{font-size:11px}
+ .portal-bottom a[href*="line.me"] .line-official-icon{width:38px;height:38px;flex-basis:38px}
+}
