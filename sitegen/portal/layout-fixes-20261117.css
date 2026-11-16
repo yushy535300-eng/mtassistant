@@ -66,3 +66,10 @@ a[data-line-link]:hover{filter:brightness(.92)}
 @media(prefers-reduced-motion:reduce){
  .yc-ad-art,.yc-ad-emblem,.yc-ad-halo,.yc-ad-flare{animation:none!important;transition:none!important}
 }
+
+/* Editorial: real screen captures instead of synthetic number/grid placeholders. */
+.editorial-art.editorial-art-photo{position:relative;display:grid;place-items:center;overflow:hidden;aspect-ratio:16/9;background:radial-gradient(ellipse at 50% 45%,#3d3324,#121311 75%);padding:13px}
+.editorial-art-photo img{display:block;width:100%;height:100%;object-fit:contain;object-position:center;filter:none;transform:none}
+.editorial-photo-badge{position:absolute;left:12px;bottom:12px;padding:3px 9px;border:1px solid #a78a4c;color:#f2dbaa;background:#111c;border-radius:3px;font-size:12px;line-height:1.5}
+.editorial-card:hover .editorial-art-photo img{transform:none}
+@media(max-width:640px){.editorial-art.editorial-art-photo{padding:10px;aspect-ratio:16/10}.editorial-photo-badge{font-size:11px}}
