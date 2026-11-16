@@ -27,7 +27,7 @@
     if (!ctx) return;
     let seed = 72 + index;
     const random = () => { seed = (seed * 1664525 + 1013904223) >>> 0; return seed / 4294967296; };
-    const count = innerWidth < 641 ? 25 : 48;
+    const count = innerWidth < 641 ? 16 : 32;
     const points = Array.from({length:count}, (_, i) => ({
       x:random() * 1.7 - .85, y:random() * 1.1 - .55,
       depth:i % 3, phase:random(), radius:.65 + random() * .55,

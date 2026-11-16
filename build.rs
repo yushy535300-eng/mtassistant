@@ -5,7 +5,7 @@ use std::process::Command;
 fn main() {
     // Native Render Rust deployments previously compiled stale embedded HTML.
     // Generate the complete static site before rustc reads src/assets.rs.
-    for path in ["build_site.py", "sitegen", "public/assets", "public/manus-storage", "public/portal.js", "public/site.js", "public/refine.js", "public/v2.js", "tests/motion_v3_audit.py"] {
+    for path in ["build_site.py", "sitegen", "public/assets", "public/manus-storage", "public/portal.js", "public/site.js", "public/refine.js", "public/v2.js", "tests/motion_v3_audit.py", "tests/premium_release.py"] {
         println!("cargo:rerun-if-changed={}", path);
     }
     println!("cargo:rerun-if-env-changed=SITE_ORIGIN");
@@ -27,8 +27,8 @@ fn main() {
     let status = Command::new(python)
         .arg("build_site.py")
         .current_dir(&root)
-        .env("SITE_ORIGIN", origin)
-        .env("ALLOW_INDEXING", allow)
+        .env("SITE_ORIGIN", &origin)
+        .env("ALLOW_INDEXING", &allow)
         .status()
         .expect("Static site build requires Python 3");
     assert!(status.success(), "御策靜態網站產生失敗");
@@ -38,4 +38,9 @@ fn main() {
         .status()
         .expect("V3 asset audit could not run");
     assert!(audit.success(), "御策 V3 影像與下載頁驗收失敗");
+    if !preview && allow.eq_ignore_ascii_case("true") && origin == "https://mtassistant-oozm.onrender.com" {
+        let seo = Command::new(python).arg("tests/premium_release.py").current_dir(&root)
+            .status().expect("SEO release audit could not run");
+        assert!(seo.success(), "網站連結與 SEO 驗收失敗");
+    }
 }

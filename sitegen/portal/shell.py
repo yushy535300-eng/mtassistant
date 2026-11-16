@@ -1,7 +1,7 @@
 from ..common import MATRIX, AUTO, LINE, THREADS, logo, arrow
 from .ads import carousel as scarab_ad
 
-ROUTES = [('/', '首頁', 'home'), ('/features', '多桌輔助', 'layers'), ('/auto', '自動下注', 'play'), ('/guide', '操作教學', 'book'), ('/download', '下載安裝', 'download'), ('/faq', '常見問題', 'help'), ('/contact', '客服中心', 'chat')]
+ROUTES = [('/', '首頁', 'home'), ('/features', '多桌輔助', 'layers'), ('/auto', '自動下注', 'play'), ('/guide', '操作教學', 'book'), ('/download', '下載安裝', 'download'), ('/articles', '文章專區', 'book'), ('/faq', '常見問題', 'help'), ('/contact', '客服中心', 'chat')]
 ICONS = {
     'download': '<path d="M13 3v14m-6-6 6 6 6-6M4 19v5h18v-5"/>',
     'home': '<path d="M3 10 12 3l9 7v11h-6v-7H9v7H3z"/>',
@@ -18,7 +18,7 @@ def icon(name):
 
 
 def navlinks(route, mobile=False):
-    return ''.join(f'<a href="{url}" {"aria-current=page" if route == url else ""}>{icon(mark)}<span>{label}</span></a>' for url, label, mark in ROUTES)
+    return ''.join(f'<a href="{url}" {"aria-current=page" if (route == url or (url == "/articles" and route.startswith("/articles/"))) else ""}>{icon(mark)}<span>{label}</span></a>' for url, label, mark in ROUTES)
 
 
 def sidebar(route):
@@ -26,17 +26,17 @@ def sidebar(route):
 
 
 def header(route):
-    tabs = ''.join(f'<a href="{url}" {"aria-current=page" if route == url else ""}>{label}</a>' for url, label, _ in ROUTES[:6])
+    tabs = ''.join(f'<a href="{url}" {"aria-current=page" if (route == url or (url == "/articles" and route.startswith("/articles/"))) else ""}>{label}</a>' for url, label, _ in ROUTES[:7])
     return f'''<a class="skip-link" href="#main">跳至主要內容</a><header class="portal-topbar" id="header"><div class="topbar-left"><button id="menuToggle" class="menu-toggle" aria-label="開啟選單" aria-controls="mobileNav" aria-expanded="false" type="button"><span></span><span></span><span></span></button><a class="mobile-brand" href="/">{logo()}<b>御策百家輔助</b></a><span class="topbar-caption">百家輔助 · 工具與操作支援</span></div><div class="topbar-actions"><a class="topbar-help" href="{LINE}">{icon('chat')}<span>LINE 客服</span></a><details class="launch-menu"><summary>工具入口 {arrow()}</summary><div><a href="{MATRIX}">{logo()}<span><b>MT MATRIX</b><small>多桌百家輔助</small></span>{arrow()}</a><a href="{AUTO}">{logo(True)}<span><b>MT AUTO</b><small>百家自動下注</small></span>{arrow()}</a></div></details></div><nav id="mobileNav" class="mobile-nav" aria-label="手機選單" hidden>{navlinks(route)}<a href="{LINE}">{icon('chat')}<span>LINE 客服</span></a></nav></header><nav class="portal-category" aria-label="快捷分類">{tabs}</nav>'''
 
 
 def footer():
-    return f'''<footer class="portal-footer"><div class="portal-footer-top"><a class="footer-brand" href="/">{logo()}<b>御策百家輔助</b></a><nav aria-label="頁尾導航"><a href="/features">多桌輔助</a><a href="/auto">自動下注</a><a href="/guide">操作教學</a><a href="/download">下載安裝</a><a href="/faq">常見問題</a><a href="/contact">客服中心</a></nav><div class="footer-social"><a href="{LINE}">LINE 客服 ↗</a><a href="{THREADS}">Threads · @hacklook__ ↗</a></div></div><p>牌路、分析與配注策略僅供輔助，不能保證預測下一局或獲利。請評估風險並遵守所在地法規；未成年人請勿參與。人物僅作情境裝飾，非御策代言或客服本人，圖片不是即時直播。</p><div class="portal-footer-bottom"><span>© 2026 御策百家輔助</span><span>多桌輔助 · 自動下注 · 操作支援</span></div></footer>'''
+    return f'''<footer class="portal-footer"><div class="portal-footer-top"><a class="footer-brand" href="/">{logo()}<b>御策百家輔助</b></a><nav aria-label="頁尾導航"><a href="/features">多桌輔助</a><a href="/auto">自動下注</a><a href="/guide">操作教學</a><a href="/download">下載安裝</a><a href="/articles">文章專區</a><a href="/faq">常見問題</a><a href="/contact">客服中心</a></nav><div class="footer-social"><a href="{LINE}">LINE 客服 ↗</a><a href="{THREADS}">Threads · @hacklook__ ↗</a></div></div><p>牌路、分析與配注策略僅供輔助，不能保證預測下一局或獲利。請評估風險並遵守所在地法規；未成年人請勿參與。人物僅作情境裝飾，非御策代言或客服本人，圖片不是即時直播。</p><div class="portal-footer-bottom"><span>© 2026 御策百家輔助</span><span>多桌輔助 · 自動下注 · 操作支援</span></div></footer>'''
 
 
 def bottomnav(route):
     entries = [('/', '首頁', 'home'), ('/features', '多桌', 'layers'), ('/auto', '自動下注', 'play'), (LINE, 'LINE 客服', 'chat')]
-    return '<nav class="portal-bottom" aria-label="手機底部導航">' + ''.join(f'<a href="{url}" {"aria-current=page" if route == url else ""}>{icon(mark)}<span>{label}</span></a>' for url, label, mark in entries) + '</nav>'
+    return '<nav class="portal-bottom" aria-label="手機底部導航">' + ''.join(f'<a href="{url}" {"aria-current=page" if (route == url or (url == "/articles" and route.startswith("/articles/"))) else ""}>{icon(mark)}<span>{label}</span></a>' for url, label, mark in entries) + '</nav>'
 
 
 def welcome():

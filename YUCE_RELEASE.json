@@ -1,7 +1,9 @@
 {
-  "source_version": "b531f5a225b4118ce75d7f17006c416990f56a4a",
+  "version": "premium-20261117",
   "production_origin": "https://mtassistant-oozm.onrender.com",
   "production_indexing": true,
-  "source": "user-provided complete backup; production metadata regenerated",
-  "base_commit": "6998d68ba856e43fe9205874aa209e0458fb64c8"
+  "indexable_urls": 14,
+  "original_operation_articles": 6,
+  "design": "unified black and champagne gold, original dealers and internal product screens",
+  "automatic_page_sweep": false
 }

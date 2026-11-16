@@ -129,7 +129,8 @@ for name in ("index.html", "pages/features.html", "pages/auto.html", "pages/guid
     assert 'data-ad-carousel="rail"' in html and 'data-ad-carousel="float"' in html, name
     assert 'https://scarabheart.com/?' in html, name
     assert 'class="portal-rail"' in html and '下載安裝' in html and '客服中心' in html, name
-assert 'yc-stage-light' in css and 'yc-tile-sheen' in css and 'yc-section-enter' in css
+assert 'premium-enter' in css and 'yc-section-enter' in css
+assert 'yc-letter-glint' not in css and 'yc-metal-sweep' not in css
 assert 'yc-art-title' in home and 'yuce-gold-title.svg' in home
 assert 'data-dealer-step="-1"' in home and 'data-dealer-step="1"' in home
 assert home.index('id="toolbox"') < home.index('class="portal-shortcuts yc-service-strip"') < home.index('aria-labelledby="guide-title"')

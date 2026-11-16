@@ -113,6 +113,24 @@ fn handle(mut stream: TcpStream) {
         );
         return;
     }
+    let canonical_alias = match path {
+        "/index.html" => Some("/"),
+        "/mt" => Some("/features"),
+        "/features/" => Some("/features"),
+        "/auto/" => Some("/auto"),
+        "/guide/" => Some("/guide"),
+        "/download/" => Some("/download"),
+        "/faq/" => Some("/faq"),
+        "/contact/" => Some("/contact"),
+        "/articles/" => Some("/articles"),
+        _ => None,
+    };
+    if let Some(destination) = canonical_alias {
+        let location = if query.is_empty() { destination.to_string() } else { format!("{}?{}", destination, query) };
+        send(&mut stream, "301 Moved Permanently", "text/plain", b"", head,
+            &format!("Location: {}\r\nCache-Control: public, max-age=300\r\n", location));
+        return;
+    }
     if [
         "/guide/matrix",
         "/guide/matrix/",
@@ -164,6 +182,13 @@ fn handle(mut stream: TcpStream) {
         "/download" | "/download/" => "/pages/download.html",
         "/faq" | "/faq/" => "/pages/faq.html",
         "/contact" | "/contact/" => "/pages/contact.html",
+        "/articles" => "/pages/articles.html",
+        "/articles/matrix-workflow" => "/pages/article-matrix-workflow.html",
+        "/articles/auto-checklist" => "/pages/article-auto-checklist.html",
+        "/articles/model-panels" => "/pages/article-model-panels.html",
+        "/articles/mobile-home-screen" => "/pages/article-mobile-home-screen.html",
+        "/articles/execution-status" => "/pages/article-execution-status.html",
+        "/articles/connection-troubleshooting" => "/pages/article-connection-troubleshooting.html",
         "/favicon.png" | "/favicon.ico" => "/assets/baccarat-logo.png",
         _ => path,
     };
@@ -187,7 +212,12 @@ fn handle(mut stream: TcpStream) {
         } else {
             content.to_vec()
         };
-        let indexing = env::var("ALLOW_INDEXING").ok().as_deref() == Some("true");
+        let indexing = match env::var("ALLOW_INDEXING") {
+            Ok(value) => value.eq_ignore_ascii_case("true"),
+            Err(_) => assets::ASSETS.iter().find(|(route, _)| *route == "/robots.txt")
+                .map(|(_, bytes)| String::from_utf8_lossy(bytes).lines().any(|line| line.trim() == "Allow: /"))
+                .unwrap_or(false),
+        };
         let robots = if indexing {
             ""
         } else {
@@ -275,7 +305,7 @@ fn main() -> std::io::Result<()> {
             }
         });
     }
-    eprintln!("YUCE isolated test site listening on port {}", port);
+    eprintln!("YUCE website listening on port {}", port);
     for stream in listener.incoming() {
         if let Ok(stream) = stream {
             if sender.send(stream).is_err() {

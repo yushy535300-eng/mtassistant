@@ -41,7 +41,7 @@
 (() => {
   'use strict';
   const dialog = document.getElementById('welcomeDialog');
-  if (!dialog || typeof dialog.showModal !== 'function') return;
+  if (!dialog || typeof dialog.showModal !== 'function' || (location.pathname !== '/' && location.pathname !== '/index.html')) return;
   const params = new URLSearchParams(location.search);
   const force = params.get('welcome') === '1';
   if (!force && (params.get('capture') === '1' || params.get('welcome') === '0')) return;
