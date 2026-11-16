@@ -1,0 +1,22 @@
+.install-section{max-width:1200px;margin-inline:auto}
+.install-selectors{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+.install-selectors[hidden],.install-panel[hidden]{display:none!important}
+.install-selectors fieldset{border:1px solid #3d3543;border-radius:10px;padding:14px;min-width:0;margin:0;background:#23212a}
+.install-selectors legend{font-size:13px;color:#d8b6ca;padding:0 6px}
+.install-options{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.install-options label{position:relative;min-width:0;cursor:pointer}
+.install-options input{position:absolute;opacity:0;width:1px;height:1px}
+.install-options span{display:flex;align-items:center;justify-content:center;gap:8px;border:1px solid #514451;border-radius:8px;min-height:52px;padding:9px 8px;color:#d9d1dc;font-size:13px;text-align:center}
+.install-options input:checked+span{border-color:#e05b96;background:#432639;color:#fff;box-shadow:inset 0 0 0 1px #c34a82}
+.install-options input:focus-visible+span{outline:2px solid #f3b4d1;outline-offset:3px}
+.install-options .product-logo{width:28px;height:28px}
+.install-panel{margin-bottom:18px}
+.install-panel-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:18px}
+.install-panel-head h2{font-size:clamp(18px,2vw,25px)}
+.install-panel-head .button{flex-shrink:0}
+.install-image{max-width:100%;margin-inline:auto;background:#0c0c10}
+.install-image img{display:block;width:100%;height:auto}
+.install-steps-copy{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 24px;padding-left:22px;margin:18px 0 12px;font-size:14px;line-height:1.7;color:#e6dce7}
+.install-url{overflow-wrap:anywhere;font-size:13px!important}
+.install-url a{color:#eda3c8;text-decoration:underline}
+@media(max-width:640px){.install-selectors{grid-template-columns:1fr;gap:10px}.install-panel{padding:13px}.install-panel-head{align-items:flex-start;flex-direction:column;gap:10px}.install-panel-head .button{width:100%}.install-steps-copy{grid-template-columns:1fr;gap:6px}.install-options span{font-size:12px}}
