@@ -164,3 +164,12 @@ html{scroll-padding-top:105px}.portal-topbar{height:57px}.portal-category{backgr
 .portal-pagehead h1{font-size:30px}.portal-pagehead{padding-inline:18px}.mobile-brand b{font-size:16px;color:#f5d89b}
 }
 @media(prefers-reduced-motion:reduce){.button::before,.portal-banner::after,.yc-title-crown,.yc-laurel,.yc-art-title>img{animation:none!important}.tool-tile:hover{transform:none}}
+/* Moving glint is clipped to the actual vector letterforms. */
+.yc-art-title::before{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(110deg,transparent 38%,#fff9dfbb 49%,transparent 60%) 150% 0/300% 100%;mask:url('/assets/brand/yuce-gold-title.svg') center/100% 100% no-repeat;-webkit-mask:url('/assets/brand/yuce-gold-title.svg') center/100% 100% no-repeat;mix-blend-mode:screen}
+.page-home section[aria-labelledby="guide-title"]>.section-top>div{width:min(760px,95%)}
+.page-home section[aria-labelledby="guide-title"] h2{display:flex;align-items:center;justify-content:center;gap:23px;white-space:nowrap}
+.page-home section[aria-labelledby="guide-title"] h2::before,.page-home section[aria-labelledby="guide-title"] h2::after{content:"";display:block;flex:1;height:1px;min-width:20px;background:linear-gradient(90deg,transparent,#edc87c)}
+.page-home section[aria-labelledby="guide-title"] h2::after{transform:rotate(180deg)}
+@media(prefers-reduced-motion:no-preference){.yc-art-title::before{animation:yc-letter-glint 6s ease-in-out infinite}@keyframes yc-letter-glint{0%,40%{background-position:150% 0}90%,100%{background-position:-80% 0}}.motion-paused .yc-art-title::before{animation-play-state:paused!important}}
+@media(prefers-reduced-motion:reduce){.yc-art-title::before{display:none}}
+@media(max-width:640px){.page-home section[aria-labelledby="guide-title"] h2{gap:13px}}
