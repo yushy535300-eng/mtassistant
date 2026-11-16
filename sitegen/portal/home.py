@@ -4,7 +4,6 @@ import importlib
 from .v2 import comparison, knowledge
 from .dealers import person
 from .motion import home_videos
-from .ads import slot as scarab_ad
 
 BANNER_DESKTOP = '/manus-storage/async-images/5IpvgHPwOi5uABZyAx9lXZ/image-1.webp'
 BANNER_MOBILE = '/manus-storage/async-images/5IpvgHPwOi5uABZyAx9lXZ/image-2.webp'
@@ -23,9 +22,7 @@ def render():
 <article class="tool-tile"><div class="tool-tile-copy"><div class="product-heading">{logo()}<div><span>MT MATRIX</span><h3>多桌百家輔助</h3></div></div><p>把桌台、牌路與分析資訊集中查看。支援雷達、AI 綜合、四式算牌與終值奇偶。</p><div class="inline-actions">{button('進入系統', MATRIX)}<a href="/features" class="text-link">了解多桌功能 {arrow()}</a></div></div><div class="tool-tile-preview">{screen('matrix-assist', 'MT MATRIX 多桌百家輔助主面板')}</div></article>
 <article class="tool-tile auto"><div class="tool-tile-copy"><div class="product-heading">{logo(True)}<div><span>MT AUTO</span><h3>百家自動下注</h3></div></div><p>確認配注策略、金額與停止條件，再查看執行狀態與紀錄。</p><div class="inline-actions">{button('進入系統', AUTO)}<a href="/auto" class="text-link">了解設定流程 {arrow()}</a></div></div><div class="tool-tile-preview">{screen('auto-running', 'MT AUTO 自動下注執行面板')}</div></article>
 </div></section>
-{scarab_ad('inline-one', 0)}
 {home_videos()}
-{scarab_ad('inline-two', 1)}
 {comparison()}
 
 <section class="portal-section" aria-labelledby="matrix-title"><div class="section-top"><div><p class="kicker">MT MATRIX</p><h2 id="matrix-title">多桌資訊，集中查看</h2></div><a class="text-link" href="/features">全部功能 {arrow()}</a></div><div class="matrix-overview"><div class="portal-panel"><div class="radar-scroll">{screen('multitable-radar', 'MT MATRIX 多桌雷達完整介面')}</div>{image_note()}</div><div class="feature-list"><article><span class="feature-index">01</span><div><h3>多桌雷達與平台連線</h3><p>先確認連線狀態，再選擇要觀察的桌台。</p></div></article><article><span class="feature-index">02</span><div><h3>AI 綜合與四式算牌</h3><p>切換分析模型，對照不同方式的資訊。</p></div></article><article><span class="feature-index">03</span><div><h3>終值奇偶與牌路</h3><p>將牌路與模型數據放在同一個觀察流程。</p></div></article></div></div></section>

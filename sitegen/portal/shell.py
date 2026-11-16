@@ -1,5 +1,4 @@
 from ..common import MATRIX, AUTO, LINE, THREADS, logo, arrow
-from .ads import slot as scarab_ad
 
 ROUTES = [('/', '首頁', 'home'), ('/features', '多桌輔助', 'layers'), ('/auto', '自動下注', 'play'), ('/guide', '操作教學', 'book'), ('/download', '下載安裝', 'download'), ('/faq', '常見問題', 'help'), ('/contact', '客服中心', 'chat')]
 ICONS = {
@@ -22,7 +21,7 @@ def navlinks(route, mobile=False):
 
 
 def sidebar(route):
-    return f'''<aside class="portal-rail" aria-label="網站導航"><a class="portal-brand" href="/">{logo()}<span><b>御策百家輔助</b><small>YUCE ASSIST</small></span></a><p class="rail-label">探索與操作</p><nav aria-label="主要導覽">{navlinks(route)}</nav><div class="rail-support"><span class="support-icon">{icon('chat')}</span><strong>需要操作協助？</strong><p>查看教學，或直接聯繫客服。</p><a href="{LINE}" class="rail-contact">LINE 客服 {arrow()}</a></div>{scarab_ad("rail", 2)}<div class="rail-foot"><span>兩套工具，各自獨立。</span><span>分析僅供輔助，請理性使用。</span></div></aside>'''
+    return f'''<aside class="portal-rail" aria-label="網站導航"><a class="portal-brand" href="/">{logo()}<span><b>御策百家輔助</b><small>YUCE ASSIST</small></span></a><p class="rail-label">探索與操作</p><nav aria-label="主要導覽">{navlinks(route)}</nav><div class="rail-support"><span class="support-icon">{icon('chat')}</span><strong>需要操作協助？</strong><p>查看教學，或直接聯繫客服。</p><a href="{LINE}" class="rail-contact">LINE 客服 {arrow()}</a></div><div class="rail-foot"><span>兩套工具，各自獨立。</span><span>分析僅供輔助，請理性使用。</span></div></aside>'''
 
 
 def header(route):

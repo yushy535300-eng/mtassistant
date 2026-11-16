@@ -11,7 +11,6 @@ from sitegen.common import DATA, LINE, THREADS, asset_url, viewer
 
 portal_shell = importlib.import_module("sitegen.portal.shell")
 scene_people = importlib.import_module("sitegen.portal.dealers")
-scarab_ads = importlib.import_module("sitegen.portal.ads")
 
 
 
@@ -61,7 +60,7 @@ def page(route, title, description, body, label, guide_system='matrix'):
     page_footer = portal_shell.footer()
     body += portal_shell.welcome()
     document = f'''<!doctype html>
-<html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#19191f"><title>{escape(title)}</title><meta name="description" content="{escape(description,quote=True)}"><meta name="robots" content="{robots}"><meta property="og:site_name" content="御策百家輔助"><meta property="og:title" content="{escape(title,quote=True)}"><meta property="og:description" content="{escape(description,quote=True)}"><meta property="og:type" content="website"><meta property="og:locale" content="zh_TW"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="{escape(title,quote=True)}"><meta name="twitter:description" content="{escape(description,quote=True)}">{tags}<link rel="icon" href="/favicon.png"><link rel="apple-touch-icon" href="/assets/baccarat-logo.png">{preload}<link rel="stylesheet" href="{asset_url('/site.css')}"><script src="{asset_url('/site.js')}" defer></script><script src="{asset_url('/portal.js')}" defer></script><script src="{asset_url('/refine.js')}" defer></script><script src="{asset_url('/v2.js')}" defer></script><script type="application/ld+json">{schema_json}</script>{nojs}</head><body class="page-{route.strip('/') or 'home'}" data-guide-system="{guide_system}"><div class="portal-shell">{portal_shell.sidebar(route)}<div class="portal-main">{portal_shell.header(route)}<main id="main">{breadcrumb}{body}</main>{page_footer}</div></div>{portal_shell.bottomnav(route)}{scarab_ads.mobile() if route != "/404" else ""}{viewer()}</body></html>
+<html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#19191f"><title>{escape(title)}</title><meta name="description" content="{escape(description,quote=True)}"><meta name="robots" content="{robots}"><meta property="og:site_name" content="御策百家輔助"><meta property="og:title" content="{escape(title,quote=True)}"><meta property="og:description" content="{escape(description,quote=True)}"><meta property="og:type" content="website"><meta property="og:locale" content="zh_TW"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="{escape(title,quote=True)}"><meta name="twitter:description" content="{escape(description,quote=True)}">{tags}<link rel="icon" href="/favicon.png"><link rel="apple-touch-icon" href="/assets/baccarat-logo.png">{preload}<link rel="stylesheet" href="{asset_url('/site.css')}"><script src="{asset_url('/site.js')}" defer></script><script src="{asset_url('/portal.js')}" defer></script><script src="{asset_url('/refine.js')}" defer></script><script src="{asset_url('/v2.js')}" defer></script><script type="application/ld+json">{schema_json}</script>{nojs}</head><body class="page-{route.strip('/') or 'home'}" data-guide-system="{guide_system}"><div class="portal-shell">{portal_shell.sidebar(route)}<div class="portal-main">{portal_shell.header(route)}<main id="main">{breadcrumb}{body}</main>{page_footer}</div></div>{portal_shell.bottomnav(route)}{viewer()}</body></html>
 '''
     def contact_link(match):
         tag = match.group(0)
@@ -78,7 +77,7 @@ def page(route, title, description, body, label, guide_system='matrix'):
 def build():
     (PUBLIC / 'pages').mkdir(exist_ok=True)
     # Complete portal replacement: only the new source is rendered.
-    css = [(ROOT / 'sitegen/portal/portal.css').read_text(), (ROOT / 'sitegen/portal/detail-polish.css').read_text(), (ROOT / 'sitegen/portal/dealers.css').read_text(), (ROOT / 'sitegen/portal/v2.css').read_text(), (ROOT / 'sitegen/portal/download.css').read_text(), (ROOT / 'sitegen/portal/motion.css').read_text(), (ROOT / 'sitegen/portal/visual-v3.css').read_text()]
+    css = [(ROOT / 'sitegen/portal/portal.css').read_text(), (ROOT / 'sitegen/portal/detail-polish.css').read_text(), (ROOT / 'sitegen/portal/dealers.css').read_text(), (ROOT / 'sitegen/portal/v2.css').read_text(), (ROOT / 'sitegen/portal/download.css').read_text(), (ROOT / 'sitegen/portal/motion.css').read_text()]
     minify = importlib.import_module('sitegen.css_build').minify
     # Preserve source readability; only the generated HTTP stylesheet is compressed.
     compiled_css = '\n'.join(css)
