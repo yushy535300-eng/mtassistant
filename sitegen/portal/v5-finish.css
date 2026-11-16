@@ -80,3 +80,9 @@ body{font-size:16px;line-height:1.75}
  .portal-pagehead.has-scene-person .kicker{font-size:11px}
  .portal-bottom a[href*="line.me"] .line-official-icon{width:38px;height:38px;flex-basis:38px}
 }
+
+/* Official-line-style brand icon placement, locally hosted to avoid Wikimedia hotlink failures. */
+.line-brand-frame{display:inline-flex!important;align-items:center;justify-content:center;flex:0 0 30px;width:30px;height:30px;border-radius:7px;background:#06c755;overflow:hidden}
+.line-brand-frame>.line-official-icon{width:23px!important;height:23px!important;flex:0 0 23px!important;object-fit:contain;filter:brightness(0) invert(1)!important}
+.portal-bottom a[href*="line.me"] .line-brand-frame,.mobile-nav a[href*="line.me"] .line-brand-frame,.welcome-line .line-brand-frame{width:40px;height:40px;flex-basis:40px;border-radius:9px}
+.portal-bottom a[href*="line.me"] .line-official-icon,.mobile-nav a[href*="line.me"] .line-official-icon,.welcome-line .line-official-icon{width:30px!important;height:30px!important;flex-basis:30px!important}
