@@ -1,0 +1,53 @@
+name: Yuce V2 production verification
+on:
+  push:
+    branches: [qa/yuce-v2-production-20261116]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Verify exact V2 production content
+        run: |
+          python3 - <<'PY'
+          import urllib.request, time, re
+          from html.parser import HTMLParser
+          base = "https://mtassistant-oozm.onrender.com"
+          def get(path):
+              req=urllib.request.Request(base+path,headers={"User-Agent":"YuceReleaseQA/2.0","Cache-Control":"no-cache"})
+              with urllib.request.urlopen(req,timeout=30) as r:
+                  return r.read().decode("utf-8"),r.headers
+          for i in range(60):
+              try:
+                  home,headers=get("/?release=v2")
+                  if "v2-product" in home and "/v2.js" in home and 'content="index,follow"' in home:
+                      break
+              except Exception as e:
+                  print(str(e),flush=True)
+              time.sleep(10)
+          else: raise SystemExit("V2 production content not yet available")
+          class Check(HTMLParser):
+              def __init__(self):
+                  super().__init__(); self.canonical=[]; self.robots=[]
+              def handle_starttag(self,t,a):
+                  d=dict(a)
+                  if t=="link" and d.get("rel")=="canonical": self.canonical.append(d.get("href"))
+                  if t=="meta" and d.get("name")=="robots": self.robots.append(d.get("content"))
+          for route in ["/","/features","/auto","/guide","/guide?system=auto","/faq","/contact"]:
+              body,h=get(route)
+              p=Check(); p.feed(body)
+              assert "/v2.js" in body,route
+              assert p.robots==["index,follow"],(route,p.robots)
+              assert p.canonical==[base+route.split("?")[0]],(route,p.canonical)
+              assert "noindex" not in h.get("X-Robots-Tag",""),route
+              print("PASS",route,flush=True)
+          assert "v2-support-form" in get("/contact")[0]
+          assert "v2-product" in home
+          assert "ok"==get("/healthz")[0].strip()
+          assert base+"/sitemap.xml" in get("/robots.txt")[0]
+          assert len(get("/v2.js")[0])>100
+          assert ".v2-product" in get("/site.css")[0]
+          print("PASS V2 content, generated assets, all routes, health, SEO",flush=True)
+          PY
