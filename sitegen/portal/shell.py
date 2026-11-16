@@ -20,7 +20,7 @@ def icon(name):
 # Unmodified LINE app trademark asset (source: LINE Corporation; hosted on Wikimedia Commons).
 # Official branding reference: https://www.line.me/en/logo
 def line_brand_icon():
-    return '<img class="line-official-icon" src="https://upload.wikimedia.org/wikipedia/commons/4/41/LINE_logo.svg" width="24" height="24" alt="" loading="lazy" decoding="async">'
+    return '<span class="line-brand-frame"><img class="line-official-icon" src="/assets/brand/line-brand.svg" width="25" height="25" alt="" decoding="async"></span>'
 
 
 def navlinks(route, mobile=False):
