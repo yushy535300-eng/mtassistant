@@ -99,11 +99,32 @@ _published_manifest = _Path(__file__).with_name("editorial_published.json")
 if _published_manifest.exists():
     ARTICLES.extend(_json.loads(_published_manifest.read_text(encoding="utf-8")))
 
+# External editorial photographs are sourced from specific Wikimedia Commons file pages.
+# Keep their attribution visible in article pages; product manuals retain real interface shots.
+PHOTO_ASSETS = {
+    "baccarat-basics": ("https://commons.wikimedia.org/wiki/Special:FilePath/Playing_Cards.JPG?width=960", "https://commons.wikimedia.org/wiki/File:Playing_Cards.JPG", "Imager Visioner", "Public domain"),
+    "banker-player-tie": ("https://commons.wikimedia.org/wiki/Special:FilePath/King_playing_card_and_casino_tokens_01.jpg?width=960", "https://commons.wikimedia.org/wiki/File:King_playing_card_and_casino_tokens_01.jpg", "victor vic", "CC BY-SA 2.0"),
+    "roadmap-explained": ("https://commons.wikimedia.org/wiki/Special:FilePath/Poker_in_a_casino_table.jpg?width=960", "https://commons.wikimedia.org/wiki/File:Poker_in_a_casino_table.jpg", "Antoine Taveneaux", "CC BY-SA 3.0"),
+    "streaks-and-misconceptions": ("https://commons.wikimedia.org/wiki/Special:FilePath/Playing_Cards.jpg?width=960", "https://commons.wikimedia.org/wiki/File:Playing_Cards.jpg", "Riles32807", "Public domain"),
+    "multi-table-overview": ("https://commons.wikimedia.org/wiki/Special:FilePath/Norwegian_Dawn_casino_1.JPG?width=960", "https://commons.wikimedia.org/wiki/File:Norwegian_Dawn_casino_1.JPG", "Wikimedia Commons contributor", "See file page"),
+    "baccarat-odds-basics": ("https://commons.wikimedia.org/wiki/Special:FilePath/Poker_Chips_with_Cards_and_Dice_(51803864625).jpg?width=960", "https://commons.wikimedia.org/wiki/File:Poker_Chips_with_Cards_and_Dice_(51803864625).jpg", "slgckgc", "CC BY 2.0"),
+    "responsible-limits": ("https://commons.wikimedia.org/wiki/Special:FilePath/CasinoChips.jpg?width=960", "https://commons.wikimedia.org/wiki/File:CasinoChips.jpg", "VegasCasinoKid", "CC BY-SA 3.0"),
+    "live-vs-online-baccarat": ("https://commons.wikimedia.org/wiki/Special:FilePath/King_playing_card_and_casino_tokens_02.jpg?width=960", "https://commons.wikimedia.org/wiki/File:King_playing_card_and_casino_tokens_02.jpg", "victor vic", "CC BY-SA 2.0"),
+    "baccarat-natural-eight-nine": ("https://commons.wikimedia.org/wiki/Special:FilePath/Cards_and_cash.jpg?width=960", "https://commons.wikimedia.org/wiki/File:Cards_and_cash.jpg", "Pixabay", "See file page"),
+    "baccarat-commission-variants": ("https://commons.wikimedia.org/wiki/Special:FilePath/CasinoCards.jpg?width=960", "https://commons.wikimedia.org/wiki/File:CasinoCards.jpg", "Wikimedia Commons contributors", "See file page"),
+    "baccarat-record-reading": ("https://commons.wikimedia.org/wiki/Special:FilePath/Gambling_chips.jpg?width=960", "https://commons.wikimedia.org/wiki/File:Gambling_chips.jpg", "Jamie Adams", "See file page"),
+    "baccarat-mobile-checklist": ("https://commons.wikimedia.org/wiki/Special:FilePath/Playing_Cards.JPG?width=960", "https://commons.wikimedia.org/wiki/File:Playing_Cards.JPG", "Imager Visioner", "Public domain"),
+}
+def editorial_image(a):
+    source = PHOTO_ASSETS.get(a['slug'])
+    if source:
+        return (source[0], f"百家樂相關撲克牌與賭場攝影：{a['title']}", source)
+    return (f"/assets/interfaces/{a['image']}.webp", f"御策真實程式操作畫面：{a['title']}", None)
+
 BY_SLUG = {a['slug']:a for a in ARTICLES}
 
 def cards(limit=None, topic=None):
     if topic == 'baccarat':
-        # Latest released baccarat editorial picks; do not claim these are measured views.
         base = {'baccarat-basics','banker-player-tie','roadmap-explained',
                 'streaks-and-misconceptions','multi-table-overview','baccarat-odds-basics',
                 'responsible-limits','live-vs-online-baccarat'}
@@ -113,14 +134,34 @@ def cards(limit=None, topic=None):
         items = ARTICLES[:]
     if limit:
         items = items[:limit]
-    return '<div class="editorial-grid">'+''.join(f'''<a class="editorial-card" href="/articles/{a['slug']}"><div class="editorial-art editorial-art-photo"><img src="/assets/interfaces/{a['image']}.webp" alt="{escape(a['title'],quote=True)}：御策原始程式功能畫面" loading="lazy" decoding="async"><span class="editorial-photo-badge">{a['category']}</span></div><div class="editorial-copy"><p class="kicker">{a['category']} <span>· {a['read']}</span></p><h3>{a['title']}</h3><p>{a['summary']}</p><span class="text-link">閱讀文章 {arrow()}</span></div></a>''' for a in items)+'</div>'
+    result = []
+    for a in items:
+        src, alt, _ = editorial_image(a)
+        result.append(
+            f'<a class="editorial-card" href="/articles/{escape(a["slug"],quote=True)}">'
+            f'<div class="editorial-art editorial-art-photo">'
+            f'<img src="{escape(src,quote=True)}" alt="{escape(alt,quote=True)}" loading="lazy" decoding="async"></div>'
+            f'<div class="editorial-copy"><p class="kicker">{escape(a["category"])} <span>· {escape(a["read"])}</span></p>'
+            f'<h3>{escape(a["title"])}</h3><p>{escape(a["summary"])}</p>'
+            f'<span class="text-link">閱讀文章 {arrow()}</span></div></a>'
+        )
+    return '<div class="editorial-grid">' + ''.join(result) + '</div>'
+
 
 def render():
-    return '''<section class="portal-pagehead"><div><p class="kicker">THE YUCE JOURNAL</p><h1>使用指南與操作筆記</h1><p>從真實介面出發，把連線、模型、設定與手機操作說清楚。</p></div></section><section class="portal-section" aria-labelledby="journal-title"><div class="section-top"><div><p class="kicker">實用內容，完整閱讀</p><h2 id="journal-title">找到你現在需要的解答</h2></div></div>'''+cards()+'''</section>'''
+    return '''<section class="portal-pagehead"><div><p class="kicker">THE YUCE JOURNAL</p><h1>百家樂知識與操作教學</h1><p>從百家樂規則、牌路與機率觀念，到御策程式的實際操作說明。</p></div></section><section class="portal-section" aria-labelledby="journal-title"><div class="section-top"><div><p class="kicker">實用內容，完整閱讀</p><h2 id="journal-title">找到你現在需要的解答</h2></div></div>'''+cards()+'''</section>'''
 
 def render_article(slug):
     a=BY_SLUG[slug]
+    image_url, image_alt, photo = editorial_image(a)
+    if photo:
+        lead = (f'<figure class="journal-photo"><img src="{escape(image_url,quote=True)}" '
+                f'alt="{escape(image_alt,quote=True)}" loading="eager" decoding="async">'
+                f'<figcaption>攝影：{escape(photo[2])} · {escape(photo[3])} · '
+                f'<a href="{escape(photo[1],quote=True)}" target="_blank" rel="noopener">圖片來源與授權</a></figcaption></figure>')
+    else:
+        lead = screen(a['image'], a['title'])
     toc=''.join(f'<a href="#article-section-{i}"><span>{i:02d}</span>{escape(s[0])}</a>' for i,s in enumerate(a['sections'],1))
     sections=''.join(f'<section id="article-section-{i}"><h2>{escape(s[0])}</h2><p>{escape(s[1])}</p>{screen(s[2],s[0]) if len(s)>2 else ""}</section>' for i,s in enumerate(a['sections'],1))
     related=BY_SLUG[a['related']]
-    return f'''<article class="journal-article"><header class="journal-header"><p class="kicker">{a['category']} ／ 御策使用指南</p><h1>{a['title']}</h1><p class="journal-intro">{a['summary']}</p><div class="journal-meta"><span>御策編輯團隊</span><span>更新：2026.11.17</span><span>閱讀約 {a['read']}</span></div></header><div class="journal-layout"><aside class="journal-toc"><p class="kicker">本文目錄</p><nav aria-label="文章目錄">{toc}</nav><a class="text-link" href="/articles">全部文章 {arrow()}</a></aside><div class="journal-body"><div class="journal-lead-media">{screen(a['image'],a['title'])}</div>{sections}<div class="journal-note">本文依既有產品介面整理，畫面與狀態以目前程式為準。分析與配注策略僅供輔助，不能保證預測結果或獲利。</div><div class="journal-next"><p class="kicker">接著閱讀</p><a href="/articles/{related['slug']}">{related['title']} {arrow()}</a></div><div class="inline-actions">{button(a['cta'][1],a['cta'][0])}<a class="text-link" href="/articles">回到文章專區 {arrow()}</a></div></div></div></article>'''
+    return f'''<article class="journal-article"><header class="journal-header"><p class="kicker">{a['category']} ／ 御策使用指南</p><h1>{a['title']}</h1><p class="journal-intro">{a['summary']}</p><div class="journal-meta"><span>御策編輯團隊</span><span>更新：2026.11.17</span><span>閱讀約 {a['read']}</span></div></header><div class="journal-layout"><aside class="journal-toc"><p class="kicker">本文目錄</p><nav aria-label="文章目錄">{toc}</nav><a class="text-link" href="/articles">全部文章 {arrow()}</a></aside><div class="journal-body"><div class="journal-lead-media">{lead}</div>{sections}<div class="journal-note">本文為百家樂知識及使用資訊整理，規則以實際桌台為準。分析工具不能保證預測結果或獲利。</div><div class="journal-next"><p class="kicker">接著閱讀</p><a href="/articles/{related['slug']}">{related['title']} {arrow()}</a></div><div class="inline-actions">{button(a['cta'][1],a['cta'][0])}<a class="text-link" href="/articles">回到文章專區 {arrow()}</a></div></div></div></article>'''
