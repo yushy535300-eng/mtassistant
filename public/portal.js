@@ -198,7 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
   reduced.addEventListener('change', () => { if (reduced.matches) show(available[0] || slides[0]); sync(); });
 })();
 
-/* Independent, accessible four-creative ads. No runtime external asset requests. */
+/* Independent, accessible brand campaigns. No runtime external asset requests. */
 (() => {
  const reduced=matchMedia('(prefers-reduced-motion: reduce)');
  const capture=new URLSearchParams(location.search).get('capture')==='1';
@@ -219,12 +219,12 @@ document.addEventListener('DOMContentLoaded', () => {
    if('IntersectionObserver' in window)new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;sync()}).observe(slot);else{visible=true;sync()}
    document.addEventListener('visibilitychange',sync);reduced.addEventListener('change',sync);
    if(slot.dataset.adCarousel!=='float')return;
-   const open=document.getElementById('ycAdOpen');let state='ready';try{state=sessionStorage.getItem('yuceScarabAdState')||'ready'}catch(_){}
-   const setState=value=>{state=value;try{sessionStorage.setItem('yuceScarabAdState',value)}catch(_){}update()};
-   const update=()=>{const display=!capture&&state==='ready'&&scrollY>360;slot.hidden=!display;open.hidden=capture||state!=='collapsed';document.body.classList.toggle('yc-ad-opened',display);sync()};
+   const open=document.getElementById('ycAdOpen');let state='ready',forced=false;try{state=sessionStorage.getItem('yuceScarabAdState')||'ready'}catch(_){}
+   const setState=value=>{state=value;if(value!=='ready')forced=false;try{sessionStorage.setItem('yuceScarabAdState',value)}catch(_){}update()};
+   const update=()=>{const display=!capture&&state==='ready'&&(forced||scrollY>360);slot.hidden=!display;open.hidden=capture||state!=='collapsed';document.body.classList.toggle('yc-ad-opened',display);sync()};
    slot.querySelector('[data-ad-collapse]').addEventListener('click',()=>setState('collapsed'));
    slot.querySelector('[data-ad-close]').addEventListener('click',()=>setState('closed'));
-   open.addEventListener('click',()=>{setState('ready');if(scrollY<=360){slot.hidden=false;document.body.classList.add('yc-ad-opened');sync()}});
+   open.addEventListener('click',()=>{forced=true;setState('ready')});
    window.addEventListener('scroll',update,{passive:true});update();
  });
 })();

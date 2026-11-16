@@ -109,3 +109,14 @@ assert 'data-ad-carousel="content"' in matrix
 assert '.portal-rail{overflow:visible' in css
 assert 'overflow-y:auto;scrollbar-width:thin' not in css
 print("Local official Scarab Heart ads and responsive non-scrolling navigation OK.")
+
+# Every creative promotes the brand itself, not a product or game page.
+from sitegen.portal.ads import CAMPAIGNS, carousel
+assert len(CAMPAIGNS) == 3
+for slot in ("rail", "billboard", "content", "float"):
+    markup = carousel(slot)
+    assert markup.count('data-ad-slide=') == 3
+    assert markup.count('<strong>聖甲之心</strong>') == 3
+    assert markup.count('https://scarabheart.com/?') == 3
+    assert '戰神賽特' not in markup and '下載安裝' not in markup and '免費試玩' not in markup
+print("Three brand-only campaigns, original emblem and sanctuary, homepage links OK.")
