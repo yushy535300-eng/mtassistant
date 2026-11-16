@@ -92,10 +92,27 @@ ARTICLES.extend([
  ],'related':'baccarat-basics','cta':('/articles','閱讀更多百家樂文章')},
 ])
 
+# Audited weekly publications, released via the scheduled publisher.
+import json as _json
+from pathlib import Path as _Path
+_published_manifest = _Path(__file__).with_name("editorial_published.json")
+if _published_manifest.exists():
+    ARTICLES.extend(_json.loads(_published_manifest.read_text(encoding="utf-8")))
+
 BY_SLUG = {a['slug']:a for a in ARTICLES}
 
-def cards(limit=None):
-    items=ARTICLES[:limit] if limit else ARTICLES
+def cards(limit=None, topic=None):
+    if topic == 'baccarat':
+        # Latest released baccarat editorial picks; do not claim these are measured views.
+        base = {'baccarat-basics','banker-player-tie','roadmap-explained',
+                'streaks-and-misconceptions','multi-table-overview','baccarat-odds-basics',
+                'responsible-limits','live-vs-online-baccarat'}
+        pool = [a for a in ARTICLES if a['slug'] in base or a.get('published_at')]
+        items = sorted(pool, key=lambda a: (a.get('published_at','2026-11-17'), a['slug']), reverse=True)
+    else:
+        items = ARTICLES[:]
+    if limit:
+        items = items[:limit]
     return '<div class="editorial-grid">'+''.join(f'''<a class="editorial-card" href="/articles/{a['slug']}"><div class="editorial-art editorial-art-photo"><img src="/assets/interfaces/{a['image']}.webp" alt="{escape(a['title'],quote=True)}：御策原始程式功能畫面" loading="lazy" decoding="async"><span class="editorial-photo-badge">{a['category']}</span></div><div class="editorial-copy"><p class="kicker">{a['category']} <span>· {a['read']}</span></p><h3>{a['title']}</h3><p>{a['summary']}</p><span class="text-link">閱讀文章 {arrow()}</span></div></a>''' for a in items)+'</div>'
 
 def render():
