@@ -253,3 +253,46 @@ document.addEventListener('DOMContentLoaded', () => {
  const effects=new IntersectionObserver(entries=>entries.forEach(e=>e.target.classList.toggle('yc-effect-offscreen',!e.isIntersecting)));
  document.querySelectorAll('.page-home .tool-tile').forEach(el=>effects.observe(el));
 })();
+
+/* Product-oriented chapter navigation and restrained, pointer-driven depth. */
+(() => {
+  'use strict';
+  const menu = document.querySelector('.atelier-section-nav');
+  const links = menu ? [...menu.querySelectorAll('a[href^="#"]')] : [];
+  if (links.length && 'IntersectionObserver' in window) {
+    const sections = new Map();
+    links.forEach(link => {
+      const anchor = document.getElementById(link.hash.slice(1));
+      const section = anchor?.closest('section') || anchor;
+      if (section) sections.set(section,link);
+    });
+    const observer = new IntersectionObserver(entries => {
+      const entry = entries.filter(item => item.isIntersecting).sort((a,b) => a.boundingClientRect.top-b.boundingClientRect.top)[0];
+      if (!entry) return;
+      const current = sections.get(entry.target);
+      links.forEach(link => { if (link === current) link.setAttribute('aria-current','location'); else link.removeAttribute('aria-current'); });
+    },{rootMargin:'-18% 0px -60% 0px',threshold:0});
+    sections.forEach((_,section) => observer.observe(section));
+  }
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  const fine = matchMedia('(hover: hover) and (pointer: fine)');
+  document.querySelectorAll('.atelier-matrix,.atelier-auto').forEach(card => {
+    let frame=0,point=null;
+    const reset=()=>{point=null;if(frame)cancelAnimationFrame(frame);frame=0;card.style.removeProperty('--tilt-x');card.style.removeProperty('--tilt-y');};
+    card.addEventListener('pointermove',event=>{
+      if (reduced.matches || !fine.matches) return;
+      point={x:event.clientX,y:event.clientY};
+      if (frame) return;
+      frame=requestAnimationFrame(()=>{
+        frame=0;if(!point)return;
+        const box=card.getBoundingClientRect();
+        const x=Math.max(-1,Math.min(1,(point.x-box.left)/box.width*2-1));
+        const y=Math.max(-1,Math.min(1,(point.y-box.top)/box.height*2-1));
+        card.style.setProperty('--tilt-y',(x*2.5).toFixed(2)+'deg');
+        card.style.setProperty('--tilt-x',(-y*2).toFixed(2)+'deg');
+      });
+    },{passive:true});
+    card.addEventListener('pointerleave',reset);
+    reduced.addEventListener('change',reset);
+  });
+})();

@@ -1,0 +1,46 @@
+name: Website quality and responsive evidence
+on:
+  push:
+    branches: ['quality/**']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+      - name: Build actual Rust server and run release gates
+        env:
+          SITE_ORIGIN: https://mtassistant-oozm.onrender.com
+          ALLOW_INDEXING: 'true'
+        run: |
+          cargo build --release --locked
+          python3 tests/premium_release.py
+      - name: Install browser test tools
+        run: |
+          npm install --prefix /tmp/yuce-qa --no-audit --no-fund playwright lighthouse
+          /tmp/yuce-qa/node_modules/.bin/playwright install --with-deps chromium webkit
+      - name: Start server and run responsive and interaction checks
+        env:
+          PORT: '3100'
+          ALLOW_INDEXING: 'true'
+          QA_NODE_MODULES: /tmp/yuce-qa/node_modules
+          TEST_ORIGIN: http://127.0.0.1:3100
+        run: |
+          ./target/release/mtassistant-official > /tmp/yuce-runtime.log 2>&1 &
+          node tests/atelier-browser.cjs
+      - name: Lighthouse mobile laboratory measurement
+        run: |
+          /tmp/yuce-qa/node_modules/.bin/lighthouse http://127.0.0.1:3100/?welcome=0 --chrome-flags="--headless --no-sandbox --disable-dev-shm-usage" --only-categories=performance,accessibility,best-practices,seo --output=json --output-path=artifacts/lighthouse-mobile.json --quiet
+          node tests/summarize-performance.cjs
+      - uses: actions/upload-artifact@v5
+        if: always()
+        with:
+          name: website-quality-evidence
+          path: artifacts/
+          retention-days: 7
