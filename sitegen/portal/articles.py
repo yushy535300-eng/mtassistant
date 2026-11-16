@@ -1,6 +1,6 @@
 """First-party product guides grounded in the existing UI and verified workflows."""
 from html import escape
-from ..common import screen, arrow, button
+from ..common import screen, arrow, button, asset_url, DATA
 
 ARTICLES = [
  {'slug':'matrix-workflow','title':'多桌百家輔助怎麼用？先連線，再看雷達與分析','category':'多桌輔助','summary':'從平台連線、桌台選擇到模型核對，建立不跳步的 MT MATRIX 使用流程。','image':'matrix-assist','read':'4 分鐘','sections':[
@@ -42,9 +42,35 @@ ARTICLES = [
 ]
 BY_SLUG = {a['slug']:a for a in ARTICLES}
 
+
+# Every article uses a distinct existing product image, not generated stock art.
+# Reference dimensions for screenshots are read directly from the product data contract.
+COVERS = {
+    'matrix-workflow': 'matrix-assist',
+    'auto-checklist': 'auto-strategy',
+    'model-panels': 'four-formulas',
+    'mobile-home-screen': 'install-ios',
+    'execution-status': 'auto-running',
+    'connection-troubleshooting': 'platform-connection',
+}
+
+def cover_path(article):
+    name=COVERS[article['slug']]
+    return '/assets/install/yuce-matrix-ios-install.webp' if name == 'install-ios' else '/assets/interfaces/' + name + '.webp'
+
+def cover_dimensions(article):
+    name=COVERS[article['slug']]
+    return DATA['sizes'].get(name)
+
+def cover_image(article, eager=False):
+    path=cover_path(article)
+    dimensions=cover_dimensions(article)
+    size_attrs=f' width="{dimensions[0]}" height="{dimensions[1]}"' if dimensions else ''
+    return f'<img src="{asset_url(path)}" alt="{escape(article["title"],quote=True)}：原有產品或安裝教學畫面" loading="{"eager" if eager else "lazy"}" decoding="async"{size_attrs}>'
+
 def cards(limit=None):
     items=ARTICLES[:limit] if limit else ARTICLES
-    return '<div class="editorial-grid">'+''.join(f'''<a class="editorial-card" href="/articles/{a['slug']}"><div class="editorial-art editorial-art-{i%3}" aria-hidden="true"><span>{i+1:02d}</span><svg viewBox="0 0 180 90" fill="none"><path d="M0 75H180M0 45H180M0 15H180M30 0V90M60 0V90M90 0V90M120 0V90M150 0V90" stroke="currentColor" opacity=".2"/><circle cx="30" cy="45" r="11" stroke="currentColor"/><circle cx="60" cy="45" r="11" stroke="currentColor"/><circle cx="90" cy="15" r="11" stroke="currentColor"/><path d="m115 63 16-16 12 8 25-30" stroke="currentColor" stroke-width="2"/></svg></div><div class="editorial-copy"><p class="kicker">{a['category']} <span>· {a['read']}</span></p><h3>{a['title']}</h3><p>{a['summary']}</p><span class="text-link">閱讀文章 {arrow()}</span></div></a>''' for i,a in enumerate(items))+'</div>'
+    return '<div class="editorial-grid">'+''.join(f'''<a class="editorial-card" href="/articles/{a['slug']}"><div class="editorial-art editorial-photo">{cover_image(a)}</div><div class="editorial-copy"><p class="kicker">{a['category']} <span>· {a['read']}</span></p><h3>{a['title']}</h3><p>{a['summary']}</p><span class="text-link">閱讀文章 {arrow()}</span></div></a>''' for a in items)+'</div>'
 
 def render():
     return '''<section class="portal-pagehead"><div><p class="kicker">THE YUCE JOURNAL</p><h1>使用指南與操作筆記</h1><p>從真實介面出發，把連線、模型、設定與手機操作說清楚。</p></div></section><section class="portal-section" aria-labelledby="journal-title"><div class="section-top"><div><p class="kicker">實用內容，完整閱讀</p><h2 id="journal-title">找到你現在需要的解答</h2></div></div>'''+cards()+'''</section>'''
@@ -54,4 +80,4 @@ def render_article(slug):
     toc=''.join(f'<a href="#article-section-{i}"><span>{i:02d}</span>{escape(s[0])}</a>' for i,s in enumerate(a['sections'],1))
     sections=''.join(f'<section id="article-section-{i}"><h2>{escape(s[0])}</h2><p>{escape(s[1])}</p>{screen(s[2],s[0]) if len(s)>2 else ""}</section>' for i,s in enumerate(a['sections'],1))
     related=BY_SLUG[a['related']]
-    return f'''<article class="journal-article"><header class="journal-header"><p class="kicker">{a['category']} ／ 御策使用指南</p><h1>{a['title']}</h1><p class="journal-intro">{a['summary']}</p><div class="journal-meta"><span>御策編輯團隊</span><span>更新：2026.11.17</span><span>閱讀約 {a['read']}</span></div></header><div class="journal-layout"><aside class="journal-toc"><p class="kicker">本文目錄</p><nav aria-label="文章目錄">{toc}</nav><a class="text-link" href="/articles">全部文章 {arrow()}</a></aside><div class="journal-body"><div class="journal-lead-media">{screen(a['image'],a['title'])}</div>{sections}<div class="journal-note">本文依既有產品介面整理，畫面與狀態以目前程式為準。分析與配注策略僅供輔助，不能保證預測結果或獲利。</div><div class="journal-next"><p class="kicker">接著閱讀</p><a href="/articles/{related['slug']}">{related['title']} {arrow()}</a></div><div class="inline-actions">{button(a['cta'][1],a['cta'][0])}<a class="text-link" href="/articles">回到文章專區 {arrow()}</a></div></div></div></article>'''
+    return f'''<article class="journal-article"><header class="journal-header"><p class="kicker">{a['category']} ／ 御策使用指南</p><h1>{a['title']}</h1><p class="journal-intro">{a['summary']}</p><div class="journal-meta"><span>御策編輯團隊</span><span>更新：2026.11.17</span><span>閱讀約 {a['read']}</span></div></header><div class="journal-layout"><aside class="journal-toc"><p class="kicker">本文目錄</p><nav aria-label="文章目錄">{toc}</nav><a class="text-link" href="/articles">全部文章 {arrow()}</a></aside><div class="journal-body"><div class="journal-lead-media"><a class="journal-cover-link" href="{cover_path(a)}" data-image="{cover_path(a)}" data-title="{escape(a['title'],quote=True)}" aria-label="放大查看本文主圖">{cover_image(a,True)}<span class="screen-zoom">＋ 放大查看原圖</span></a></div>{sections}<div class="journal-note">本文依既有產品介面整理，畫面與狀態以目前程式為準。分析與配注策略僅供輔助，不能保證預測結果或獲利。</div><div class="journal-next"><p class="kicker">接著閱讀</p><a href="/articles/{related['slug']}">{related['title']} {arrow()}</a></div><div class="inline-actions">{button(a['cta'][1],a['cta'][0])}<a class="text-link" href="/articles">回到文章專區 {arrow()}</a></div></div></div></article>'''
