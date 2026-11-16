@@ -130,5 +130,11 @@ for name in ("index.html", "pages/features.html", "pages/auto.html", "pages/guid
     assert 'https://scarabheart.com/?' in html, name
     assert 'class="portal-rail"' in html and '下載安裝' in html and '客服中心' in html, name
 assert 'yc-stage-light' in css and 'yc-tile-sheen' in css and 'yc-section-enter' in css
-assert 'yc-hero-accent' in home
+assert 'yc-art-title' in home and 'yuce-gold-title.svg' in home
+assert 'data-dealer-step="-1"' in home and 'data-dealer-step="1"' in home
+assert home.index('id="toolbox"') < home.index('class="portal-shortcuts yc-service-strip"') < home.index('aria-labelledby="guide-title"')
+assert '/assets/brand/yuce-gold-title.svg' in embedded
+assert 'yc-ad-description' in home
+assert 'yc-ad-description' not in carousel('rail') and 'yc-ad-description' not in carousel('float')
+assert 'grid-template-columns:minmax(0,1.04fr) minmax(0,.96fr)' in css
 print("All seven pages: original navigation, brand-only ad destinations, editorial light and motion release checks OK.")

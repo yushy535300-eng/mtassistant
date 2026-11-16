@@ -164,6 +164,8 @@ document.addEventListener('DOMContentLoaded', () => {
     current = slide;
     slides.forEach(item => item.classList.toggle('is-active', item === slide));
     rot.dataset.activeDealer = slide.dataset.dealerId || '';
+    const activeCounter = document.querySelector('[data-dealer-current]');
+    if (activeCounter) activeCounter.textContent=String(slides.indexOf(slide)+1).padStart(2,'0');
   }
   function sync() {
     clearInterval(timer);
@@ -185,6 +187,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
   show(slides[0]);
+  const totalCounter=document.querySelector('[data-dealer-total]');
+  if(totalCounter)totalCounter.textContent=String(slides.length).padStart(2,'0');
+  document.querySelectorAll('[data-dealer-step]').forEach(control=>control.addEventListener('click',()=>{
+    const ready=available.length?available:slides;
+    const index=ready.indexOf(current);
+    show(ready[(Math.max(0,index)+Number(control.dataset.dealerStep)+ready.length)%ready.length]);
+    sync();
+  }));
   rot.classList.add('is-ready');
   Promise.all(slides.map(imageReady)).then(results => {
     available = slides.filter((_, i) => results[i]);
