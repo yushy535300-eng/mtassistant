@@ -67,4 +67,27 @@ print("MT final audit: transparent dealers, full original recordings, audio trac
 
 assert 'data-dealer-rotation' in home
 assert 'data-dealer-rotation' not in matrix and 'data-dealer-rotation' not in auto
-assert 'setInterval(()=>show((index+1)%slides.length),5000)' in read('portal.js')
+assert 'const DEALER_INTERVAL_MS = 5000' in read('portal.js')
+assert '1.1s ease-in-out' in css
+rotation = re.search(r'<div class="scene-person scene-person-home mt-dealer-rotation"[^>]*>(.*?)</div>', home, re.S)
+assert rotation, 'homepage dealer carousel missing'
+assert re.findall(r'data-dealer-id="([^"]+)"', rotation.group(1)) == ['mt-real-01','mt-real-02','mt-real-03','mt-real-04','mt-real-05','live1','live2','live3','live4','live5','live6']
+# The latest three original screenshots are alpha-masked, and only these approved assets are referenced.
+
+
+new_cutouts = {
+    "mt-real-03-cutout.webp": "11262267eeb337ba62eefed89b7b62d86bd0306a673eba5a6ec05c481aa6cddc",
+    "mt-real-03-cutout-mobile.webp": "61a280002307cd05881493b38f10ca2bce3a29a7494041d70f2249ecf51991c1",
+    "mt-real-04-cutout.webp": "2dc4f4fcf0cac90006b73aa4a1bcdc031d33f85a7ad4f711361ae8df3813166f",
+    "mt-real-04-cutout-mobile.webp": "6dc6a77c62a376efe8c7de72396f84653b8fe03d6d297d03364d47a212bf3254",
+    "mt-real-05-cutout.webp": "b4e0f2b79cc435a019ed9d9e786665a5e4dce50c5f34c06221e73604509fbd57",
+    "mt-real-05-cutout-mobile.webp": "97566be9c41cfc0cb988c698ba07b4225ae9691383364ec81fdcdf56a1bf3228",
+}
+for filename, checksum in new_cutouts.items():
+    asset = "assets/dealers/" + filename
+    data = (PUBLIC / asset).read_bytes()
+    assert hashlib.sha256(data).hexdigest() == checksum, asset
+    assert data[:4] == b"RIFF" and data[8:12] == b"WEBP" and data[12:16] == b"VP8X" and data[20] & 16, asset
+    assert "/" + asset in embedded and filename in home, asset
+assert 'mt-new-dealer' not in home and 'png_style_cutout' not in home
+print("Homepage carousel: 11 source assets, five-second crossfade, intact video and installation routes OK.")

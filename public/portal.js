@@ -149,31 +149,51 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('visibilitychange',()=>{if(document.hidden)videos.forEach(video=>video.pause());});
 });
 
-/* Home hero: rotate the two original MT dealer cutouts every five seconds. */
+/* Home hero: a stable, visibility-aware five-second crossfade. */
 (() => {
   const rot = document.querySelector('[data-dealer-rotation]');
   if (!rot) return;
   const slides = Array.from(rot.querySelectorAll('picture'));
   if (slides.length < 2) return;
+  const DEALER_INTERVAL_MS = 5000;
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const capture = new URLSearchParams(location.search).get('capture') === '1';
-  let index = 0, timer = 0, visible = true, loaded = false;
-  function show(i) { index=i; slides.forEach((slide,j)=>slide.classList.toggle('is-active', j===i)); }
+  let available = [], current = slides[0], timer = 0, visible = true;
+  function show(slide) {
+    if (!slide) return;
+    current = slide;
+    slides.forEach(item => item.classList.toggle('is-active', item === slide));
+    rot.dataset.activeDealer = slide.dataset.dealerId || '';
+  }
   function sync() {
-    clearInterval(timer); timer=0;
-    if (loaded && visible && !document.hidden && !reduced.matches && !capture) {
-      timer=setInterval(()=>show((index+1)%slides.length),5000);
+    clearInterval(timer);
+    timer = 0;
+    if (available.length > 1 && visible && !document.hidden && !reduced.matches && !capture) {
+      timer = setInterval(() => {
+        const next = (available.indexOf(current) + 1) % available.length;
+        show(available[next]);
+      }, DEALER_INTERVAL_MS);
     }
   }
-  show(0);
+  function imageReady(slide) {
+    const img = slide.querySelector('img');
+    if (!img) return Promise.resolve(false);
+    if (img.complete) return Promise.resolve(img.naturalWidth > 0);
+    return new Promise(resolve => {
+      img.addEventListener('load', () => resolve(true), {once:true});
+      img.addEventListener('error', () => resolve(false), {once:true});
+    });
+  }
+  show(slides[0]);
   rot.classList.add('is-ready');
-  Promise.all(slides.map(slide=>{
-    const img=slide.querySelector('img');
-    if (!img) return Promise.reject(new Error('missing image'));
-    if (img.complete && img.naturalWidth) return Promise.resolve();
-    return new Promise((resolve,reject)=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',reject,{once:true});});
-  })).then(()=>{loaded=true;sync();}).catch(()=>{show(0);});
-  if ('IntersectionObserver' in window) new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;sync();}).observe(rot);
-  document.addEventListener('visibilitychange',sync);
-  reduced.addEventListener('change',()=>{if(reduced.matches)show(0);sync();});
+  Promise.all(slides.map(imageReady)).then(results => {
+    available = slides.filter((_, i) => results[i]);
+    if (available.length && !available.includes(current)) show(available[0]);
+    sync();
+  });
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(entries => { visible = entries[0].isIntersecting; sync(); }).observe(rot);
+  }
+  document.addEventListener('visibilitychange', sync);
+  reduced.addEventListener('change', () => { if (reduced.matches) show(available[0] || slides[0]); sync(); });
 })();

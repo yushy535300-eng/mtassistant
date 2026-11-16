@@ -14,7 +14,10 @@ PAGE_PERSON = {
 }
 
 
-HOME_DEALERS = ('mt-real-01', 'mt-real-02', 'live1', 'live2', 'live3', 'live4', 'live5', 'live6')
+HOME_DEALERS = ('mt-real-01', 'mt-real-02', 'mt-real-03', 'mt-real-04', 'mt-real-05', 'live1', 'live2', 'live3', 'live4', 'live5', 'live6')
+
+# New subjects are source screenshots with an alpha mask, not generated portraits.
+ORIGINAL_SIZES = {'mt-real-01': (415, 575), 'mt-real-02': (510, 545), 'mt-real-03': (350, 539), 'mt-real-04': (640, 479), 'mt-real-05': (407, 549)}
 
 
 def person(name, location='hero', eager=False):
@@ -25,13 +28,13 @@ def person(name, location='hero', eager=False):
     for path in (full, mobile):
         if not (PUBLIC / path.lstrip('/')).is_file():
             raise FileNotFoundError('Transparent scene asset is not ready: ' + path)
-    sizes = {'mt-real-01': (415, 575), 'mt-real-02': (510, 545)}
+    sizes = ORIGINAL_SIZES
     width, height = sizes.get(name, (626, 626))
     klass = 'brand-person' if location == 'brand' else f'scene-person scene-person-{location}'
     if name in sizes:
         klass += ' mt-original-dealer'
     return (
-        f'<picture class="{klass}" aria-hidden="true">'
+        f'<picture class="{klass}" data-dealer-id="{name}" aria-hidden="true">'
         f'<source media="(max-width:640px)" srcset="{asset_url(mobile)}">'
         f'<img src="{asset_url(full)}" width="{width}" height="{height}" alt="" '
         f'aria-hidden="true" loading="{"eager" if eager else "lazy"}" '
