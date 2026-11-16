@@ -216,3 +216,11 @@ document.addEventListener('DOMContentLoaded', () => {
   anchor.querySelector('button').addEventListener('click',()=>{closed=true;try{sessionStorage.setItem('scarabAdDismissed','1');}catch(_){}update();});
   window.addEventListener('scroll',update,{passive:true});mobile.addEventListener('change',update);update();
 })();
+
+/* Editorial scroll motion: one-shot and visibility-aware; no layout shifts. */
+(() => {
+  const reduced=matchMedia('(prefers-reduced-motion: reduce)');
+  if(reduced.matches||new URLSearchParams(location.search).get('capture')==='1'||!('IntersectionObserver' in window))return;
+  const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('yc-enter');observer.unobserve(entry.target);}}),{threshold:.12});
+  document.querySelectorAll('#main .portal-section, #main .install-product, #main .guide-step-panel').forEach(el=>{if(!el.closest('.sh-ad')&&el.getBoundingClientRect().top>innerHeight*.8)observer.observe(el);});
+})();

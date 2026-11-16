@@ -1,0 +1,119 @@
+/* YUCE V3: luminous editorial skin. All media, routes and controls remain intact. */
+:root{--bg:#171321;--rail:#211b2c;--panel:#2a2536;--panel-hi:#373045;--border:#59485f;--text:#fff7fb;--muted:#d4c9dc;--accent:#e13c82;--accent-hover:#ff9ec7;--violet:#b6a1f7;--yc-gold:#eac78e;--yc-cyan:#75d9df;--yc-pink:#f59ac3;--yc-purple:#b7a0f3}
+body{background:#171321;color:var(--text)}
+.portal-main{background:radial-gradient(ellipse at 96% 0%,#73365b42 0%,transparent 42%),radial-gradient(ellipse at 2% 33%,#394b7740 0%,transparent 37%),radial-gradient(ellipse at 98% 72%,#733b7032 0%,transparent 32%),linear-gradient(175deg,#211a2b 0%,#171722 48%,#211b2b 100%);min-height:100vh}
+.portal-rail{background:linear-gradient(165deg,#302235,#211b2b 52%,#1c1a2a);border-color:#67475d;box-shadow:6px 0 28px #100b1c44}
+.portal-brand{padding-bottom:22px}.portal-brand b{color:#ffeaf4}.portal-brand small{color:#c5a6c7}
+.rail-label{color:#cfb2cb;letter-spacing:.13em}
+.portal-rail nav>a{color:#e2d9eb;border:1px solid transparent}
+.portal-rail nav>a svg{color:#bca9cf}
+.portal-rail nav>a[aria-current=page]{background:linear-gradient(100deg,#743656,#452b48 80%);border-color:#ac5b85;box-shadow:inset 3px 0 #ffabd2,0 4px 18px #d6519a20;color:#fff0f8}
+.portal-rail nav>a[aria-current=page] svg{color:#ffc0de}
+.portal-rail nav>a:hover{background:#42324a;border-color:#73526b}
+.rail-support{background:linear-gradient(145deg,#392b3d,#292438);border-color:#72546a}.rail-support p,.rail-foot{color:#d0bed4}
+.portal-topbar{background:linear-gradient(105deg,#2b2234f2,#282136f5);border-color:#594459;box-shadow:0 6px 22px #100b192d}
+.portal-category{background:linear-gradient(95deg,#2b2436,#211e31);border-color:#4b3d52}
+.portal-category a{color:#d6c8e0}.portal-category a[aria-current=page]{background:#5a3455;color:#ffd4e9;border:1px solid #ad6388}
+.topbar-caption{color:#d8c4dc}.launch-menu summary{background:linear-gradient(120deg,#ec5597,#b32d74);border:1px solid #ef86b8;box-shadow:0 4px 18px #c9358140}
+#main{padding-top:clamp(20px,2.4vw,36px);padding-bottom:52px}
+.portal-section,.page-home .portal-home > .portal-section{margin-top:clamp(34px,4.1vw,58px)}
+.section-top{margin-bottom:20px;gap:16px}
+.section-top h2{color:#fff3f9;letter-spacing:-.035em;font-size:clamp(23px,2.4vw,32px);line-height:1.3}
+.section-top .kicker{color:var(--yc-gold);font-size:11px;letter-spacing:.17em;margin-bottom:7px}
+.section-top>div>p:not(.kicker),.section-top>p{color:#d5c9dc;line-height:1.8}
+.section-top>div{min-width:0}
+.text-link{color:#ffc3e1}.text-link:hover{color:#fff4e0}
+.portal-panel,.tool-tile,.guide-entry,.contact-link,.v2-resource,.install-product{
+ border:1px solid #6d526b;border-radius:16px;background:linear-gradient(138deg,#3a2b40 0%,#292739 52%,#242337 100%);
+ box-shadow:0 12px 32px #0d091b45,inset 0 1px 0 #ffffff0d;
+}
+.portal-panel{padding:clamp(17px,2.3vw,28px)}
+.portal-panel h3,.tool-tile h3,.guide-entry h3{color:#fff3f9}
+.portal-panel p,.tool-tile-copy>p,.feature-list p,.guide-entry p{color:#ded1e4}
+.portal-panel .kicker,.product-heading span{color:#eab7d1}
+.portal-banner.has-scene-person{
+ min-height:clamp(345px,30vw,455px);border-radius:20px;border-color:#a8788e;
+ background:#34233d;box-shadow:0 20px 58px #10081d8c,0 0 30px #e267a32b,inset 0 0 30px #ebad8f17;
+}
+.portal-banner .banner-art img{filter:brightness(1.17) saturate(1.08)}
+.portal-banner.has-scene-person::before{background:linear-gradient(90deg,#211426f5 0%,#2f1b34e8 27%,#33233aa3 48%,#492c4b35 72%,#2b22452e 100%)}
+.portal-banner.has-scene-person .banner-copy{padding:clamp(25px,3.1vw,46px);z-index:3}
+.banner-copy h1{font-size:clamp(34px,4vw,61px);line-height:1.13;color:#fff8f2;text-shadow:0 3px 20px #100817c0,0 0 25px #f8b4c22a;letter-spacing:-.04em}
+.banner-label{color:#ffd5bb!important;letter-spacing:.18em}
+.banner-copy>p:not(.banner-label){color:#f4e4f3!important;font-size:clamp(15px,1.5vw,19px);line-height:1.8}
+.banner-risk{color:#dec8d9}
+.portal-banner.has-scene-person>.mt-dealer-rotation{width:clamp(270px,33vw,430px);max-width:100%;filter:drop-shadow(0 12px 20px #140b25aa) drop-shadow(0 0 16px #e7a4bb38)}
+.portal-banner .banner-light{inset:0;opacity:1;transform:none;z-index:-2;background:radial-gradient(ellipse at 77% 24%,#ffd18e55,transparent 43%),radial-gradient(ellipse at 83% 87%,#e342a254,transparent 48%),radial-gradient(ellipse at 36% 15%,#9683e03b,transparent 44%);animation:yc-hero-light 8s ease-in-out infinite alternate}
+@keyframes yc-hero-light{0%{opacity:.52;transform:scale(1)}50%{opacity:.92;transform:scale(1.055)}100%{opacity:.72;transform:scale(1.02)}}
+.portal-banner .banner-sparks,.portal-pagehead .head-sparks{opacity:.9}
+.portal-banner::after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;z-index:4;box-shadow:inset 0 0 0 1px #ffd0ab24,inset 0 -1px 0 #f8a6cf77}
+.portal-shortcuts a{background:linear-gradient(140deg,#3a2a43,#29263d);border-color:#735371;border-radius:12px;box-shadow:0 7px 20px #10091a38}
+.portal-shortcuts a span{color:#e4b2cf}.portal-shortcuts a b{color:#fff1f8}.portal-shortcuts a svg{color:#f0b7dc}
+.portal-shortcuts a:nth-child(1){border-color:#497c8c;background:linear-gradient(145deg,#234350,#282f44)}
+.portal-shortcuts a:nth-child(2){border-color:#7966ad;background:linear-gradient(145deg,#42335c,#312b49)}
+.portal-shortcuts a:nth-child(3){border-color:#997451;background:linear-gradient(145deg,#4a3a3b,#332c3f)}
+.portal-shortcuts a:nth-child(4){border-color:#a3597d;background:linear-gradient(145deg,#59334b,#35263f)}
+.portal-tool-grid{gap:clamp(14px,2.2vw,24px)}
+.tool-tile{position:relative;isolation:isolate;overflow:hidden;padding:clamp(17px,2.4vw,29px);background:radial-gradient(ellipse at 100% 0%,#3d889038,transparent 62%),linear-gradient(135deg,#233944,#25293d);border-color:#538e9b}
+.tool-tile.auto{background:radial-gradient(ellipse at 100% 0%,#956bde46,transparent 62%),linear-gradient(135deg,#413052,#2d2941);border-color:#9a78be}
+.tool-tile::before{content:"";position:absolute;left:0;top:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#8bf3ed,#bfe8fa,transparent);opacity:.86;pointer-events:none}
+.tool-tile.auto::before{background:linear-gradient(90deg,transparent,#c3a3ff,#ffafda,transparent)}
+.tool-tile .product-heading>div>span{color:#a9ece9}.tool-tile.auto .product-heading>div>span{color:#d5b9ff}
+.tool-tile-preview{filter:drop-shadow(0 8px 17px #0b132b9c)}
+.tool-tile .screen{border-color:#94d9e68c;outline:1px solid #79c0d540}.tool-tile.auto .screen{border-color:#b998df91;outline-color:#b998df40}
+.screen{background:#151520;border-color:#a3829f61;box-shadow:0 8px 22px #10091936;outline-color:#d3a7d342}
+.screen img{filter:none}.screen-zoom{background:#29233be8;color:#ffe9f6;border-color:#b58ebc66}
+.feature-index,.guide-number,.v2-resource-number{color:#f3d094}
+.feature-list>article{background:linear-gradient(100deg,#3c2c44,#292a3e);border-color:#624c68;border-radius:13px}
+.matrix-overview>.portal-panel{background:linear-gradient(150deg,#2d424b,#252b3e);border-color:#5b98a2}
+.auto-summary>.portal-panel{background:linear-gradient(155deg,#453458,#2c293f);border-color:#8f73b0}
+.interface-browser{background:linear-gradient(140deg,#3c304a,#29263b);border-color:#84628d}
+.focus-tabs button{border-color:#6e567c;color:#e3d4ed}.focus-tabs button[aria-selected=true]{background:linear-gradient(115deg,#794365,#564269);border-color:#f1a0c7;color:#fff}
+.v2-product{border-top-color:#7ad8de;background:linear-gradient(145deg,#293f49,#292a3d)}
+.v2-product-auto{border-top-color:#c5a1ef;background:linear-gradient(145deg,#463451,#302c44)}
+.v2-product dt{color:#e2b9d2}.v2-product dd{color:#f7eaf5}
+.guide-entry{border-color:#91704f;background:linear-gradient(140deg,#493743,#30283c)}
+.brand-section{background:radial-gradient(ellipse at 15% 35%,#a26b7c55,transparent 60%),linear-gradient(110deg,#52364c,#30263d);border-color:#a27794;border-radius:17px;box-shadow:0 12px 36px #100a1e55}
+.brand-copy .kicker{color:#f4d39f}.brand-copy h2{color:#fff1e3}
+.mt-video-card{border-color:#8f6486;background:linear-gradient(150deg,#423047,#2b263b);box-shadow:0 12px 30px #130b245c}
+.mt-video-frame{border-color:#785568;background:#100e1b}.mt-video-caption h3{color:#fff1f8}.mt-video-meta>span:first-child{color:#ffd0a8}
+.portal-pagehead,.portal-pagehead.has-scene-person{--yc-head-glow:#b66b9d55;border-color:#986f91;border-radius:18px;background:radial-gradient(ellipse at 76% 22%,var(--yc-head-glow),transparent 57%),linear-gradient(115deg,#443047,#2b2940 66%,#57405d);box-shadow:0 15px 40px #100b2055}
+.portal-pagehead::after{background:radial-gradient(ellipse,#ffd3a92c,transparent 70%);width:52%;height:150%;top:-25%;right:-8%;transform:none;animation:yc-head-light 9s ease-in-out infinite alternate;z-index:0}
+@keyframes yc-head-light{from{opacity:.45;transform:translateX(-5%)}to{opacity:1;transform:translateX(7%)}}
+.portal-pagehead h1{color:#fff4f8;text-shadow:0 3px 20px #130b244d}.portal-pagehead p:not(.kicker){color:#e6d9ea}
+.page-features .portal-pagehead{--yc-head-glow:#67cbd15c;background:radial-gradient(ellipse at 75% 15%,#5dcad04d,transparent 58%),linear-gradient(115deg,#304452,#282e46 68%,#42586d);border-color:#6fabb4}
+.page-auto .portal-pagehead{--yc-head-glow:#af8ff46b;background:radial-gradient(ellipse at 78% 15%,#ac76e45c,transparent 58%),linear-gradient(115deg,#4e355e,#302c46 66%,#624b78);border-color:#af84cc}
+.page-guide .portal-pagehead{background:radial-gradient(ellipse at 75% 12%,#d2a66e51,transparent 60%),linear-gradient(115deg,#4b3b4b,#302b43 68%,#62506a);border-color:#b19279}
+.page-faq .portal-pagehead{background:radial-gradient(ellipse at 76% 18%,#b78be851,transparent 60%),linear-gradient(115deg,#443653,#302d44 68%,#645079);border-color:#ac91c5}
+.page-contact .portal-pagehead{background:radial-gradient(ellipse at 76% 18%,#ed9aaf55,transparent 60%),linear-gradient(115deg,#53354a,#352b43 68%,#775063);border-color:#c288a3}
+.page-download .install-pagehead{background:radial-gradient(ellipse at 87% 12%,#83d2d746,transparent 58%),linear-gradient(115deg,#344852,#302d45 70%,#4e526e);border-color:#9aaabb}
+.page-download .install-product{background:linear-gradient(145deg,#343b50,#29263a);border-color:#897598}
+.page-download .install-platform-tab[aria-selected=true],.guide-tabs [aria-selected=true],.product-tab[aria-selected=true]{background:linear-gradient(130deg,#794265,#51466d);border-color:#e5a3d1;color:#fff}
+.guide-sidebar,.guide-preview-card{background:linear-gradient(145deg,#403249,#302b41);border-color:#806b92}
+.guide-step-panel{border-color:#8a729c}
+.faq-item{background:linear-gradient(110deg,#372e43,#2c293e);border-color:#735d83}
+.faq-item summary{color:#fff0fb}.faq-item p{color:#e4d6eb}
+.faq-filter[aria-current=true]{background:linear-gradient(110deg,#784361,#5e4379);border-color:#e5a1ce;color:#fff}
+.contact-link{background:linear-gradient(145deg,#47344b,#302a42);border-color:#9e7397}
+.portal-footer{background:linear-gradient(110deg,#2e2538,#211e31);border-color:#654b66}.portal-footer>p,.portal-footer-bottom{color:#cdbed4}
+.portal-bottom{background:#30263bf5;border-color:#8c6081}.portal-bottom a[aria-current=page]{color:#ffb9d9}
+.button:not([data-line-link]):not(.outline){background:linear-gradient(125deg,#ee5b9e,#bd337f);border-color:#f69bc7;color:white;box-shadow:0 4px 18px #dd448633}
+.button.outline{background:linear-gradient(130deg,#42314d,#2d2b43);border-color:#c5a0d2;color:#f7e7ff}
+.button:not([data-line-link]){position:relative;overflow:hidden}
+.button:not([data-line-link])::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(110deg,transparent 25%,#fff4 48%,transparent 70%);transform:translateX(-130%);transition:transform .65s ease}
+@media(hover:hover){.button:not([data-line-link]):hover::after{transform:translateX(130%)}.tool-tile:hover,.guide-entry:hover,.contact-link:hover{transform:translateY(-3px);border-color:#e4abc9;box-shadow:0 16px 35px #0e0a234d,0 0 24px #d86cb42b}.portal-shortcuts a:hover{transform:translateY(-2px);box-shadow:0 8px 22px #e274a72a}.tool-tile,.guide-entry,.contact-link,.portal-shortcuts a{transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease}}
+/* Scroll reveal never hides content permanently; applied only after observation. */
+@media(prefers-reduced-motion:no-preference){.yc-enter{animation:yc-reveal .65s cubic-bezier(.2,.7,.25,1) both}@keyframes yc-reveal{from{opacity:.45;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}}
+.motion-paused .portal-banner .banner-light,.motion-paused .portal-pagehead::after,.stage-offscreen .banner-light,.stage-offscreen::after{animation-play-state:paused}
+@media(max-width:980px){.portal-banner.has-scene-person{min-height:315px}.portal-banner.has-scene-person .banner-copy{padding:25px}.portal-panel{padding:19px}}
+@media(max-width:640px){
+#main{padding:16px 14px 32px}.portal-main{background:radial-gradient(ellipse at 100% 0,#73365b43,transparent 34%),linear-gradient(170deg,#292031,#1b1929 56%,#241d31)}
+.portal-banner.has-scene-person{min-height:0;border-radius:15px;padding:21px 16px 18px}
+.portal-banner.has-scene-person .banner-copy{padding:0}.banner-copy h1{font-size:clamp(25px,6.8vw,32px);line-height:1.25}
+.banner-copy>p:not(.banner-label){font-size:13px;line-height:1.75}.portal-banner.has-scene-person>.mt-dealer-rotation{width:100%;max-width:140px;filter:drop-shadow(0 6px 10px #180e26a0)}
+.portal-banner.has-scene-person::before{background:linear-gradient(90deg,#25192ee8,#392a42a0 54%,#49345322)}
+.portal-section,.page-home .portal-home>.portal-section{margin-top:32px}.section-top{gap:10px;margin-bottom:15px}.section-top h2{font-size:23px}.section-top .kicker{font-size:10px}.section-top>div>p:not(.kicker){font-size:13px}
+.portal-panel,.tool-tile,.guide-entry,.contact-link{padding:16px;border-radius:13px}.portal-pagehead,.portal-pagehead.has-scene-person{border-radius:14px;min-height:0}.portal-pagehead h1{font-size:26px}
+.tool-tile{gap:15px}.portal-shortcuts a{border-radius:10px}.mt-video-card{border-radius:14px}.brand-section{border-radius:14px}
+}
+@media(prefers-reduced-motion:reduce){.portal-banner .banner-light,.portal-pagehead::after,.yc-enter{animation:none!important}.button::after{transition:none!important}}
