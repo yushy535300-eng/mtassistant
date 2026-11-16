@@ -32,17 +32,17 @@ def render():
   <div class="banner-copy"><p class="banner-label"><span></span> YUCE / BACCARAT INTELLIGENCE</p>
   <h1 id="home-title" class="yc-art-title">{title_ornament()}<span class="yc-title-text">御策百家輔助</span><img src="/assets/brand/yuce-gold-title.svg" width="6060" height="1110" alt="" aria-hidden="true"></h1>
   <p class="yc-hero-subtitle">多桌監控 <i>×</i> 智慧分析 <i>×</i> 自動策略</p>
-  <p class="atelier-statement">看清資訊，<span>從容操作。</span></p><p class="yc-hero-description">多桌觀察、模型分析與條件管理。<br>為你的每一步，建立清楚的操作順序。</p>
-  <div class="hero-actions">{button('探索雙核心工具','#toolbox')}<a class="hero-film" href="#mt-videos"><span aria-hidden="true">▶</span>觀看實際操作</a></div>
-  <div class="atelier-hero-tags"><span>多平台資訊</span><span>真實操作介面</span><span>電腦・手機</span></div></div>
+  <p class="atelier-statement">看清資訊，<span>從容操作。</span></p><p class="yc-hero-description">整合多桌資訊、模型分析與操作條件管理。<br>支援 MT、DG、SA、T9 平台，讓操作資訊更清楚。</p>
+  <div class="hero-actions">{button('探索核心工具','#toolbox')}<a class="hero-film" href="#mt-videos"><span aria-hidden="true">▶</span>觀看實際操作</a></div>
+  <div class="atelier-hero-tags"><span>MT</span><span>DG</span><span>SA</span><span>T9</span><span>真實操作介面</span><span>電腦・手機</span></div></div>
   <div class="atelier-hero-note"><span>THE YUCE EXPERIENCE</span><i></i><small>從資訊整理，到操作執行。</small></div><div class="yc-hero-controls" aria-label="荷官輪播"><button type="button" data-dealer-step="-1" aria-label="上一張荷官照片">‹</button><span class="yc-hero-counter" aria-live="off"><span data-dealer-current>01</span><span class="yc-hero-counter-divider"></span><span data-dealer-total>11</span></span><button type="button" data-dealer-step="1" aria-label="下一張荷官照片">›</button></div>
 </section>
-<section class="portal-section yc-tool-showcase" id="toolbox" aria-labelledby="tools-title"><div class="section-top"><div><p class="kicker">TWO TOOLS. ONE CLEAR WORKFLOW.</p><h2 id="tools-title">觀察與執行，<em>各有專長。</em></h2><p>兩套獨立系統，各自清楚、彼此有序。</p></div></div>
-<div class="portal-tool-grid">
-<article class="tool-tile atelier-matrix"><div class="atelier-product-head"><div class="atelier-product-code">01 <span>MT MATRIX</span></div>{tool_icon()}<h3>多桌百家輔助</h3><p>把桌台、牌路與模型資訊，放進同一個觀察視野。</p></div><div class="atelier-product-canvas"><span class="atelier-canvas-label">ACTUAL PRODUCT INTERFACE</span>{screen('matrix-assist','多桌百家輔助・真實分析主面板',eager=True)}<div class="atelier-canvas-shadow" aria-hidden="true"></div></div><div class="atelier-product-bottom"><div class="atelier-product-tags"><span>多桌雷達</span><span>AI 綜合</span><span>四式・奇偶</span></div><div class="inline-actions">{button('探索多桌功能','/features')}<a class="text-link" href="{MATRIX}">進入系統 {arrow()}</a></div></div></article>
-<article class="tool-tile auto atelier-auto"><div class="atelier-product-head"><div class="atelier-product-code">02 <span>MT AUTO</span></div>{tool_icon(True)}<h3>百家自動下注</h3><p>從配注條件到執行紀錄，讓操作步驟清楚可循。</p></div><div class="atelier-product-canvas atelier-auto-canvas"><span class="atelier-canvas-label">SETUP / EXECUTION / HISTORY</span><div class="atelier-auto-main">{screen('auto-running','百家自動下注・真實執行面板',eager=True)}</div><div class="atelier-auto-setting">{screen('auto-strategy','百家自動下注・真實配注設定')}</div><div class="atelier-canvas-shadow" aria-hidden="true"></div></div><div class="atelier-product-bottom"><div class="atelier-product-tags"><span>配注設定</span><span>停止條件</span><span>執行紀錄</span></div><div class="inline-actions">{button('了解自動下注','/auto')}<a class="text-link" href="{AUTO}">進入系統 {arrow()}</a></div></div></article>
-</div></section>
-
+<section class="portal-shortcuts yc-service-strip" id="toolbox" aria-label="核心工具與服務快速入口">
+  <a href="/features"><span class="yc-quick-icon" aria-hidden="true">▣</span><span><b>多桌資訊整合</b><small>MT MATRIX・牌路與模型</small></span></a>
+  <a href="/auto"><span class="yc-quick-icon" aria-hidden="true">◎</span><span><b>操作條件管理</b><small>MT AUTO・設定與紀錄</small></span></a>
+  <a href="/download"><span class="yc-quick-icon" aria-hidden="true">▤</span><span><b>手機輕鬆使用</b><small>iPhone・Android</small></span></a>
+  <a href="/contact"><span class="yc-quick-icon" aria-hidden="true">◉</span><span><b>專人操作支援</b><small>教學・連線・客服</small></span></a>
+</section>
 {home_videos()}
 <section class="portal-section premium-journal" aria-labelledby="journal-home-title">
   <div class="section-top"><div><p class="kicker">BACCARAT EDITORIAL</p><h2 id="journal-home-title">百家樂精選文章</h2><p>規則、路單與常見觀念；新文章發布後會自動更新精選內容。</p></div><a class="text-link" href="/articles">全部文章 {arrow()}</a></div>
