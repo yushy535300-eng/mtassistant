@@ -97,7 +97,7 @@ def build():
     scarab_ads.ensure_assets()
     (PUBLIC / 'pages').mkdir(exist_ok=True)
     # Complete portal replacement: only the new source is rendered.
-    css = [(ROOT / 'sitegen/portal/portal.css').read_text(), (ROOT / 'sitegen/portal/detail-polish.css').read_text(), (ROOT / 'sitegen/portal/dealers.css').read_text(), (ROOT / 'sitegen/portal/v2.css').read_text(), (ROOT / 'sitegen/portal/download.css').read_text(), (ROOT / 'sitegen/portal/motion.css').read_text(), (ROOT / 'sitegen/portal/ads.css').read_text(), (ROOT / 'sitegen/portal/atelier.css').read_text(), (ROOT / 'sitegen/portal/layout-fixes-20261117.css').read_text(), (ROOT / 'sitegen/portal/scarab-ad-layout.css').read_text(), (ROOT / 'sitegen/portal/mobile-corrections.css').read_text()]
+    css = [(ROOT / 'sitegen/portal/portal.css').read_text(), (ROOT / 'sitegen/portal/detail-polish.css').read_text(), (ROOT / 'sitegen/portal/dealers.css').read_text(), (ROOT / 'sitegen/portal/v2.css').read_text(), (ROOT / 'sitegen/portal/download.css').read_text(), (ROOT / 'sitegen/portal/motion.css').read_text(), (ROOT / 'sitegen/portal/ads.css').read_text(), (ROOT / 'sitegen/portal/atelier.css').read_text(), (ROOT / 'sitegen/portal/layout-fixes-20261117.css').read_text(), (ROOT / 'sitegen/portal/scarab-ad-layout.css').read_text(), (ROOT / 'sitegen/portal/mobile-corrections.css').read_text(), (ROOT / 'sitegen/portal/v5-finish.css').read_text()]
     minify = importlib.import_module('sitegen.css_build').minify
     # Preserve source readability; only the generated HTTP stylesheet is compressed.
     compiled_css = '\n'.join(css)
