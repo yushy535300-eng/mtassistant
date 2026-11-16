@@ -57,6 +57,8 @@ def integrate(body, page):
         raise ValueError('Existing scene cannot be decorated: ' + page)
     foreground = person(PAGE_PERSON[page], page, eager=True)
     if page == 'home':
+        slides = ''.join(person(name, page, eager=True) for name in ('mt-real-01', 'mt-real-02'))
+        foreground = '<div class="scene-person scene-person-home mt-dealer-rotation" aria-hidden="true" data-dealer-rotation>' + slides + '</div>'
         return head + foreground + body[end:]
     # The first div is the existing title/description, never the action group.
     intro_start = head.find('<div>')

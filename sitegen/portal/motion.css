@@ -30,3 +30,14 @@
 @media(max-width:900px){.mt-video-grid{gap:10px}.mt-video-card{padding:6px;border-radius:13px}.mt-video-caption{padding:12px 5px 9px}.mt-video-meta{font-size:9px}.mt-video-caption h3{font-size:17px}.mt-video-caption p{font-size:12px}}
 @media(max-width:640px){.mt-videos-heading{align-items:flex-start}.mt-video-grid{grid-template-columns:minmax(0,1fr);max-width:410px;gap:16px}.mt-video-card{padding:9px;border-radius:15px}.mt-video-frame{border-radius:10px}.mt-video-caption{padding:13px 9px 10px}.mt-video-meta{font-size:11px}.mt-video-caption h3{font-size:19px}.mt-video-caption p{font-size:13px}}
 @media(prefers-reduced-motion:reduce){.mt-video-card{transition:none!important}}
+
+/* Home-only dealer crossfade: fixed hero slot, unchanged background and copy. */
+.portal-banner.has-scene-person > .mt-dealer-rotation{display:grid;position:relative;align-self:end;justify-items:center;aspect-ratio:1;isolation:isolate;filter:drop-shadow(0 10px 17px #0a07164d)}
+.mt-dealer-rotation > .scene-person{grid-area:1/1;position:relative;align-self:end;width:100%;margin:0;filter:none;opacity:0;transition:opacity 1.1s ease-in-out;mask-image:none;-webkit-mask-image:none}
+.mt-dealer-rotation > .scene-person:first-child{opacity:1}
+.mt-dealer-rotation > .scene-person.is-active{opacity:1}
+.mt-dealer-rotation.is-ready > .scene-person:not(.is-active){opacity:0}
+.mt-dealer-rotation > .scene-person::before{display:none}
+.mt-dealer-rotation > .scene-person img{width:100%;height:auto;aspect-ratio:1;object-fit:contain;object-position:center bottom}
+@media(max-width:640px){.portal-banner.has-scene-person > .mt-dealer-rotation{align-self:center;margin:0}}
+@media(prefers-reduced-motion:reduce){.mt-dealer-rotation > .scene-person{transition:none!important}.mt-dealer-rotation > .scene-person:first-child{opacity:1!important}.mt-dealer-rotation > .scene-person:not(:first-child){opacity:0!important}}

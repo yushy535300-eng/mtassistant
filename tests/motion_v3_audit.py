@@ -64,3 +64,7 @@ for filename, checksum in video_assets.items():
     if filename.endswith(".mp4"):
         assert b"mp4a" in data and b"soun" in data, asset
 print("MT final audit: transparent dealers, full original recordings, audio tracks and native controls, installation assets OK.")
+
+assert 'data-dealer-rotation' in home
+assert 'data-dealer-rotation' not in matrix and 'data-dealer-rotation' not in auto
+assert 'setInterval(()=>show((index+1)%slides.length),5000)' in read('portal.js')
