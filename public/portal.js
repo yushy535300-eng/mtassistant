@@ -197,3 +197,22 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('visibilitychange', sync);
   reduced.addEventListener('change', () => { if (reduced.matches) show(available[0] || slides[0]); sync(); });
 })();
+
+/* Scarab Heart first-party display placements. No ad network or third-party scripts. */
+(() => {
+  const reduced=matchMedia('(prefers-reduced-motion: reduce)');
+  const capture=new URLSearchParams(location.search).get('capture')==='1';
+  document.querySelectorAll('[data-sh-ad]').forEach(slot=>{
+    const items=Array.from(slot.querySelectorAll('[data-sh-creative]'));
+    let current=0, timer=0, visible=true;
+    function sync(){clearInterval(timer);timer=0;if(!visible||document.hidden||reduced.matches||capture||items.length<2)return;timer=setInterval(()=>{if(slot.matches(':hover')||slot.contains(document.activeElement))return;items[current].hidden=true;items[current].removeAttribute('data-active');current=(current+1)%items.length;items[current].hidden=false;items[current].setAttribute('data-active','');},10000);}
+    if('IntersectionObserver' in window)new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;sync();}).observe(slot);
+    document.addEventListener('visibilitychange',sync);reduced.addEventListener('change',sync);sync();
+  });
+  const anchor=document.getElementById('scarabAdAnchor');if(!anchor)return;
+  const mobile=matchMedia('(max-width:640px)');
+  let closed=false;try{closed=sessionStorage.getItem('scarabAdDismissed')==='1';}catch(_){}
+  function update(){const show=mobile.matches&&!closed&&!capture&&scrollY>320;anchor.hidden=!show;document.body.classList.toggle('sh-anchor-open',show);}
+  anchor.querySelector('button').addEventListener('click',()=>{closed=true;try{sessionStorage.setItem('scarabAdDismissed','1');}catch(_){}update();});
+  window.addEventListener('scroll',update,{passive:true});mobile.addEventListener('change',update);update();
+})();
