@@ -118,7 +118,7 @@ PHOTO_ASSETS = {
 def editorial_image(a):
     source = PHOTO_ASSETS.get(a['slug'])
     if source:
-        return (source[0], f"百家樂相關撲克牌與賭場攝影：{a['title']}", source)
+        return (source[0], f"與百家樂文章主題相關的撲克牌、籌碼或賭場情境：{a['title']}", source)
     return (f"/assets/interfaces/{a['image']}.webp", f"御策真實程式操作畫面：{a['title']}", None)
 
 BY_SLUG = {a['slug']:a for a in ARTICLES}
@@ -164,4 +164,4 @@ def render_article(slug):
     toc=''.join(f'<a href="#article-section-{i}"><span>{i:02d}</span>{escape(s[0])}</a>' for i,s in enumerate(a['sections'],1))
     sections=''.join(f'<section id="article-section-{i}"><h2>{escape(s[0])}</h2><p>{escape(s[1])}</p>{screen(s[2],s[0]) if len(s)>2 else ""}</section>' for i,s in enumerate(a['sections'],1))
     related=BY_SLUG[a['related']]
-    return f'''<article class="journal-article"><header class="journal-header"><p class="kicker">{a['category']} ／ 御策使用指南</p><h1>{a['title']}</h1><p class="journal-intro">{a['summary']}</p><div class="journal-meta"><span>御策編輯團隊</span><span>更新：2026.11.17</span><span>閱讀約 {a['read']}</span></div></header><div class="journal-layout"><aside class="journal-toc"><p class="kicker">本文目錄</p><nav aria-label="文章目錄">{toc}</nav><a class="text-link" href="/articles">全部文章 {arrow()}</a></aside><div class="journal-body"><div class="journal-lead-media">{lead}</div>{sections}<div class="journal-note">本文為百家樂知識及使用資訊整理，規則以實際桌台為準。分析工具不能保證預測結果或獲利。</div><div class="journal-next"><p class="kicker">接著閱讀</p><a href="/articles/{related['slug']}">{related['title']} {arrow()}</a></div><div class="inline-actions">{button(a['cta'][1],a['cta'][0])}<a class="text-link" href="/articles">回到文章專區 {arrow()}</a></div></div></div></article>'''
+    return f'''<article class="journal-article"><header class="journal-header"><p class="kicker">{a['category']} ／ 御策使用指南</p><h1>{a['title']}</h1><p class="journal-intro">{a['summary']}</p><div class="journal-meta"><span>御策編輯團隊</span><span>更新：{a.get("published_at","2026-11-17").replace("-",".")}</span><span>閱讀約 {a['read']}</span></div></header><div class="journal-layout"><aside class="journal-toc"><p class="kicker">本文目錄</p><nav aria-label="文章目錄">{toc}</nav><a class="text-link" href="/articles">全部文章 {arrow()}</a></aside><div class="journal-body"><div class="journal-lead-media">{lead}</div>{sections}<div class="journal-note">本文為百家樂知識及使用資訊整理，規則以實際桌台為準。分析工具不能保證預測結果或獲利。</div><div class="journal-next"><p class="kicker">接著閱讀</p><a href="/articles/{related['slug']}">{related['title']} {arrow()}</a></div><div class="inline-actions">{button(a['cta'][1],a['cta'][0])}<a class="text-link" href="/articles">回到文章專區 {arrow()}</a></div></div></div></article>'''
