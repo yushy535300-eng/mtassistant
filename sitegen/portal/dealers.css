@@ -1,0 +1,128 @@
+/* Scene composition only. The accepted portal shell and palette are unchanged. */
+.has-scene-person { isolation: isolate; }
+.scene-person {
+  display: block;
+  position: relative;
+  width: 100%;
+  pointer-events: none;
+  user-select: none;
+  z-index: 1;
+  align-self: end;
+  filter: drop-shadow(0 10px 15px #0a071635);
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 82%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 82%, transparent 100%);
+}
+.scene-person img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: contain;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+.scene-person::before {
+  content: '';
+  position: absolute;
+  inset: 22% -9% 0;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(ellipse at 50% 76%, #b6438035, #85407015 42%, transparent 71%);
+}
+
+/* Home: original table art remains the environment, real woman in the foreground. */
+.portal-banner.has-scene-person {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr);
+  align-items: center;
+}
+.portal-banner.has-scene-person .banner-copy {
+  grid-column: 1;
+  max-width: none;
+  min-width: 0;
+  z-index: 3;
+}
+.portal-banner.has-scene-person > .scene-person {
+  grid-column: 2;
+  grid-row: 1;
+  justify-self: center;
+  width: clamp(250px, 26vw, 330px);
+  margin-bottom: -10px;
+}
+.portal-banner.has-scene-person::before {
+  background: linear-gradient(90deg, #19141df2, #19141dbc 39%, #19141d2c 74%, transparent);
+}
+
+/* Existing utility/product headers: no new section or person-introduction card. */
+.portal-pagehead.has-scene-person { padding-block: 0; }
+.portal-pagehead.has-scene-person > .scene-intro {
+  flex: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) clamp(170px, 19vw, 240px);
+  column-gap: 18px;
+  min-width: 0;
+  position: relative;
+  z-index: 3;
+}
+.scene-intro > .kicker,
+.scene-intro > h1,
+.scene-intro > p:not(.kicker) { grid-column: 1; }
+.scene-intro > .kicker { grid-row: 1; align-self: end; padding-top: 24px; }
+.scene-intro > h1 { grid-row: 2; align-self: center; }
+.scene-intro > p:not(.kicker) { grid-row: 3; align-self: start; padding-bottom: 24px; }
+.scene-intro > .scene-person {
+  grid-column: 2;
+  grid-row: 1 / 4;
+  margin-bottom: -5px;
+}
+.portal-pagehead.has-scene-person > .pagehead-actions { position: relative; z-index: 4; padding-block: 25px; }
+.portal-pagehead.has-scene-person .head-sparks { z-index: 0; }
+.person-scene-auto .scene-person::before { background: radial-gradient(ellipse at 48% 76%, #d54e8537, transparent 68%); }
+.person-scene-guide .scene-person { opacity: .9; }
+.person-scene-guide .scene-person::before { background: radial-gradient(ellipse at 50% 72%, #9f85b02f, transparent 68%); }
+.person-scene-faq .scene-person { opacity: .82; }
+.person-scene-contact .scene-person::before { background: radial-gradient(ellipse at 50% 75%, #9347723a, transparent 70%); }
+
+@media (max-width: 1100px) and (min-width: 641px) {
+  .portal-pagehead.has-scene-person > .scene-intro { grid-template-columns: minmax(0, 1fr) 172px; column-gap: 12px; }
+  .portal-pagehead.has-scene-person > .pagehead-actions { max-width: 160px; }
+  .portal-pagehead.has-scene-person > .pagehead-actions .button { min-width: 0; }
+  .portal-pagehead.has-scene-person h1 { font-size: 30px; }
+}
+
+@media (max-width: 640px) {
+  /* The CTA is its own full-width row, not covered by the foreground. */
+  .portal-banner.has-scene-person {
+    grid-template-columns: minmax(0, 1fr) 124px;
+    padding: 20px 18px 18px;
+    gap: 0 8px;
+    min-height: 0;
+  }
+  .portal-banner.has-scene-person .banner-copy { display: contents; }
+  .portal-banner.has-scene-person .banner-label { grid-column: 1 / -1; grid-row: 1; font-size: 10px; margin-bottom: 10px; }
+  .portal-banner.has-scene-person .banner-copy h1 { grid-column: 1; grid-row: 2; font-size: 26px; line-height: 1.35; min-width: 0; }
+  .portal-banner.has-scene-person .banner-copy > p:not(.banner-label) { grid-column: 1; grid-row: 3; margin: 10px 0 0; font-size: 13px; max-width: none; }
+  .portal-banner.has-scene-person > .scene-person { grid-column: 2; grid-row: 2 / 4; width: 140px; max-width: 100%; justify-self: end; align-self: center; margin: 0; }
+  .portal-banner.has-scene-person .banner-copy .button { grid-column: 1 / -1; grid-row: 4; margin: 16px 0 0; width: 100%; min-height: 46px; font-size: 14px; z-index: 3; }
+  .portal-banner.has-scene-person .banner-risk { grid-column: 1 / -1; grid-row: 5; margin-top: 10px; font-size: 10px; z-index: 3; }
+
+  /* Titles occupy a complete row. Description + real foreground are below. */
+  .portal-pagehead.has-scene-person { padding: 20px 18px 18px; }
+  .portal-pagehead.has-scene-person > .scene-intro {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 132px;
+    gap: 0 12px;
+  }
+  .scene-intro > .kicker { grid-column: 1 / -1; grid-row: 1; padding-top: 0; }
+  .scene-intro > h1 { grid-column: 1 / -1; grid-row: 2; padding-top: 2px; font-size: 26px; }
+  .scene-intro > p:not(.kicker) { grid-column: 1; grid-row: 3; padding-bottom: 0; font-size: 13px; line-height: 1.85; align-self: center; }
+  .scene-intro > .scene-person { grid-column: 2; grid-row: 3; align-self: center; margin: 0; }
+  .portal-pagehead.has-scene-person > .pagehead-actions { padding: 0; margin-top: 15px; width: 100%; }
+  .portal-pagehead.has-scene-person > .pagehead-actions .button { min-height: 46px; font-size: 13px; }
+}
+
+@media (max-width: 374px) {
+  .portal-banner.has-scene-person { grid-template-columns: minmax(0, 1fr) 104px; gap: 0 5px; }
+  .portal-pagehead.has-scene-person > .scene-intro { grid-template-columns: minmax(0, 1fr) 112px; gap: 0 10px; }
+}

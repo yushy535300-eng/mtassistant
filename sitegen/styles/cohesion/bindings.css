@@ -1,0 +1,38 @@
+/* Final cascade binding: legacy page wrappers must not shadow the shared palette. */
+body.page-features .features-page { --mx-bg:#0a111c; --mx-surface:#101b2a; --mx-surface-raised:#152235; --mx-paper:#101b2a; --mx-paper-deep:#0d1724; --mx-ink:#edf2f7; --mx-copy:#d0ddec; --mx-copy-soft:#b9cbdd; --mx-light:#edf2f7; --mx-accent:#75c8ff; --mx-purple:#8f86bd; --mx-line:#ffffff20; --mx-dark-line:#ffffff20; }
+body.page-guide .guide-page { --guide-bg:#0a111c; --guide-surface:#101b2a; --guide-surface-raised:#132235; --guide-surface-warm:#121c29; --guide-paper:#101b2a; --guide-ink:#edf2f7; --guide-muted:#d0ddec; --guide-soft:#b9cbdd; --guide-line:#ffffff20; --guide-line-soft:#ffffff16; --guide-sea:#75c8ff; --guide-purple:#8f86bd; --guide-accent:#75c8ff; --guide-wine:#75c8ff; }
+body.page-auto .auto-page { --auto-ink:#edf2f7; --auto-muted:#d0ddec; --auto-paper:#101b2a; --auto-wine:#75c8ff; --auto-accent:#75c8ff; --auto-cohesion-bg:#0a111c; --auto-cohesion-surface:#101b2a; --auto-cohesion-surface-2:#0e1724; --auto-cohesion-warm:#121c29; --auto-cohesion-text:#edf2f7; --auto-cohesion-body:#d0ddec; --auto-cohesion-muted:#b9cbdd; --auto-cohesion-line:#ffffff20; --auto-cohesion-line-strong:#ffffff30; --auto-cohesion-accent:#75c8ff; --auto-cohesion-purple:#8f86bd; }
+body.page-contact .contact-page { --contact-night:#0a111c; --contact-surface:#101b2a; --contact-surface-raised:#152435; --contact-paper:#101b2a; --contact-paper-bright:#152435; --contact-ink:#edf2f7; --contact-muted:#d0ddec; --contact-on-dark:#edf2f7; --contact-on-dark-muted:#d0ddec; --contact-line:#ffffff20; --contact-dark-line:#ffffff20; --contact-sea:#75c8ff; --contact-sea-deep:#75c8ff; }
+body.page-faq .faq-page { --faq-bg:#0a111c; --faq-surface:#101b2a; --faq-surface-warm:#121c29; --faq-surface-soft:#0e1724; --faq-text:#edf2f7; --faq-ink:#edf2f7; --faq-body:#d0ddec; --faq-muted:#b9cbdd; --faq-faint:#b9cbdd; --faq-line:#ffffff20; --faq-line-strong:#ffffff30; --faq-accent:#75c8ff; --faq-violet:#8f86bd; --faq-paper:#101b2a; --faq-wine:#75c8ff; }
+body.page-guide .guide-page :is(h1,h2,h3) { color:#edf2f7 !important; }
+body.page-guide .guide-page :is(h1,h2,h3) em { color:#75c8ff !important; }
+body.page-guide .guide-page :is(.guide-step-description,.guide-panel-summary,.guide-step-no-media,.guide-panel-intro p,.guide-step-note p,.guide-afterword p) { color:#d0ddec !important; }
+body.page-guide .guide-page .guide-tab b { color:#edf2f7 !important; }
+body.page-guide .guide-page .guide-tab small { color:#9fb2c6 !important; }
+body .button.primary,body .button.light { background:#75c8ff !important; color:#08131d !important; border-color:#a4ddff !important; }
+body .button.outline,body .button.outline-light { background:transparent !important; color:#dce7ec !important; border-color:#ffffff38 !important; }
+body .button.primary:hover,body .button.light:hover { background:#b8e5ff !important; }
+body .button.outline:hover,body .button.outline-light:hover { background:#ffffff08 !important; border-color:#75c8ff88 !important; }
+body.page-home .hero-product { transform:none !important; translate:none !important; width:min(350px,72%); box-shadow:0 15px 30px #00000035; border-radius:6px; }
+body.page-home .home-visual { min-height:560px; }
+body.page-home .home-visual::before { display:none; }
+body.page-home .hero-dealer { width:min(64%,380px); }
+body.page-home .hero-source { font-size:12px; max-width:220px; }
+body.page-contact .contact-qr { background:#152435 !important; color:#edf2f7; border:1px solid #ffffff20; }
+body.page-contact .contact-qr strong { color:#edf2f7 !important; }
+body.page-contact .contact-qr small { color:#d0ddec !important; }
+body.page-features .features-page :is(.mx-field-sheet,.mx-index,.mx-formulas,.mx-support) { border-color:#ffffff20; }
+body.page-features .features-page .mx-field-sheet :is(p,li,span,em) { color:#d0ddec; }
+body .ambient-grain { background-image:none; }
+@media(max-width:768px) { body.page-home .home-visual { min-height:460px; } body.page-home .hero-dealer { width:min(62%,320px); } }
+@media(max-width:640px) { body.page-home .home-visual { min-height:440px; } body.page-home .hero-dealer { width:280px; max-width:82%; right:0; } body.page-home .hero-product { width:min(285px,84%); bottom:0; left:0; } body.page-home .hero-source { font-size:11px; max-width:160px; } }
+
+body .auto-frame { transform:none !important; translate:none !important; }
+
+/* Legacy guide afterword allocated only 179px to its reading column. */
+body.page-guide .guide-page .guide-afterword-layout { grid-template-columns:minmax(0,1fr) auto; column-gap:40px; align-items:start; }
+body.page-guide .guide-page .guide-afterword-layout h2 { font-size:36px; max-width:none; line-height:1.4; }
+body.page-guide .guide-page .guide-afterword-layout p { max-width:620px; }
+@media(max-width:768px) { body.page-guide .guide-page .guide-afterword-layout { grid-template-columns:1fr; gap:24px; } body.page-guide .guide-page .guide-afterword-layout h2 { font-size:30px; } }
+
+body.page-guide .guide-page .guide-afterword-index { display:none; }

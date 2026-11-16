@@ -1,0 +1,115 @@
+/* Content-first aurora. One authoritative layer, not another stack of patches. */
+@font-face { font-family:YuceTC; src:url('/assets/fonts/yuce-tc-regular.woff2') format('woff2'); font-weight:400; font-style:normal; font-display:swap; }
+@font-face { font-family:YuceTC; src:url('/assets/fonts/yuce-tc-medium.woff2') format('woff2'); font-weight:500 700; font-style:normal; font-display:swap; }
+body { isolation:isolate; background:#080e18; color:#f4f6fa; }
+body,button,input { font-family:YuceTC,"PingFang TC","Microsoft JhengHei",system-ui,sans-serif; }
+.sky-stage { position:fixed; inset:0; z-index:-1; pointer-events:none; overflow:hidden; background:#080e18; }
+.sky-stage canvas,.sky-art,.sky-art img,.sky-fallback-light,.sky-readability { position:absolute; inset:0; width:100%; height:100%; }
+.sky-art img { object-fit:cover; object-position:center; }
+#auroraCanvas { opacity:0; transition:opacity .45s ease; }
+.sky-ready #auroraCanvas { opacity:1; }
+.sky-ready .sky-fallback-light { display:none; }
+.sky-fallback-light { background:radial-gradient(ellipse at 75% 36%,#1cafb631,transparent 42%),radial-gradient(ellipse at 84% 64%,#6f60bb29,transparent 40%); mix-blend-mode:screen; animation:sky-fallback-wave 7s ease-in-out infinite alternate; }
+/* Static reading protection, independent of animation phase and device GPU. */
+.sky-readability { background:linear-gradient(90deg,#080e18 0%,#080e18fc 28%,#080e18f4 42%,#080e189e 55%,#080e1820 72%,#080e1820 100%); }
+#starCanvas { opacity:.7; }
+body #main,body :is(.features-page,.auto-page,.guide-page,.faq-page,.contact-page) { background:transparent !important; }
+body .ambient,body .faq-page__hero-ambient { display:none; }
+body :is(.home-hero,.features-page__hero,.mx-hero,.auto-hero,.guide-hero,.faq-page__hero,.contact-page__hero) { background:transparent !important; }
+body :is(.home-copy,.mx-hero-copy,.auto-hero-copy,.guide-hero-copy,.faq-page__hero-copy,.contact-page__hero-copy) { position:relative; z-index:1; }
+body :is(.brand-story,.matrix-launch,.auto-launch,.home-focus,.home-guides,.home-knowledge,.mx-intro,.mx-interface,.mx-analysis,.mx-formulas,.mx-parity,.mx-radar,.mx-support,.mx-next,.mx-compatibility,.mx-human-interlude,.auto-story,.auto-amount-time,.auto-stops,.auto-compare,.auto-faq,.auto-next,.auto-scene,.auto-human-section,.auto-difference,.auto-device,.guide-introduction,.guide-panel,.guide-afterword,.faq-page__question-section,.faq-page__systems,.faq-page__risk,.faq-page__closing,.contact-page__service,.contact-page__systems,.contact-page__social,.contact-page__brief) { background:#0b121e !important; }
+body :is(.paper,.ink,.wine) { background:#0b121e; }
+body .section { border-top:1px solid #c1d5ed0d; }
+body .closing { background:#0e1725; }
+body .site-footer { background:#080d16; }
+body .site-header { background:#080e18fa !important; backdrop-filter:none; }
+body .guide-system-tabs { background:#0e1725 !important; }
+body #main :is(h1,h2,h3) { color:#f6f8fc !important; font-weight:600; text-shadow:none; }
+body main h1 { letter-spacing:-.028em; line-height:1.3; }
+body main h2 { letter-spacing:-.025em; line-height:1.4; }
+body #main :is(h1,h2) :is(span,em,.muted) { color:#d4e3ef !important; }
+body main p { color:#d1dce9; text-shadow:none; }
+body :is(.hero-description,.mx-hero-lede,.auto-hero-lede,.guide-hero-lede,.faq-page__hero-lede,.contact-page__hero-lede) { color:#d9e1ec !important; font-size:17px !important; line-height:1.85 !important; max-width:34em; text-shadow:none; }
+body :is(.eyebrow,.hero-kicker,.hero-devices,.breadcrumb,.image-note,.asset-caption,.small-note,.product-caption,.screen-zoom) { font-size:13px !important; line-height:1.7; color:#b8cbdc !important; }
+body .eyebrow { letter-spacing:.045em; font-weight:500; }
+body .hero-kicker { color:#b5cfdf !important; }
+body :is(.mx-hero-caution,.auto-hero-note,.guide-hero-note,.contact-page__hero-note) { color:#b8cbdc; background:none; border-left:2px solid #395265; padding:0 0 0 14px; border-radius:0; font-size:13px; line-height:1.8; }
+body :is(.mx-hero-caution,.auto-hero-note,.guide-hero-note,.contact-page__hero-note) p { color:#b8cbdc !important; font-size:13px !important; }
+body .button { font-size:15px !important; font-weight:600; min-height:50px; padding:13px 20px; border-radius:5px; letter-spacing:0; }
+body .button.primary,body .button.light { color:#081420 !important; background:#75c8ff !important; border-color:#75c8ff !important; box-shadow:none; }
+body .button.primary:hover,body .button.light:hover { background:#b8e5ff !important; border-color:#b8e5ff !important; }
+body .button.outline,body .button.outline-light { color:#f2f6fc !important; background:#101b2b !important; border-color:#587189 !important; }
+body .button.outline:hover,body .button.outline-light:hover { background:#17263b !important; border-color:#75c8ff !important; }
+body .button.text { color:#a5daff !important; }
+body :is(.guide-step,.faq-item,.mx-field-sheet,.auto-difference-row,.contact-page__brief-item) { border-color:#b8cbdc28; }
+body .screen { border-color:#58718466; box-shadow:0 16px 36px #02040a55; }
+body .screen-zoom { color:#c8dcec !important; background:#142234; }
+body .product-caption { color:#c2d2e3 !important; }
+body .dealer-cutout { filter:none; }
+body.page-home .home-hero { min-height:0; }
+body.page-home .home-hero-layout { padding-top:70px; padding-bottom:44px; min-height:625px; grid-template-columns:1fr 1fr; gap:64px; }
+body.page-home .home-copy h1 { font-size:clamp(44px,4vw,56px); line-height:1.3; }
+body.page-home .home-visual { min-height:460px; }
+body.page-home .home-visual::before,body.page-home .home-visual::after { display:none; }
+body.page-home .hero-dealer { width:min(67%,370px); top:0; right:4px; }
+body.page-home .hero-dealer .dealer-photo { filter:none; mask-image:linear-gradient(#000 80%,transparent); }
+body.page-home .hero-product { width:min(320px,65%); bottom:4px; left:0; background:#101a2af5; box-shadow:0 24px 44px #02051099; border-color:#58718466; }
+body.page-home .hero-product .product-caption { min-height:40px; font-size:12px !important; }
+body.page-home .hero-baseline { background:#080e18; border-color:#c0d4e821; font-size:13px; }
+body .cinema-section { background:#080e18 !important; }
+body .cinema-background { opacity:.38; mask-image:linear-gradient(90deg,transparent 25%,#000 80%); mix-blend-mode:normal; }
+body .cinema-shade { background:linear-gradient(90deg,#080e18,#080e18dd 46%,#080e1844) !important; }
+body.page-faq .faq-page__index { background:#0e1725f7; border:1px solid #395265; padding:24px; border-radius:6px; }
+body.page-faq .faq-page__index :is(small,.faq-page__index-heading) { color:#c4d4e5; }
+body.page-features .mx-intro :is(p,.mx-intro-links,.mx-intro-statement) { color:#c7d6e8 !important; }
+body .footer-main p,body .footer-nav a,body .footer-bottom p { color:#b7c8dc !important; font-size:14px !important; }
+body .brand small { color:#a7b9cc; font-size:10px; }
+body .desktop-nav a { color:#cbd7e6; font-size:15px; }
+body .breadcrumb { color:#b4c7db; }
+body #main :is(p,li):not(.eyebrow):not(.image-note):not(.asset-caption):not(.small-note):not(.hero-devices):not(.hero-kicker):not(.guide-step-number):not(.mx-hero-caution) { font-size:17px; line-height:1.85; color:#d0ddec; }
+body #main :is(.guide-step-description,.guide-panel-summary,.guide-panel-intro p,.guide-step-note p,.guide-afterword p) { color:#d0ddec !important; font-size:17px; }
+body #main :is(.eyebrow,.image-note,.asset-caption,.small-note,.hero-devices,.hero-kicker) { color:#b9cbdd !important; }
+body.motion-ready [data-reveal] { opacity:1 !important; transform:none !important; clip-path:none !important; }
+.motion-toggle { position:fixed; right:18px; bottom:18px; z-index:8; min-height:40px; padding:9px 12px; color:#c9d9e8; background:#101b2bf2; border:1px solid #496078; border-radius:4px; font-size:12px; }
+.motion-toggle:focus-visible { outline:2px solid #75c8ff; outline-offset:3px; }
+body:has(.image-viewer[open]) .motion-toggle { visibility:hidden; }
+.sky-paused .sky-fallback-light { animation-play-state:paused; }
+.sky-static .sky-fallback-light { animation:none; }
+@keyframes sky-fallback-wave { 0% { transform:scale(1.08) skewY(-3deg); } 50% { transform:scale(1.15) skewY(3deg); } 100% { transform:scale(1.08) skewY(-2deg); } }
+@media(max-width:980px) {
+ body.page-home .home-hero-layout { grid-template-columns:1fr; gap:28px; padding-top:42px; }
+ .sky-readability { background:linear-gradient(180deg,#080e18 0%,#080e18fa 32%,#080e1880 48%,#080e1825 65%,#080e1855); }
+ body.page-home .home-visual { width:min(100%,480px); min-height:420px; justify-self:center; }
+}
+@media(max-width:640px) {
+ .sky-art img { object-position:center; }
+ .sky-readability { background:linear-gradient(180deg,#080e18 0%,#080e18 42%,#080e18e8 49%,#080e1866 60%,#080e1820 77%,#080e1820); }
+ body :is(.home-copy,.mx-hero-copy,.auto-hero-copy,.guide-hero-copy,.faq-page__hero-copy,.contact-page__hero-copy) { background:#080e18; }
+ body main h1 { font-size:35px !important; line-height:1.3 !important; }
+ body main h2 { font-size:29px !important; }
+ body #main :is(p,li):not(.eyebrow):not(.image-note):not(.asset-caption):not(.small-note):not(.hero-devices):not(.hero-kicker):not(.guide-step-number):not(.mx-hero-caution) { font-size:16px; }
+ body #main :is(.guide-step-description,.guide-panel-summary,.guide-panel-intro p,.guide-step-note p,.guide-afterword p) { font-size:16px; }
+ body main p:not(.eyebrow):not(.product-caption):not(.image-note):not(.asset-caption):not(.small-note) { font-size:16px; line-height:1.85; }
+ body :is(.hero-description,.mx-hero-lede,.auto-hero-lede,.guide-hero-lede,.faq-page__hero-lede,.contact-page__hero-lede) { font-size:16px !important; }
+ body :is(.eyebrow,.hero-kicker,.hero-devices,.breadcrumb,.image-note,.asset-caption,.small-note,.product-caption,.screen-zoom) { font-size:12px !important; }
+ body.page-home .home-hero-layout { padding-top:30px; padding-bottom:24px; gap:22px; }
+ body.page-home .hero-kicker { margin-block:12px 18px; }
+ body.page-home .hero-description { margin-top:20px; }
+ body.page-home .home-copy .hero-actions { margin-top:22px; display:flex; gap:10px; }
+ body.page-home .home-copy .hero-actions .button { flex:1; min-width:0; justify-content:space-between; padding:13px 12px; gap:5px; font-size:14px !important; }
+ body.page-home .hero-devices { margin-top:16px; }
+ body.page-home .home-visual { min-height:350px; width:100%; }
+ body.page-home .hero-dealer { width:260px; max-width:82%; right:-4px; }
+ body.page-home .hero-product { width:min(245px,78%); bottom:0; left:0; padding:0 7px 7px; }
+ body.page-home .hero-product .product-caption { min-height:34px; font-size:11px !important; }
+ body.page-home .hero-baseline { padding-block:12px; }
+ body.page-features .features-page .mx-hero-actions { grid-template-columns:1fr; gap:10px; }
+ body.page-features .features-page .mx-hero-actions .button { justify-content:space-between; width:100%; font-size:15px !important; padding:13px 16px; white-space:normal; }
+ body.page-guide .guide-page .guide-auto-preview-body { grid-template-columns:1fr; gap:20px; }
+ body.page-guide .guide-page .guide-auto-summary { font-size:14px; }
+ body.page-guide .guide-page .guide-auto-summary strong { font-size:16px; }
+ body.page-guide .guide-page .guide-preview-screen-auto { width:100%; }
+ body.page-faq .faq-page__index { padding:18px; }
+ body :is(.mx-hero-caution,.auto-hero-note,.guide-hero-note,.contact-page__hero-note) { background:#080e18; }
+}
+@media(prefers-reduced-motion:reduce) { .sky-fallback-light { animation:none; } #auroraCanvas { transition:none; } }

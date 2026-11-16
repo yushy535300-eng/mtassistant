@@ -1,0 +1,44 @@
+{
+  "routes": [
+    {
+      "path": "/",
+      "title": "首頁"
+    },
+    {
+      "path": "/features",
+      "title": "多桌輔助"
+    },
+    {
+      "path": "/auto",
+      "title": "自動下注"
+    },
+    {
+      "path": "/guide",
+      "title": "操作教學"
+    },
+    {
+      "path": "/faq",
+      "title": "常見問題"
+    },
+    {
+      "path": "/contact",
+      "title": "客服中心"
+    },
+    {
+      "path": "/guide?system=matrix",
+      "title": "多桌輔助教學"
+    },
+    {
+      "path": "/guide?system=auto",
+      "title": "自動下注教學"
+    },
+    {
+      "path": "/mt",
+      "title": "多桌輔助舊入口"
+    },
+    {
+      "path": "/index.html",
+      "title": "首頁舊入口"
+    }
+  ]
+}

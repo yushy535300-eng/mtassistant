@@ -1,0 +1,14 @@
+/* V3 environment only: no typography, page cards or legacy overrides. */
+.sky-stage{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden;background:#080e18}
+.sky-stage canvas,.sky-art,.sky-art img,.sky-fallback-light,.sky-readability{position:absolute;inset:0;width:100%;height:100%}
+.sky-art img{object-fit:cover;object-position:center}
+#auroraCanvas{opacity:0;transition:opacity .4s ease}.sky-ready #auroraCanvas{opacity:1}
+.sky-ready .sky-fallback-light{display:none}
+.sky-fallback-light{background:radial-gradient(ellipse at 77% 35%,#1cafb637,transparent 42%),radial-gradient(ellipse at 86% 61%,#6f60bb2b,transparent 40%);mix-blend-mode:screen;animation:aurora-breath 7s ease-in-out infinite alternate}
+.sky-readability{background:linear-gradient(90deg,#080e18 0%,#080e18fc 29%,#080e18ed 43%,#080e1895 57%,#080e1810 73%,#080e1810 100%)}
+#starCanvas{opacity:.78}
+.sky-paused .sky-fallback-light{animation-play-state:paused}.sky-static .sky-fallback-light{animation:none}
+@keyframes aurora-breath{0%{transform:scale(1.08) skewY(-3deg)}50%{transform:scale(1.15) skewY(3deg)}100%{transform:scale(1.08) skewY(-2deg)}}
+@media(max-width:980px){.sky-readability{background:linear-gradient(180deg,#080e18 0%,#080e18fc 35%,#080e18cc 47%,#080e1844 60%,#080e1815 82%)}.hero-copy,.home-copy{background:#080e18}}
+@media(max-width:640px){.sky-readability{background:linear-gradient(180deg,#080e18 0%,#080e18 42%,#080e18f4 49%,#080e1866 62%,#080e1810 80%)}.hero-copy,.home-copy{background:#080e18}}
+@media(prefers-reduced-motion:reduce){.sky-fallback-light{animation:none}#auroraCanvas{transition:none}}

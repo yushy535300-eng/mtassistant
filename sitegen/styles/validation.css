@@ -1,0 +1,10 @@
+/* Actual Lighthouse contrast failures, scoped to their exact page and node. */
+body.page-auto div.wrap > div.auto-history-stage > div.auto-history-label > span { color: #f4f1e9 !important; opacity: 1; }
+body.page-auto div.wrap > div.auto-setting-stack > div.auto-setting-card > span { color: #f4f1e9 !important; opacity: 1; }
+body.page-auto section#auto-history > div.wrap > div.auto-history-stage > p.image-note { color: #f4f1e9 !important; opacity: 1; }
+body.page-contact article.contact-page__system > div.contact-page__system-identity > div > span { color: #24161d !important; opacity: 1; }
+body.page-contact div.wrap > div.contact-page__system-list > article.contact-page__system > div.contact-page__system-number { color: #24161d !important; opacity: 1; }
+body.page-features div.wrap > div.mx-analysis-shot > div.mx-stage-bar > span { color: #f4f1e9 !important; opacity: 1; }
+body.page-features div.wrap > div.mx-radar-stage > div.mx-stage-bar > span { color: #f4f1e9 !important; opacity: 1; }
+body.page-features section#analysis > div.wrap > div.mx-analysis-shot > p.image-note { color: #f4f1e9 !important; opacity: 1; }
+body.page-features section#parity > div.wrap > div.mx-parity-shot > p.image-note { color: #000000 !important; opacity: 1; }

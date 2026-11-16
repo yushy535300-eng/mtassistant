@@ -1,0 +1,70 @@
+/* Homepage content hierarchy. Scoped to the original home route. */
+body.page-home .wrap { max-width:1280px; }
+body.page-home .section { padding-block:88px; }
+body.page-home .brand-story { background:#111e2d !important; }
+body.page-home .tools-intro { max-width:760px; margin-bottom:36px; }
+body.page-home .tools-intro h2 { margin-top:12px; font-size:38px; }
+body.page-home .tools-intro h2 span { color:#c5d7e7; }
+body.page-home .tools-intro > p:last-child { margin-top:16px; }
+body.page-home .tool-choices { display:grid; grid-template-columns:1fr 1fr; gap:0; border-top:1px solid #476078; border-bottom:1px solid #476078; }
+body.page-home .tool-choice { padding:34px 40px 32px 0; }
+body.page-home .tool-choice + .tool-choice { padding-left:40px; padding-right:0; border-left:1px solid #476078; }
+body.page-home .tool-choice-heading { display:flex; align-items:center; gap:18px; }
+body.page-home .tool-choice-heading .product-logo { width:58px; height:58px; object-fit:contain; }
+body.page-home .tool-choice-heading p { font-size:13px !important; color:#99c7e7 !important; }
+body.page-home .tool-choice-heading h3 { margin-top:3px; font-size:23px; }
+body.page-home .tool-choice > p { margin-top:22px; max-width:470px; }
+body.page-home .tool-choice-links { display:flex; align-items:center; gap:26px; margin-top:24px; }
+body.page-home .tool-choice-links a { display:inline-flex; align-items:center; gap:16px; min-height:44px; font-size:15px; color:#cfe9fc; }
+body.page-home .tool-choice-links a:first-child { color:#91d4ff; font-weight:500; }
+body.page-home .tool-choice-links a:hover { color:white; }
+body.page-home .tool-choice-links a:focus-visible { outline:2px solid #75c8ff; outline-offset:4px; }
+body.page-home .launch-top { align-items:center; grid-template-columns:1.1fr .9fr; gap:80px; }
+body.page-home .launch-top h2,body.page-home .auto-launch h2,body.page-home .home-focus h2,body.page-home .home-guides h2,body.page-home .home-knowledge h2 { font-size:38px; }
+body.page-home .launch-top .eyebrow,body.page-home .auto-launch .eyebrow { margin-bottom:16px; }
+body.page-home .radar-showcase { margin-top:40px; background:#142133; border-radius:6px; }
+body.page-home .launch-details h3 { font-size:20px; }
+body.page-home .launch-details p { font-size:16px !important; }
+body.page-home .auto-launch { background:#111e2d !important; }
+body.page-home .auto-launch-facts span { color:#c3d6e8; font-size:14px; }
+body.page-home .auto-launch-visual { padding-inline:16px; }
+body.page-home .auto-frame { max-width:340px; border-radius:6px; }
+body.page-home .focus-tabs button { color:#c6d7e6; font-size:16px; min-height:58px; }
+body.page-home .focus-tabs button[aria-selected=true] { color:#99d7ff; border-color:#75c8ff; }
+body.page-home .focus-tabs button > span { color:#b5c9dc; font-size:13px; }
+body.page-home .home-guides { background:#111e2d !important; }
+body.page-home .guides-intro { max-width:800px; }
+body.page-home .guide-paths h3 { font-size:22px; }
+body.page-home .guide-paths .eyebrow { font-size:13px !important; }
+body.page-home .guide-paths .path-number { color:#99d7ff; }
+body.page-home .knowledge-list h3 { font-size:18px; }
+body.page-home .hero-baseline p { font-size:13px !important; }
+body.page-home .hero-baseline a { font-size:13px; color:#c5dcef; gap:12px; }
+body.page-home .hero-product .screen-zoom { display:block; position:static; background:#101b2b; color:#c8dcec; padding:7px 0 2px; box-shadow:none; }
+body.page-home .hero-product .screen { border:0; background:transparent; }
+body.page-home .hero-product .screen img { border-radius:3px; }
+body.page-home .hero-dealer,body.page-home .hero-product { translate:none !important; transform:none !important; }
+@media(max-width:980px) {
+ body.page-home .launch-top { grid-template-columns:1fr; gap:24px; }
+ body.page-home .tool-choice { padding-right:24px; }
+ body.page-home .tool-choice + .tool-choice { padding-left:24px; }
+}
+@media(max-width:640px) {
+ body.page-home .section { padding-block:52px; }
+ body.page-home .tools-intro { margin-bottom:28px; }
+ body.page-home .tool-choices { grid-template-columns:1fr; }
+ body.page-home .tool-choice { padding:26px 0; }
+ body.page-home .tool-choice + .tool-choice { padding:26px 0; border-left:0; border-top:1px solid #476078; }
+ body.page-home .tool-choice-heading { gap:14px; }
+ body.page-home .tool-choice-heading .product-logo { width:48px; height:48px; }
+ body.page-home .tool-choice-heading h3 { font-size:21px; }
+ body.page-home .tool-choice > p { margin-top:16px; }
+ body.page-home .tool-choice-links { margin-top:14px; }
+ body.page-home .launch-top { gap:24px; }
+ body.page-home .auto-launch-layout,body.page-home .focus-layout,body.page-home .knowledge-layout { gap:30px; }
+ body.page-home .auto-launch-visual { padding:0; }
+ body.page-home .auto-frame { max-width:290px; }
+ body.page-home .guide-paths h3 { font-size:19px; }
+ body.page-home .knowledge-list h3 { font-size:16px; }
+ body.page-home .hero-baseline p { display:none; }
+}

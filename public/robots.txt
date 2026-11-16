@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://mtassistant-oozm.onrender.com/sitemap.xml

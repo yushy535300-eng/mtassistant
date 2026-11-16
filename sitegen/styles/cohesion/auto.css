@@ -1,0 +1,1636 @@
+/*
+ * MT AUTO cohesion layer.
+ * This file is intentionally scoped to body.page-auto and is loaded after
+ * the shared unified layer by the main build owner.
+ */
+
+body.page-auto {
+  --auto-cohesion-bg: #0a111c;
+  --auto-cohesion-surface: #101b2a;
+  --auto-cohesion-surface-2: #0e1724;
+  --auto-cohesion-warm: #171a22;
+  --auto-cohesion-text: #edf2f7;
+  --auto-cohesion-body: #b5c2d0;
+  --auto-cohesion-muted: #8797a6;
+  --auto-cohesion-line: #ffffff14;
+  --auto-cohesion-line-strong: #ffffff28;
+  --auto-cohesion-accent: #86cbbd;
+  --auto-cohesion-purple: #8f86bd;
+  background: var(--auto-cohesion-bg);
+  color: var(--auto-cohesion-text);
+}
+
+body.page-auto .auto-page {
+  min-width: 0;
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--auto-cohesion-bg);
+  color: var(--auto-cohesion-text);
+}
+
+body.page-auto .auto-page *,
+body.page-auto .auto-page *::before,
+body.page-auto .auto-page *::after {
+  box-sizing: border-box;
+}
+
+body.page-auto .auto-page .wrap {
+  width: 100%;
+  max-width: 1240px;
+  margin-inline: auto;
+  padding-inline: clamp(24px, 5vw, 72px);
+}
+
+body.page-auto .auto-page h1,
+body.page-auto .auto-page h2,
+body.page-auto .auto-page h3 {
+  color: var(--auto-cohesion-text);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.25;
+}
+
+body.page-auto .auto-page h1 {
+  font-size: clamp(52px, 5.2vw, 60px);
+}
+
+body.page-auto .auto-page h2 {
+  font-size: clamp(34px, 3.5vw, 42px);
+}
+
+body.page-auto .auto-page h3 {
+  font-size: 22px;
+}
+
+body.page-auto .auto-page p,
+body.page-auto .auto-page li,
+body.page-auto .auto-page summary {
+  color: var(--auto-cohesion-body);
+  font-size: 16px;
+  line-height: 1.9;
+}
+
+body.page-auto .auto-page strong {
+  font-weight: 600;
+}
+
+body.page-auto .auto-page em {
+  color: var(--auto-cohesion-accent);
+  font-style: normal;
+}
+
+body.page-auto .auto-page a {
+  color: inherit;
+}
+
+body.page-auto .auto-page .eyebrow {
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  color: var(--auto-cohesion-accent);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  line-height: 1.5;
+}
+
+body.page-auto .auto-page .eyebrow .short-line {
+  width: 28px;
+  flex-basis: 28px;
+  height: 1px;
+  background: currentColor;
+}
+
+body.page-auto .auto-page .text-link {
+  gap: 10px;
+  border-bottom-color: var(--auto-cohesion-accent);
+  padding-bottom: 5px;
+  color: var(--auto-cohesion-accent);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+body.page-auto .auto-page .text-link:hover,
+body.page-auto .auto-page .text-link:focus-visible {
+  color: #b3e5da;
+}
+
+body.page-auto .auto-page .text-link svg,
+body.page-auto .auto-page .button svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Hero: one upright product visual, with the shared procedural light curtain behind it. */
+body.page-auto .auto-page .auto-hero {
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--auto-cohesion-line);
+  background: var(--auto-cohesion-bg);
+  color: var(--auto-cohesion-text);
+}
+
+body.page-auto .auto-page .auto-hero::before,
+body.page-auto .auto-page .auto-hero-gridline {
+  display: none;
+}
+
+body.page-auto .auto-page .auto-hero > .ambient {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+body.page-auto .auto-page .auto-hero-layout {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1.04fr) minmax(320px, 0.96fr);
+  align-items: center;
+  gap: clamp(44px, 7vw, 96px);
+  min-height: 650px;
+  padding-block: clamp(76px, 9vw, 118px) 72px;
+}
+
+body.page-auto .auto-page .auto-hero-copy {
+  max-width: 560px;
+}
+
+body.page-auto .auto-page .auto-hero-kicker {
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 24px;
+  color: var(--auto-cohesion-muted);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+}
+
+body.page-auto .auto-page .auto-hero-kicker span {
+  width: 30px;
+  height: 1px;
+  background: var(--auto-cohesion-accent);
+}
+
+body.page-auto .auto-page .auto-hero-identity {
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+body.page-auto .auto-page .auto-hero-logo {
+  width: 52px;
+  height: 52px;
+  border: 1px solid var(--auto-cohesion-line-strong);
+  border-radius: 10px;
+}
+
+body.page-auto .auto-page .auto-hero-identity strong,
+body.page-auto .auto-page .auto-hero-identity small {
+  display: block;
+}
+
+body.page-auto .auto-page .auto-hero-identity strong {
+  color: var(--auto-cohesion-text);
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+body.page-auto .auto-page .auto-hero-identity small {
+  margin-top: 4px;
+  color: var(--auto-cohesion-muted);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+}
+
+body.page-auto .auto-page .auto-hero .eyebrow {
+  color: var(--auto-cohesion-accent);
+}
+
+body.page-auto .auto-page .auto-hero h1 {
+  max-width: 600px;
+  color: var(--auto-cohesion-text);
+}
+
+body.page-auto .auto-page .auto-hero h1 em {
+  color: var(--auto-cohesion-accent);
+}
+
+body.page-auto .auto-page .auto-hero-copy > p:not(.auto-hero-limit) {
+  max-width: 500px;
+  margin-top: 24px;
+  color: var(--auto-cohesion-body);
+  font-size: 16px;
+  line-height: 1.9;
+}
+
+body.page-auto .auto-page .auto-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+body.page-auto .auto-page .auto-hero-actions .button {
+  min-height: 48px;
+  padding-block: 12px;
+  font-size: 14px;
+}
+
+body.page-auto .auto-page .auto-hero-limit {
+  max-width: 500px;
+  margin-top: 24px;
+  padding-top: 14px;
+  border-top: 1px solid var(--auto-cohesion-line);
+  color: var(--auto-cohesion-muted);
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+body.page-auto .auto-page .auto-hero-visual {
+  position: relative;
+  min-width: 0;
+  justify-self: end;
+  width: min(100%, 420px);
+  padding: 0;
+}
+
+body.page-auto .auto-page .auto-visual-meta,
+body.page-auto .auto-page .auto-history-label {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 12px;
+  color: var(--auto-cohesion-muted);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+}
+
+body.page-auto .auto-page .auto-visual-meta span:first-child,
+body.page-auto .auto-page .auto-history-label span:first-child {
+  color: var(--auto-cohesion-accent);
+}
+
+body.page-auto .auto-page .auto-running-frame {
+  position: relative;
+  width: min(100%, 400px);
+  margin-left: auto;
+  padding: 0;
+  border: 1px solid var(--auto-cohesion-line-strong);
+  background: #0c1624;
+  box-shadow: 0 24px 50px #02091466;
+  transform: none;
+}
+
+body.page-auto .auto-page .auto-running-frame::before,
+body.page-auto .auto-page .auto-strategy-inset {
+  display: none;
+}
+
+body.page-auto .auto-page .auto-running-frame .screen,
+body.page-auto .auto-page .auto-story-image .screen,
+body.page-auto .auto-page .auto-setting-card .screen,
+body.page-auto .auto-page .auto-history-stage .screen {
+  background: transparent;
+  transform: none;
+}
+
+body.page-auto .auto-page .auto-running-frame .screen img,
+body.page-auto .auto-page .auto-story-image .screen img,
+body.page-auto .auto-page .auto-setting-card .screen img,
+body.page-auto .auto-page .auto-history-stage .screen img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+body.page-auto .auto-page .auto-visual-caption {
+  max-width: 400px;
+  margin-top: 12px;
+  margin-left: auto;
+  color: var(--auto-cohesion-muted);
+  font-size: 12px;
+  line-height: 1.7;
+  text-align: left;
+}
+
+body.page-auto .auto-page .auto-hero-baseline {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  min-height: 62px;
+  border-top: 1px solid var(--auto-cohesion-line);
+  color: var(--auto-cohesion-muted);
+  font-size: 12px;
+}
+
+body.page-auto .auto-page .auto-hero-baseline > div {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: var(--auto-cohesion-body);
+  font-size: 11px;
+  letter-spacing: 0.05em;
+}
+
+body.page-auto .auto-page .auto-hero-baseline i {
+  width: 3px;
+  height: 3px;
+  background: var(--auto-cohesion-accent);
+}
+
+body.page-auto .auto-page .auto-hero-baseline a {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--auto-cohesion-accent);
+  font-size: 12px;
+}
+
+body.page-auto .auto-page .auto-hero-baseline svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* The section index is a quiet reading rail, not a second hero. */
+body.page-auto .auto-page .auto-section-index {
+  position: sticky;
+  top: var(--site-header-height, 82px);
+  z-index: 8;
+  border-bottom: 1px solid var(--auto-cohesion-line);
+  background: #0a111ce8;
+  backdrop-filter: blur(14px);
+}
+
+body.page-auto .auto-page .auto-section-index .wrap {
+  display: flex;
+  align-items: center;
+  gap: clamp(22px, 4vw, 48px);
+  min-height: 56px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+body.page-auto .auto-page .auto-section-index .wrap::-webkit-scrollbar {
+  display: none;
+}
+
+body.page-auto .auto-page .auto-section-index a {
+  display: inline-flex;
+  align-items: center;
+  flex: 0 0 auto;
+  gap: 8px;
+  color: var(--auto-cohesion-muted);
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+body.page-auto .auto-page .auto-section-index a:hover,
+body.page-auto .auto-page .auto-section-index a:focus-visible {
+  color: var(--auto-cohesion-text);
+}
+
+body.page-auto .auto-page .auto-section-index a span {
+  color: var(--auto-cohesion-accent);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+}
+
+/* Story rhythm: alternating smoked surfaces, open image treatment, no photo cards. */
+body.page-auto .auto-page .auto-story {
+  padding-block: clamp(78px, 9vw, 118px);
+}
+
+body.page-auto .auto-page .auto-story-paper {
+  border-top: 1px solid var(--auto-cohesion-line);
+  background: var(--auto-cohesion-surface);
+  color: var(--auto-cohesion-text);
+}
+
+body.page-auto .auto-page .auto-story-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.84fr) minmax(0, 1.16fr);
+  align-items: center;
+  gap: clamp(42px, 7vw, 96px);
+}
+
+body.page-auto .auto-page .auto-story-layout.auto-story-reverse {
+  grid-template-columns: minmax(0, 1.16fr) minmax(0, 0.84fr);
+}
+
+body.page-auto .auto-page .auto-story-reverse .auto-story-copy {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+body.page-auto .auto-page .auto-story-reverse > .auto-setting-stack,
+body.page-auto .auto-page .auto-story-reverse > .auto-history-stage {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+body.page-auto .auto-page .auto-story-copy {
+  min-width: 0;
+}
+
+body.page-auto .auto-page .auto-story-copy .chapter-heading {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  gap: 17px;
+  align-items: start;
+}
+
+body.page-auto .auto-page .auto-story-copy .chapter-number {
+  padding-top: 5px;
+  color: var(--auto-cohesion-accent);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+}
+
+body.page-auto .auto-page .auto-story-copy .chapter-heading h2,
+body.page-auto .auto-page .auto-story-copy > h2 {
+  color: var(--auto-cohesion-text);
+  font-size: clamp(34px, 3.5vw, 42px);
+  line-height: 1.25;
+}
+
+body.page-auto .auto-page .auto-story-copy .chapter-heading h2 em,
+body.page-auto .auto-page .auto-story-copy > h2 em {
+  color: var(--auto-cohesion-accent);
+}
+
+body.page-auto .auto-page .auto-story-copy .chapter-heading p,
+body.page-auto .auto-page .auto-story-copy > p {
+  max-width: 510px;
+  margin-top: 24px;
+  color: var(--auto-cohesion-body);
+  font-size: 16px;
+  line-height: 1.9;
+}
+
+body.page-auto .auto-page .auto-story-copy > .eyebrow {
+  margin-bottom: 18px;
+  color: var(--auto-cohesion-accent);
+}
+
+body.page-auto .auto-page .auto-copy-link {
+  margin-top: 26px;
+  color: var(--auto-cohesion-accent);
+}
+
+body.page-auto .auto-page .auto-story-image,
+body.page-auto .auto-page .auto-history-stage {
+  min-width: 0;
+}
+
+body.page-auto .auto-page .auto-story-image {
+  width: min(100%, 540px);
+  justify-self: end;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+body.page-auto .auto-page .auto-story-image .screen,
+body.page-auto .auto-page .auto-history-stage .screen {
+  border: 1px solid var(--auto-cohesion-line-strong);
+}
+
+body.page-auto .auto-page .auto-story-paper .image-note,
+body.page-auto .auto-page .auto-story-paper .auto-image-note {
+  color: var(--auto-cohesion-muted);
+  font-size: 12px;
+}
+
+body.page-auto .auto-page .auto-numbered-notes {
+  display: grid;
+  gap: 0;
+  max-width: 500px;
+  margin-top: 28px;
+}
+
+body.page-auto .auto-page .auto-numbered-notes > div {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 0;
+  border-top: 1px solid var(--auto-cohesion-line);
+  color: var(--auto-cohesion-body);
+  font-size: 14px;
+}
+
+body.page-auto .auto-page .auto-numbered-notes b {
+  color: var(--auto-cohesion-accent);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+}
+
+/* Amount and time: slate panel, with thin UI edges instead of layered cards. */
+body.page-auto .auto-page .auto-amount {
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid var(--auto-cohesion-line);
+  background: #0d1827;
+  color: var(--auto-cohesion-text);
+}
+
+body.page-auto .auto-page .auto-amount::after {
+  display: none;
+}
+
+body.page-auto .auto-page .auto-amount .auto-story-layout {
+  position: relative;
+  z-index: 1;
+}
+
+body.page-auto .auto-page .auto-amount .auto-story-copy > .eyebrow,
+body.page-auto .auto-page .auto-amount .auto-story-copy > h2 em {
+  color: var(--auto-cohesion-accent);
+}
+
+body.page-auto .auto-page .auto-amount .auto-story-copy > h2 {
+  color: var(--auto-cohesion-text);
+}
+
+body.page-auto .auto-page .auto-amount .auto-story-copy > p {
+  color: var(--auto-cohesion-body);
+}
+
+body.page-auto .auto-page .auto-rule-list {
+  max-width: 520px;
+  margin-top: 28px;
+}
+
+body.page-auto .auto-page .auto-rule-list > div {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 22px;
+  padding: 13px 0;
+  border-top: 1px solid var(--auto-cohesion-line);
+  color: var(--auto-cohesion-body);
+  font-size: 14px;
+}
+
+body.page-auto .auto-page .auto-rule-list span {
+  color: var(--auto-cohesion-muted);
+}
+
+body.page-auto .auto-page .auto-rule-list strong {
+  color: var(--auto-cohesion-text);
+  font-size: 13px;
+  font-weight: 500;
+  text-align: right;
+}
+
+body.page-auto .auto-page .auto-setting-stack {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.16fr) minmax(0, 0.84fr);
+  align-items: center;
+  gap: 20px;
+  min-width: 0;
+  padding: 0;
+}
+
+body.page-auto .auto-page .auto-setting-stack::before {
+  display: none;
+}
+
+body.page-auto .auto-page .auto-setting-card {
+  position: relative;
+  min-width: 0;
+  padding: 0;
+  border: 1px solid var(--auto-cohesion-line-strong);
+  background: #0b1624;
+  box-shadow: none;
+  transform: none;
+}
+
+body.page-auto .auto-page .auto-setting-card > span {
+  display: block;
+  padding: 9px 10px;
+  color: var(--auto-cohesion-accent);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+}
+
+body.page-auto .auto-page .auto-setting-timer {
+  transform: none;
+}
+
+body.page-auto .auto-page .auto-setting-note {
+  right: 0;
+  bottom: -27px;
+  color: var(--auto-cohesion-muted);
+  font-size: 11px;
+}
+
+/* Limits and history share the same visual language, not a wine-colored alternate theme. */
+body.page-auto .auto-page .auto-limits {
+  background: var(--auto-cohesion-surface);
+}
+
+body.page-auto .auto-page .auto-limit-frame {
+  width: min(100%, 540px);
+  justify-self: end;
+}
+
+body.page-auto .auto-page .auto-limit-callout {
+  max-width: 500px;
+  margin-top: 28px;
+  padding: 15px 0 0;
+  border-top: 1px solid var(--auto-cohesion-line);
+}
+
+body.page-auto .auto-page .auto-limit-callout span {
+  color: var(--auto-cohesion-accent);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+}
+
+body.page-auto .auto-page .auto-limit-callout p {
+  margin-top: 8px;
+  color: var(--auto-cohesion-body);
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+body.page-auto .auto-page .auto-history {
+  position: relative;
+  overflow: hidden;
+  background: #111a28;
+  color: var(--auto-cohesion-text);
+}
+
+body.page-auto .auto-page .auto-history::before {
+  display: none;
+}
+
+body.page-auto .auto-page .auto-history .auto-story-copy > .eyebrow,
+body.page-auto .auto-page .auto-history .auto-story-copy > h2 em {
+  color: var(--auto-cohesion-accent);
+}
+
+body.page-auto .auto-page .auto-history .auto-story-copy > h2 {
+  color: var(--auto-cohesion-text);
+}
+
+body.page-auto .auto-page .auto-history .auto-story-copy > p {
+  color: var(--auto-cohesion-body);
+}
+
+body.page-auto .auto-page .auto-history .auto-subtle-note {
+  max-width: 500px;
+  margin-top: 24px;
+  padding-top: 14px;
+  border-top: 1px solid var(--auto-cohesion-line);
+  color: var(--auto-cohesion-muted);
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+body.page-auto .auto-page .auto-history .auto-copy-link {
+  color: var(--auto-cohesion-accent);
+}
+
+body.page-auto .auto-page .auto-history-stage {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+body.page-auto .auto-page .auto-history-stage .auto-history-label {
+  margin-bottom: 12px;
+}
+
+body.page-auto .auto-page .auto-history-stage .image-note {
+  color: var(--auto-cohesion-muted);
+}
+
+/* Reminder band: a warm smoked surface, never a full-bleed sky/water photograph. */
+body.page-auto .auto-page .auto-scene {
+  position: relative;
+  overflow: hidden;
+  border-block: 1px solid var(--auto-cohesion-line);
+  background: var(--auto-cohesion-warm);
+  color: var(--auto-cohesion-text);
+}
+
+body.page-auto .auto-page .auto-scene::before {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, transparent, #8f86bd0d 48%, transparent),
+    linear-gradient(180deg, transparent 0 68%, #86cbbd08 100%);
+  content: "";
+  pointer-events: none;
+}
+
+body.page-auto .auto-page .auto-scene-image,
+body.page-auto .auto-page .auto-scene-mark {
+  display: none;
+}
+
+body.page-auto .auto-page .auto-scene-layout {
+  position: relative;
+  z-index: 1;
+  display: block;
+  min-height: 0;
+  padding-block: clamp(72px, 9vw, 112px);
+}
+
+body.page-auto .auto-page .auto-scene-copy {
+  max-width: 680px;
+}
+
+body.page-auto .auto-page .auto-scene-copy .eyebrow {
+  color: var(--auto-cohesion-accent);
+}
+
+body.page-auto .auto-page .auto-scene-copy h2 {
+  color: var(--auto-cohesion-text);
+  font-size: clamp(34px, 3.5vw, 42px);
+}
+
+body.page-auto .auto-page .auto-scene-copy h2 em {
+  color: var(--auto-cohesion-accent);
+}
+
+body.page-auto .auto-page .auto-scene-copy p {
+  max-width: 610px;
+  margin-top: 22px;
+  color: var(--auto-cohesion-body);
+  font-size: 16px;
+  line-height: 1.9;
+}
+
+/* Human material: the existing dealer remains a natural cutout with a bottom alpha fade. */
+body.page-auto .auto-page .auto-human-section {
+  background: var(--auto-cohesion-surface-2);
+}
+
+body.page-auto .auto-page .auto-human-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.84fr) minmax(0, 1.16fr);
+  align-items: center;
+  gap: clamp(42px, 8vw, 100px);
+}
+
+body.page-auto .auto-page .auto-human-copy {
+  max-width: 540px;
+}
+
+body.page-auto .auto-page .auto-human-copy h2 {
+  color: var(--auto-cohesion-text);
+  font-size: clamp(34px, 3.5vw, 42px);
+}
+
+body.page-auto .auto-page .auto-human-copy h2 em {
+  color: var(--auto-cohesion-accent);
+}
+
+body.page-auto .auto-page .auto-human-copy > p:not(.auto-source-note) {
+  margin-top: 22px;
+  color: var(--auto-cohesion-body);
+  font-size: 16px;
+  line-height: 1.9;
+}
+
+body.page-auto .auto-page .auto-source-note {
+  margin-top: 23px;
+  padding-top: 14px;
+  border-top: 1px solid var(--auto-cohesion-line);
+  color: var(--auto-cohesion-muted);
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+body.page-auto .auto-page .auto-human-photo {
+  justify-self: end;
+  width: min(100%, 626px);
+}
+
+body.page-auto .auto-page .auto-human-photo .dealer-photo {
+  width: 100%;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 78%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 78%, transparent 100%);
+}
+
+body.page-auto .auto-page .auto-human-photo .dealer-photo img {
+  display: block;
+  width: 100%;
+  max-width: 626px;
+  height: auto;
+  border: 0;
+  border-radius: 0;
+  object-fit: contain;
+  transform: none;
+}
+
+body.page-auto .auto-page .auto-human-photo > p {
+  margin-top: -22px;
+  color: var(--auto-cohesion-muted);
+  font-size: 12px;
+  line-height: 1.6;
+  text-align: right;
+}
+
+/* Difference, devices and FAQ: dense information gets a clear slate reading field. */
+body.page-auto .auto-page .auto-difference,
+body.page-auto .auto-page .auto-faq {
+  border-top: 1px solid var(--auto-cohesion-line);
+  background: var(--auto-cohesion-bg);
+}
+
+body.page-auto .auto-page .auto-section-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 0.72fr);
+  align-items: end;
+  gap: 42px;
+  margin-bottom: 48px;
+}
+
+body.page-auto .auto-page .auto-section-intro .eyebrow {
+  grid-column: 1 / -1;
+  margin-bottom: -24px;
+}
+
+body.page-auto .auto-page .auto-section-intro h2,
+body.page-auto .auto-page .auto-faq-intro h2 {
+  color: var(--auto-cohesion-text);
+  font-size: clamp(34px, 3.5vw, 42px);
+}
+
+body.page-auto .auto-page .auto-section-intro h2 em,
+body.page-auto .auto-page .auto-faq-intro h2 em {
+  color: var(--auto-cohesion-accent);
+}
+
+body.page-auto .auto-page .auto-section-intro > p,
+body.page-auto .auto-page .auto-faq-intro > p {
+  max-width: 460px;
+  color: var(--auto-cohesion-body);
+  font-size: 16px;
+  line-height: 1.9;
+}
+
+body.page-auto .auto-page .auto-difference-table {
+  border-top: 1px solid var(--auto-cohesion-line-strong);
+}
+
+body.page-auto .auto-page .auto-difference-row {
+  display: grid;
+  grid-template-columns: minmax(125px, 0.52fr) minmax(0, 1fr) minmax(0, 1fr);
+  gap: 22px;
+  align-items: center;
+  min-height: 68px;
+  padding: 15px 0;
+  border-bottom: 1px solid var(--auto-cohesion-line);
+  color: var(--auto-cohesion-body);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+body.page-auto .auto-page .auto-difference-row > span:first-child,
+body.page-auto .auto-page .auto-difference-row > strong:first-child {
+  color: var(--auto-cohesion-accent);
+}
+
+body.page-auto .auto-page .auto-difference-head {
+  min-height: 54px;
+  color: var(--auto-cohesion-text);
+  font-size: 12px;
+}
+
+body.page-auto .auto-page .auto-difference-head > strong {
+  color: var(--auto-cohesion-text);
+  font-weight: 500;
+}
+
+body.page-auto .auto-page .auto-difference-row a {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--auto-cohesion-accent);
+  font-weight: 500;
+}
+
+body.page-auto .auto-page .auto-difference-row a svg {
+  width: 16px;
+  height: 16px;
+}
+
+body.page-auto .auto-page .auto-difference-foot {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-top: 24px;
+  color: var(--auto-cohesion-muted);
+  font-size: 14px;
+}
+
+body.page-auto .auto-page .auto-difference-foot .text-link {
+  font-size: 14px;
+}
+
+body.page-auto .auto-page .auto-device {
+  background: var(--auto-cohesion-surface);
+  color: var(--auto-cohesion-text);
+}
+
+body.page-auto .auto-page .auto-device-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.84fr) minmax(0, 1.16fr);
+  align-items: center;
+  gap: clamp(42px, 8vw, 100px);
+  padding-block: clamp(78px, 9vw, 112px);
+}
+
+body.page-auto .auto-page .auto-device-copy {
+  max-width: 560px;
+}
+
+body.page-auto .auto-page .auto-device-copy .eyebrow {
+  color: var(--auto-cohesion-accent);
+}
+
+body.page-auto .auto-page .auto-device-copy h2 {
+  color: var(--auto-cohesion-text);
+  font-size: clamp(34px, 3.5vw, 42px);
+}
+
+body.page-auto .auto-page .auto-device-copy h2 em {
+  color: var(--auto-cohesion-accent);
+}
+
+body.page-auto .auto-page .auto-device-copy p {
+  margin-top: 22px;
+  color: var(--auto-cohesion-body);
+  font-size: 16px;
+  line-height: 1.9;
+}
+
+body.page-auto .auto-page .auto-device-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-self: stretch;
+  gap: 0 20px;
+  padding: 0;
+  list-style: none;
+}
+
+body.page-auto .auto-page .auto-device-list li {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding-top: 14px;
+  border-top: 1px solid var(--auto-cohesion-line-strong);
+}
+
+body.page-auto .auto-page .auto-device-list b {
+  color: var(--auto-cohesion-accent);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+}
+
+body.page-auto .auto-page .auto-device-list span {
+  margin-top: 19px;
+  color: var(--auto-cohesion-text);
+  font-size: 20px;
+  font-weight: 500;
+}
+
+body.page-auto .auto-page .auto-device-list small {
+  margin-top: 8px;
+  color: var(--auto-cohesion-muted);
+  font-size: 12px;
+  line-height: 1.75;
+}
+
+body.page-auto .auto-page .auto-faq-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.76fr) minmax(0, 1.24fr);
+  align-items: start;
+  gap: clamp(42px, 8vw, 100px);
+}
+
+body.page-auto .auto-page .auto-faq-intro {
+  max-width: 480px;
+}
+
+body.page-auto .auto-page .auto-faq-intro > .text-link {
+  margin-top: 24px;
+}
+
+body.page-auto .auto-page .auto-faq-list {
+  border-top: 1px solid var(--auto-cohesion-line-strong);
+}
+
+body.page-auto .auto-page .auto-faq-list details {
+  border-bottom: 1px solid var(--auto-cohesion-line);
+}
+
+body.page-auto .auto-page .auto-faq-list summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 19px 0;
+  color: var(--auto-cohesion-text);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.7;
+  cursor: pointer;
+  list-style: none;
+}
+
+body.page-auto .auto-page .auto-faq-list summary::-webkit-details-marker {
+  display: none;
+}
+
+body.page-auto .auto-page .auto-faq-list summary b {
+  color: var(--auto-cohesion-accent);
+  font-size: 21px;
+  font-weight: 400;
+  line-height: 1;
+  transition: transform 0.2s ease;
+}
+
+body.page-auto .auto-page .auto-faq-list details[open] summary b {
+  transform: rotate(45deg);
+}
+
+body.page-auto .auto-page .auto-faq-list details p {
+  max-width: 680px;
+  padding: 0 36px 22px 0;
+  color: var(--auto-cohesion-body);
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+/* Final CTA and disclosures retain the product choice and risk language. */
+body.page-auto .auto-page .auto-next {
+  border-block: 1px solid var(--auto-cohesion-line);
+  background: #111c2b;
+  color: var(--auto-cohesion-text);
+}
+
+body.page-auto .auto-page .auto-next-layout {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 60px;
+  padding-block: 78px;
+}
+
+body.page-auto .auto-page .auto-next .eyebrow,
+body.page-auto .auto-page .auto-next h2 em {
+  color: var(--auto-cohesion-accent);
+}
+
+body.page-auto .auto-page .auto-next h2 {
+  color: var(--auto-cohesion-text);
+  font-size: clamp(34px, 3.5vw, 42px);
+}
+
+body.page-auto .auto-page .auto-next p {
+  margin-top: 18px;
+  color: var(--auto-cohesion-body);
+  font-size: 16px;
+}
+
+body.page-auto .auto-page .auto-next-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  width: min(100%, 500px);
+}
+
+body.page-auto .auto-page .auto-next-actions .button {
+  min-height: 48px;
+  font-size: 14px;
+}
+
+body.page-auto .auto-page .auto-next-actions .auto-next-link {
+  grid-column: 1 / -1;
+  justify-self: start;
+  margin-top: 4px;
+  border-bottom: 0;
+  color: var(--auto-cohesion-accent);
+}
+
+body.page-auto .auto-page .auto-disclaimer {
+  background: #0a111c;
+  color: var(--auto-cohesion-muted);
+}
+
+body.page-auto .auto-page .auto-disclaimer .wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 42px;
+  padding-block: 26px 32px;
+}
+
+body.page-auto .auto-page .auto-disclaimer p {
+  color: var(--auto-cohesion-muted);
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+body.page-auto .auto-page .auto-disclaimer strong {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--auto-cohesion-accent);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+}
+
+@media (max-width: 900px) {
+  body.page-auto .auto-page .auto-hero-layout {
+    grid-template-columns: 1fr;
+    min-height: 0;
+    padding-block: 68px 58px;
+  }
+
+  body.page-auto .auto-page .auto-hero-copy {
+    max-width: 620px;
+  }
+
+  body.page-auto .auto-page .auto-hero-visual {
+    justify-self: start;
+    width: min(100%, 400px);
+  }
+
+  body.page-auto .auto-page .auto-running-frame {
+    margin-left: 0;
+  }
+
+  body.page-auto .auto-page .auto-visual-caption {
+    margin-left: 0;
+  }
+
+  body.page-auto .auto-page .auto-story-layout,
+  body.page-auto .auto-page .auto-story-layout.auto-story-reverse,
+  body.page-auto .auto-page .auto-human-layout,
+  body.page-auto .auto-page .auto-device-layout,
+  body.page-auto .auto-page .auto-faq-layout {
+    grid-template-columns: 1fr;
+    gap: 42px;
+  }
+
+  body.page-auto .auto-page .auto-story-reverse .auto-story-copy,
+  body.page-auto .auto-page .auto-story-reverse > .auto-setting-stack,
+  body.page-auto .auto-page .auto-story-reverse > .auto-history-stage {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  body.page-auto .auto-page .auto-story-reverse .auto-story-copy {
+    order: 1;
+  }
+
+  body.page-auto .auto-page .auto-story-reverse > .auto-setting-stack,
+  body.page-auto .auto-page .auto-story-reverse > .auto-history-stage {
+    order: 2;
+  }
+
+  body.page-auto .auto-page .auto-story-image,
+  body.page-auto .auto-page .auto-limit-frame,
+  body.page-auto .auto-page .auto-human-photo {
+    justify-self: start;
+    width: min(100%, 560px);
+  }
+
+  body.page-auto .auto-page .auto-setting-stack {
+    width: min(100%, 560px);
+  }
+
+  body.page-auto .auto-page .auto-device-list {
+    width: 100%;
+  }
+
+  body.page-auto .auto-page .auto-next-layout {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  body.page-auto .auto-page .auto-next-actions {
+    width: min(100%, 560px);
+  }
+}
+
+@media (max-width: 640px) {
+  body.page-auto .auto-page .wrap {
+    padding-inline: 20px;
+  }
+
+  body.page-auto .auto-page h1 {
+    font-size: clamp(34px, 9.6vw, 38px);
+    line-height: 1.25;
+  }
+
+  body.page-auto .auto-page h2,
+  body.page-auto .auto-page .auto-story-copy .chapter-heading h2,
+  body.page-auto .auto-page .auto-story-copy > h2,
+  body.page-auto .auto-page .auto-scene-copy h2,
+  body.page-auto .auto-page .auto-human-copy h2,
+  body.page-auto .auto-page .auto-section-intro h2,
+  body.page-auto .auto-page .auto-faq-intro h2,
+  body.page-auto .auto-page .auto-device-copy h2,
+  body.page-auto .auto-page .auto-next h2 {
+    font-size: clamp(28px, 8.2vw, 32px);
+    line-height: 1.3;
+  }
+
+  body.page-auto .auto-page p,
+  body.page-auto .auto-page li,
+  body.page-auto .auto-page summary,
+  body.page-auto .auto-page .auto-story-copy .chapter-heading p,
+  body.page-auto .auto-page .auto-story-copy > p,
+  body.page-auto .auto-page .auto-device-copy p,
+  body.page-auto .auto-page .auto-scene-copy p,
+  body.page-auto .auto-page .auto-human-copy > p:not(.auto-source-note),
+  body.page-auto .auto-page .auto-section-intro > p,
+  body.page-auto .auto-page .auto-faq-intro > p,
+  body.page-auto .auto-page .auto-next p {
+    font-size: 15px;
+    line-height: 1.9;
+  }
+
+  body.page-auto .auto-page .eyebrow {
+    margin-bottom: 17px;
+    font-size: 11px;
+  }
+
+  body.page-auto .auto-page .auto-hero-layout {
+    gap: 42px;
+    padding-block: 54px 44px;
+  }
+
+  body.page-auto .auto-page .auto-hero-kicker {
+    margin-bottom: 19px;
+    font-size: 11px;
+  }
+
+  body.page-auto .auto-page .auto-hero-identity {
+    margin-bottom: 23px;
+  }
+
+  body.page-auto .auto-page .auto-hero-logo {
+    width: 46px;
+    height: 46px;
+  }
+
+  body.page-auto .auto-page .auto-hero-copy > p:not(.auto-hero-limit) {
+    margin-top: 20px;
+    font-size: 15px;
+  }
+
+  body.page-auto .auto-page .auto-hero-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 9px;
+    margin-top: 25px;
+  }
+
+  body.page-auto .auto-page .auto-hero-actions .button,
+  body.page-auto .auto-page .auto-next-actions .button {
+    width: 100%;
+    min-height: 48px;
+    justify-content: space-between;
+    font-size: 14px;
+  }
+
+  body.page-auto .auto-page .auto-hero-limit {
+    margin-top: 20px;
+    font-size: 11px;
+  }
+
+  body.page-auto .auto-page .auto-hero-visual {
+    width: min(100%, 360px);
+  }
+
+  body.page-auto .auto-page .auto-running-frame {
+    width: min(100%, 360px);
+  }
+
+  body.page-auto .auto-page .auto-visual-meta,
+  body.page-auto .auto-page .auto-history-label {
+    gap: 10px;
+    font-size: 10px;
+  }
+
+  body.page-auto .auto-page .auto-hero-baseline {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+    min-height: 0;
+    padding-block: 16px 18px;
+  }
+
+  body.page-auto .auto-page .auto-hero-baseline > div {
+    gap: 10px;
+    font-size: 10px;
+  }
+
+  body.page-auto .auto-page .auto-hero-baseline a {
+    font-size: 11px;
+  }
+
+  body.page-auto .auto-page .auto-section-index {
+    top: var(--site-header-height, 72px);
+  }
+
+  body.page-auto .auto-page .auto-section-index .wrap {
+    gap: 22px;
+    min-height: 52px;
+    padding-inline: 20px;
+  }
+
+  body.page-auto .auto-page .auto-section-index a {
+    font-size: 12px;
+  }
+
+  body.page-auto .auto-page .auto-story {
+    padding-block: 64px;
+  }
+
+  body.page-auto .auto-page .auto-story-layout,
+  body.page-auto .auto-page .auto-story-layout.auto-story-reverse,
+  body.page-auto .auto-page .auto-human-layout,
+  body.page-auto .auto-page .auto-device-layout,
+  body.page-auto .auto-page .auto-faq-layout {
+    gap: 32px;
+  }
+
+  body.page-auto .auto-page .auto-story-copy .chapter-heading {
+    grid-template-columns: 28px minmax(0, 1fr);
+    gap: 11px;
+  }
+
+  body.page-auto .auto-page .auto-story-copy .chapter-number {
+    padding-top: 4px;
+    font-size: 12px;
+  }
+
+  body.page-auto .auto-page .auto-story-copy .chapter-heading p,
+  body.page-auto .auto-page .auto-story-copy > p {
+    margin-top: 18px;
+  }
+
+  body.page-auto .auto-page .auto-story-image,
+  body.page-auto .auto-page .auto-limit-frame,
+  body.page-auto .auto-page .auto-human-photo,
+  body.page-auto .auto-page .auto-setting-stack {
+    width: 100%;
+  }
+
+  body.page-auto .auto-page .auto-numbered-notes {
+    margin-top: 22px;
+  }
+
+  body.page-auto .auto-page .auto-numbered-notes > div {
+    padding-block: 11px;
+    font-size: 13px;
+  }
+
+  body.page-auto .auto-page .auto-copy-link {
+    margin-top: 23px;
+  }
+
+  body.page-auto .auto-page .auto-rule-list {
+    margin-top: 23px;
+  }
+
+  body.page-auto .auto-page .auto-rule-list > div {
+    gap: 12px;
+    padding-block: 11px;
+    font-size: 13px;
+  }
+
+  body.page-auto .auto-page .auto-rule-list strong {
+    max-width: 180px;
+    font-size: 12px;
+  }
+
+  body.page-auto .auto-page .auto-setting-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 15px;
+  }
+
+  body.page-auto .auto-page .auto-setting-card,
+  body.page-auto .auto-page .auto-setting-timer {
+    width: 100%;
+    align-self: stretch;
+  }
+
+  body.page-auto .auto-page .auto-setting-note {
+    position: static;
+    margin-top: -3px;
+    font-size: 10px;
+    text-align: left;
+  }
+
+  body.page-auto .auto-page .auto-limit-callout {
+    margin-top: 23px;
+  }
+
+  body.page-auto .auto-page .auto-limit-callout p {
+    font-size: 13px;
+  }
+
+  body.page-auto .auto-page .auto-history-stage {
+    width: 100%;
+  }
+
+  body.page-auto .auto-page .auto-scene-layout {
+    padding-block: 62px;
+  }
+
+  body.page-auto .auto-page .auto-scene-copy p {
+    margin-top: 18px;
+  }
+
+  body.page-auto .auto-page .auto-human-copy > p:not(.auto-source-note) {
+    margin-top: 18px;
+  }
+
+  body.page-auto .auto-page .auto-source-note {
+    margin-top: 20px;
+    font-size: 11px;
+  }
+
+  body.page-auto .auto-page .auto-human-photo > p {
+    margin-top: -18px;
+    font-size: 11px;
+    text-align: left;
+  }
+
+  body.page-auto .auto-page .auto-section-intro {
+    display: block;
+    margin-bottom: 34px;
+  }
+
+  body.page-auto .auto-page .auto-section-intro .eyebrow {
+    margin-bottom: 17px;
+  }
+
+  body.page-auto .auto-page .auto-section-intro > p {
+    margin-top: 18px;
+  }
+
+  body.page-auto .auto-page .auto-difference-row {
+    grid-template-columns: 1fr 1fr;
+    gap: 6px 12px;
+    min-height: 0;
+    padding-block: 14px;
+    font-size: 12px;
+  }
+
+  body.page-auto .auto-page .auto-difference-row > span:first-child,
+  body.page-auto .auto-page .auto-difference-row > strong:first-child {
+    grid-column: 1 / -1;
+    font-size: 11px;
+  }
+
+  body.page-auto .auto-page .auto-difference-head {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px 12px;
+    padding-block: 11px;
+  }
+
+  body.page-auto .auto-page .auto-difference-head > span {
+    display: none;
+  }
+
+  body.page-auto .auto-page .auto-difference-head > strong {
+    font-size: 11px;
+    line-height: 1.5;
+  }
+
+  body.page-auto .auto-page .auto-difference-foot {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 9px;
+    margin-top: 20px;
+    font-size: 13px;
+  }
+
+  body.page-auto .auto-page .auto-device-layout {
+    padding-block: 64px;
+  }
+
+  body.page-auto .auto-page .auto-device-copy p {
+    margin-top: 18px;
+  }
+
+  body.page-auto .auto-page .auto-device-list {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  body.page-auto .auto-page .auto-device-list li {
+    min-height: 90px;
+    padding: 14px 0 13px 45px;
+  }
+
+  body.page-auto .auto-page .auto-device-list b {
+    position: absolute;
+    margin-left: -45px;
+  }
+
+  body.page-auto .auto-page .auto-device-list span {
+    margin-top: 0;
+    font-size: 18px;
+  }
+
+  body.page-auto .auto-page .auto-device-list small {
+    margin-top: 5px;
+    font-size: 11px;
+  }
+
+  body.page-auto .auto-page .auto-faq-layout {
+    gap: 30px;
+  }
+
+  body.page-auto .auto-page .auto-faq-intro > p {
+    margin-top: 18px;
+  }
+
+  body.page-auto .auto-page .auto-faq-list summary {
+    gap: 14px;
+    padding-block: 17px;
+    font-size: 15px;
+  }
+
+  body.page-auto .auto-page .auto-faq-list details p {
+    padding-right: 12px;
+    font-size: 14px;
+  }
+
+  body.page-auto .auto-page .auto-next-layout {
+    padding-block: 60px;
+  }
+
+  body.page-auto .auto-page .auto-next p {
+    margin-top: 16px;
+  }
+
+  body.page-auto .auto-page .auto-next-actions {
+    grid-template-columns: 1fr;
+    gap: 9px;
+    width: 100%;
+    margin-top: 25px;
+  }
+
+  body.page-auto .auto-page .auto-next-actions .auto-next-link {
+    margin-top: 3px;
+  }
+
+  body.page-auto .auto-page .auto-disclaimer .wrap {
+    display: block;
+    padding-block: 23px 28px;
+  }
+
+  body.page-auto .auto-page .auto-disclaimer p {
+    font-size: 11px;
+  }
+
+  body.page-auto .auto-page .auto-disclaimer p + p {
+    margin-top: 17px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.page-auto .auto-page .text-link,
+  body.page-auto .auto-page .screen-zoom,
+  body.page-auto .auto-page .auto-faq-list summary b,
+  body.page-auto .auto-page .button {
+    transition: none;
+  }
+}

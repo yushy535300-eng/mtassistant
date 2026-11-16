@@ -1,0 +1,12 @@
+.env
+.env.*
+!.env.example
+target/
+__pycache__/
+*.pyc
+node_modules/
+artifacts/
+.DS_Store
+.venv/
+deliverables/
+.qa-tools/

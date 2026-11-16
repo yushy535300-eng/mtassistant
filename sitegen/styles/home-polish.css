@@ -1,0 +1,10 @@
+/* Keep the original portrait intact and the face unobscured. */
+@media (min-width: 981px) {
+  .home-hero .home-visual { min-height: 580px; }
+  .home-hero .hero-product { width: 70%; max-width: 410px; bottom: 0; }
+  .home-hero .portrait-frame { top: 0; }
+}
+@media (min-width: 1700px) {
+  .home-hero .home-visual { min-height: 620px; }
+  .home-hero .hero-product { max-width: 440px; }
+}
