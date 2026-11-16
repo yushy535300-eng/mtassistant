@@ -57,7 +57,7 @@
 .yc-ad-slot-rail .yc-ad-controls{height:18px;gap:6px}
 .yc-ad-slot-rail .yc-ad-controls>button{width:18px;height:18px;font-size:16px}
 @media(min-width:981px) and (max-height:730px){.yc-ad-slot-rail .yc-ad-stage{height:clamp(86px,15vh,112px)}.yc-ad-slot-rail .yc-ad-brand{display:none}}
-@media(min-width:981px) and (max-height:580px){.yc-ad-slot-rail .yc-ad-stage{height:84px}.yc-ad-slot-rail .yc-ad-content{padding:5px 7px;gap:2px}.yc-ad-slot-rail .yc-ad-content strong{font-size:14px}.yc-ad-slot-rail .yc-ad-sub{font-size:10px}.yc-ad-slot-rail .yc-ad-cta{font-size:9px;padding:2px 5px}}
+@media(min-width:981px) and (max-height:640px){.yc-ad-slot-rail .yc-ad-stage{height:84px}.yc-ad-slot-rail .yc-ad-content{padding:5px 7px;gap:2px}.yc-ad-slot-rail .yc-ad-content strong{font-size:14px}.yc-ad-slot-rail .yc-ad-sub{font-size:10px}.yc-ad-slot-rail .yc-ad-cta{font-size:9px;padding:2px 5px}}
 /* One closable, collapsible floating display ad; same four campaigns. */
 .yc-ad-slot-float{position:fixed;right:18px;bottom:18px;width:304px;z-index:48;background:#1c1821;border:1px solid #a18a635e;padding:6px;border-radius:10px;box-shadow:0 14px 45px #0009}
 .yc-ad-slot-float .yc-ad-label{padding:0 5px 3px}
@@ -95,3 +95,7 @@ body:has(dialog[open]) .yc-ad-slot-float,body:has(dialog[open]) .yc-ad-open{disp
 body.yc-ad-opened .portal-main{padding-bottom:145px}
 }
 @media(prefers-reduced-motion:reduce){.yc-ad-art[data-active]{animation:none!important}}
+
+@media(min-width:981px) and (max-height:480px){
+.yc-ad-slot-rail{margin-bottom:3px}.yc-ad-slot-rail .yc-ad-stage{height:78px}.yc-ad-slot-rail .yc-ad-controls{height:16px}.yc-ad-slot-rail .yc-ad-controls>button{height:16px}.yc-ad-slot-rail .yc-ad-label{padding:1px 1px 2px}.yc-ad-slot-rail .yc-ad-content{padding:4px 6px}.yc-ad-slot-rail .yc-ad-content strong{font-size:13px}.yc-ad-slot-rail .yc-ad-sub{font-size:9px}
+}
