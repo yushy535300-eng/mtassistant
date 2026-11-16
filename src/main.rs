@@ -138,6 +138,7 @@ fn handle(mut stream: TcpStream) {
                 "/pages/guide.html"
             }
         }
+        "/download" | "/download/" => "/pages/download.html",
         "/faq" | "/faq/" => "/pages/faq.html",
         "/contact" | "/contact/" => "/pages/contact.html",
         "/favicon.png" | "/favicon.ico" => "/assets/baccarat-logo.png",
