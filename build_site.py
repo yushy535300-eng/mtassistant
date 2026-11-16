@@ -64,7 +64,7 @@ def page(route, title, description, body, label, guide_system='matrix'):
     if route == '/articles': schemas[0]['@type'] = 'CollectionPage'
     if route.startswith('/articles/'):
         a = BY_SLUG[route.rsplit('/',1)[1]]
-        schemas.append({'@context':'https://schema.org','@type':'Article','headline':a['title'],'description':a['summary'],'inLanguage':'zh-Hant','mainEntityOfPage':absolute,'image':[ORIGIN+'/assets/social/home.png'] if ORIGIN else [],'datePublished':'2026-11-17T00:00:00+08:00','dateModified':'2026-11-17T00:00:00+08:00','author':{'@type':'Organization','name':'御策編輯團隊','url':ORIGIN+'/articles'},'publisher':{'@id':ORIGIN+'/#organization'}})
+        schemas.append({'@context':'https://schema.org','@type':'Article','headline':a['title'],'description':a['summary'],'inLanguage':'zh-Hant','mainEntityOfPage':absolute,'image':[ORIGIN+'/assets/social/home.png'] if ORIGIN else [],'datePublished':a.get('published_at','2026-11-17')+'T00:00:00+08:00','dateModified':a.get('published_at','2026-11-17')+'T00:00:00+08:00','author':{'@type':'Organization','name':'御策編輯團隊','url':ORIGIN+'/articles'},'publisher':{'@id':ORIGIN+'/#organization'}})
         for schema in schemas:
             if schema['@type']=='BreadcrumbList':
                 schema['itemListElement']=[{'@type':'ListItem','position':1,'name':'首頁','item':ORIGIN+'/'},{'@type':'ListItem','position':2,'name':'文章專區','item':ORIGIN+'/articles'},{'@type':'ListItem','position':3,'name':a['title'],'item':absolute}]
