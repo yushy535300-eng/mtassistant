@@ -135,7 +135,11 @@ assert 'yc-art-title' in home and 'yuce-gold-title.svg' in home
 assert 'data-dealer-step="-1"' in home and 'data-dealer-step="1"' in home
 # Homepage intentionally contains no duplicate section navigation, full tutorials, or FAQ.
 assert home.index('id="toolbox"') < home.index('id="journal-home-title"')
-assert 'class="portal-shortcuts yc-service-strip"' not in home
+assert 'class="portal-shortcuts yc-service-strip"' in home
+assert home.count('class="yc-quick-icon"') == 4
+assert '支援 MT、DG、SA、T9 平台' in home
+assert 'class="portal-category"' not in home
+assert 'class="line-official-icon"' in home
 assert 'aria-labelledby="guide-title"' not in home
 assert 'aria-labelledby="matrix-title"' not in home
 assert 'aria-labelledby="auto-title"' not in home
