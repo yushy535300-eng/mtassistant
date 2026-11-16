@@ -168,7 +168,15 @@ fn handle(mut stream: TcpStream) {
         );
         return;
     }
-    let selected = match path {
+    // New scheduled article slugs resolve through the existing embedded static asset map.
+    let selected_path = if let Some(slug) = path.strip_prefix("/articles/") {
+        if !slug.is_empty() && slug.chars().all(|c| c.is_ascii_lowercase() || c.is_ascii_digit() || c == '-') {
+            format!("/pages/article-{}.html", slug)
+        } else {
+            path.to_string()
+        }
+    } else {
+        match path {
         "/" | "/index.html" => "/index.html",
         "/features" | "/features/" | "/mt" => "/pages/features.html",
         "/auto" | "/auto/" => "/pages/auto.html",
@@ -191,7 +199,9 @@ fn handle(mut stream: TcpStream) {
         "/articles/connection-troubleshooting" => "/pages/article-connection-troubleshooting.html",
         "/favicon.png" | "/favicon.ico" => "/assets/baccarat-logo.png",
         _ => path,
+    }.to_string()
     };
+    let selected = selected_path.as_str();
     let asset = if selected.contains("..") || selected.contains('%') || selected.contains('\\') {
         None
     } else {
