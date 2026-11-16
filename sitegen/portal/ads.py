@@ -32,6 +32,7 @@ def creative(key, slot, active):
     headline, subhead = copy[key]
     short = slot in ('rail', 'float')
     features = '' if short else '<span class="yc-ad-features"><span>選房分析</span><span>遊戲訊號</span><span>輔助操作</span></span>'
+    description = '' if short else f'<span class="yc-ad-description">{subhead}</span>'
     explanation = '' if short else '<span class="yc-ad-summary">主打 ATG、RSG 電子遊戲的智慧輔助系統。</span>'
     return (
         f'<a class="yc-ad-art yc-ad-{key} yc-ad-placement-{slot}" data-ad-slide="{key}" '
@@ -46,7 +47,7 @@ def creative(key, slot, active):
         '<span class="yc-ad-brand">SCARAB HEART · ATG / RSG</span>'
         '<strong>聖甲之心</strong>'
         f'<span class="yc-ad-campaign">{headline}</span>'
-        f'<span class="yc-ad-description">{subhead}</span>'
+        f'{description}'
         f'{features}{explanation}'
         '<span class="yc-ad-cta">探索官方功能 <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 10h13m-5-5 5 5-5 5"/></svg></span>'
         '</span><span class="yc-ad-corners" aria-hidden="true"></span></a>'
