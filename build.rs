@@ -4,6 +4,7 @@ fn main() {
     println!("cargo:rerun-if-changed=build_site.py");
     println!("cargo:rerun-if-changed=sitegen");
     println!("cargo:rerun-if-changed=public/v2.js");
+    println!("cargo:rerun-if-changed=public/assets/install");
     println!("cargo:rerun-if-env-changed=SITE_ORIGIN");
     println!("cargo:rerun-if-env-changed=ALLOW_INDEXING");
     println!("cargo:rerun-if-env-changed=RENDER_EXTERNAL_URL");

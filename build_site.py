@@ -25,6 +25,7 @@ PAGE_INFO = {
     'features': ('/features', 'MT MATRIX 多桌百家輔助｜功能與牌路分析・御策百家', '了解 MT MATRIX 多桌雷達、平台連線、AI 綜合分析、V38 四式算牌與終值奇偶模型。查看真實操作介面及對應教學；分析資訊不保證下一局結果。', '多桌輔助'),
     'auto': ('/auto', 'MT AUTO 百家自動下注｜策略設定與執行紀錄・御策百家', '認識 MT AUTO 自動下注的推薦與配注、基本單注、停止時間、止損止盈和執行紀錄。依據真實介面了解設定流程，操作前請先閱讀說明並評估風險。', '自動下注'),
     'guide': ('/guide', '操作教學｜多桌輔助與自動下注使用流程・御策百家輔助', '分別閱讀 MT MATRIX 多桌輔助五步教學與 MT AUTO 自動下注六步教學。從帳號授權、平台連線到配注、停止條件與執行紀錄，逐項核對真實介面。', '操作教學'),
+    'download': ('/download', '下載安裝｜多桌輔助與自動下注 iOS・Android 教學｜御策', '查看兩套工具的 iPhone Safari 與 Android Chrome 加入主畫面圖解，開啟正確的程式網址並完成安裝。', '下載安裝'),
     'faq': ('/faq', '常見問題｜帳號授權、裝置與工具風險・御策百家輔助', '查詢御策百家輔助的帳號授權、瀏覽器與手機使用、兩套產品差異、自動下注設定及停止狀態。搜尋常見問題，了解牌路分析與策略無法保證獲利。', '常見問題'),
     'contact': ('/contact', '客服中心｜LINE 操作支援與聯繫方式・御策百家輔助', '透過指定 LINE 客服聯繫御策百家輔助，取得帳號授權、連線及操作說明協助。聯繫前整理系統名稱、裝置、發生時間與錯誤截圖，請勿提供密碼。', '客服中心'),
 }
@@ -33,7 +34,7 @@ def page(route, title, description, body, label, guide_system='matrix'):
     body = scene_people.integrate(body, route.strip('/') or 'home')
     body = '\n'.join(line.rstrip() for line in body.splitlines())
     absolute = ORIGIN + route if ORIGIN and route != '/404' else ''
-    share_name = 'home' if route == '/404' else route.strip('/') or 'home'
+    share_name = 'guide' if route == '/download' else ('home' if route == '/404' else route.strip('/') or 'home')
     image = ORIGIN + '/assets/social/' + share_name + '.png' if ORIGIN else ''
     tags = ''
     if absolute:
@@ -75,8 +76,10 @@ def page(route, title, description, body, label, guide_system='matrix'):
 
 def build():
     (PUBLIC / 'pages').mkdir(exist_ok=True)
+    if (ROOT / 'sitegen/install_assets.py').is_file():
+        importlib.import_module('sitegen.install_assets').install(ROOT)
     # Complete portal replacement: only the new source is rendered.
-    css = [(ROOT / 'sitegen/portal/portal.css').read_text(), (ROOT / 'sitegen/portal/detail-polish.css').read_text(), (ROOT / 'sitegen/portal/dealers.css').read_text(), (ROOT / 'sitegen/portal/v2.css').read_text()]
+    css = [(ROOT / 'sitegen/portal/portal.css').read_text(), (ROOT / 'sitegen/portal/detail-polish.css').read_text(), (ROOT / 'sitegen/portal/dealers.css').read_text(), (ROOT / 'sitegen/portal/v2.css').read_text(), (ROOT / 'sitegen/portal/download.css').read_text()]
     minify = importlib.import_module('sitegen.css_build').minify
     # Preserve source readability; only the generated HTTP stylesheet is compressed.
     compiled_css = '\n'.join(css)
@@ -111,6 +114,6 @@ def build():
     (ROOT / 'src/assets.rs').write_text('pub static ASSETS: &[(&str, &[u8])] = &[\n' + '\n'.join(assets) + '\n];\npub static GZIP_ASSETS: &[(&str, &[u8])] = &[\n' + '\n'.join(gzip_assets) + '\n];\n')
     manifest = {str(p.relative_to(PUBLIC)):hashlib.sha256(p.read_bytes()).hexdigest() for p in PUBLIC.rglob('*') if p.is_file()}
     (ROOT / 'docs/build-manifest.json').write_text(json.dumps(manifest,indent=2) + '\n')
-    print('Built all 6 pages, 2 tutorial states, route manifest and embedded Rust asset map.')
+    print('Built all 7 pages, 2 tutorial states, route manifest and embedded Rust asset map.')
 
 if __name__ == '__main__': build()
