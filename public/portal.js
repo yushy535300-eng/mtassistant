@@ -14,7 +14,6 @@
   const drift = [2, 6, 17];
 
   document.querySelectorAll('.portal-banner, .portal-pagehead').forEach((parent, index) => {
-    if (parent.closest('.page-faq, .page-contact')) return;
     let canvas = parent.querySelector('canvas');
     if (!canvas) {
       canvas = document.createElement('canvas');
@@ -27,11 +26,11 @@
     if (!ctx) return;
     let seed = 72 + index;
     const random = () => { seed = (seed * 1664525 + 1013904223) >>> 0; return seed / 4294967296; };
-    const count = innerWidth < 641 ? 25 : 48;
+    const count = innerWidth < 641 ? 36 : 76;
     const points = Array.from({length:count}, (_, i) => ({
       x:random() * 1.7 - .85, y:random() * 1.1 - .55,
-      depth:i % 3, phase:random(), radius:.65 + random() * .55,
-      brightness:.38 + random() * .38, tint:random() > .35,
+      depth:i % 3, phase:random(), radius:.75 + random() * .75,
+      brightness:.46 + random() * .40, tint:random() > .35,
     }));
     const bounds = parent.getBoundingClientRect();
     const stage = {parent, canvas, ctx, points, width:0, height:0,
@@ -140,4 +139,132 @@
     if (launcher && !launcher.contains(event.target)) launcher.removeAttribute('open');
   });
   size(); paint(0, true); sync();
+})();
+
+
+/* V3: motion surfaces, viewport-aware video, and responsive real MT exhibits. */
+(() => {
+  'use strict';
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  const capture = new URLSearchParams(location.search).get('capture') === '1';
+  const body = document.body;
+  body.classList.add('motion-js');
+
+  document.querySelectorAll('.portal-banner,.portal-pagehead').forEach((head) => {
+    if (head.querySelector('.motion-head-lines')) return;
+    const layer = document.createElement('span');
+    layer.className = 'motion-head-lines';
+    layer.setAttribute('aria-hidden','true');
+    head.append(layer);
+  });
+  document.querySelectorAll('#main .portal-panel,#main .tool-tile,#main .guide-entry,#main .portal-shortcuts>a,#main .contact-link,#main .mt-pair-card').forEach(card => card.classList.add('motion-card'));
+
+  const reveal = Array.from(document.querySelectorAll('#main .portal-section,#main .portal-direct-tools,#main .portal-shortcuts,#main .action-strip'));
+  let revealObserver = null;
+  function revealAll() {
+    reveal.forEach(el => { el.classList.remove('motion-pending'); el.classList.add('motion-entered'); });
+  }
+  if (!reduced.matches && !capture && 'IntersectionObserver' in window) {
+    revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.remove('motion-pending');
+        entry.target.classList.add('motion-entered');
+        revealObserver.unobserve(entry.target);
+      });
+    }, {threshold:.06,rootMargin:'0px 0px 40px 0px'});
+    reveal.forEach(el => {
+      const box=el.getBoundingClientRect();
+      if (box.top > innerHeight * .90) {
+        el.classList.add('motion-pending');
+        revealObserver.observe(el);
+      } else el.classList.add('motion-entered');
+    });
+  } else revealAll();
+
+  const stages = Array.from(document.querySelectorAll('[data-mt-stage]'));
+  let stageVisible = true;
+  const video = document.querySelector('[data-mt-video]');
+  const toggle = document.querySelector('[data-mt-video-toggle]');
+  const fullscreen = document.querySelector('[data-mt-video-fullscreen]');
+  let userPaused = false;
+  let userStarted = false;
+
+  function labelVideo() {
+    if (!video || !toggle) return;
+    const playing = !video.paused && !video.ended;
+    toggle.textContent = playing ? '暫停影片' : '播放影片';
+    toggle.setAttribute('aria-pressed', String(playing));
+    toggle.setAttribute('aria-label', playing ? '暫停 MT 動態展示影片' : '播放 MT 動態展示影片');
+  }
+  function playVideo() {
+    if (!video) return;
+    const task=video.play();
+    if (task && typeof task.catch==='function') task.catch(labelVideo);
+  }
+  function syncVideo() {
+    if (!video) return;
+    if (document.hidden || !stageVisible || capture || userPaused || (reduced.matches && !userStarted)) video.pause();
+    else playVideo();
+    labelVideo();
+  }
+  if (video) {
+    video.muted = true;
+    video.controls = false;
+    const container=video.closest('[data-mt-stage]');
+    const box=container?.getBoundingClientRect();
+    stageVisible=!!box && box.bottom>0 && box.top<innerHeight;
+    video.addEventListener('play',labelVideo);
+    video.addEventListener('pause',labelVideo);
+    video.addEventListener('ended',labelVideo);
+    video.addEventListener('error',() => { video.controls=true; labelVideo(); });
+    toggle?.addEventListener('click',() => {
+      if (video.paused || video.ended) { userPaused=false; userStarted=true; playVideo(); }
+      else { userPaused=true; video.pause(); }
+      labelVideo();
+    });
+    fullscreen?.addEventListener('click',() => {
+      if (video.requestFullscreen) {
+        const task=video.requestFullscreen(); if(task?.catch) task.catch(()=>{video.controls=true;});
+      } else if (video.webkitEnterFullscreen) video.webkitEnterFullscreen();
+      else video.controls=true;
+    });
+  }
+  if ('IntersectionObserver' in window) {
+    const stageObserver=new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        entry.target.classList.toggle('mt-stage-offscreen', !entry.isIntersecting);
+        if (video && entry.target.contains(video)) {
+          stageVisible=entry.isIntersecting;
+          syncVideo();
+        }
+      });
+    }, {threshold:.12,rootMargin:'0px'});
+    stages.forEach(stage=>stageObserver.observe(stage));
+  }
+  if (matchMedia('(pointer:fine)').matches && !reduced.matches && !capture) {
+    document.querySelectorAll('.mt-cinema').forEach(card => {
+      let pending=0,x=50,y=38;
+      card.addEventListener('pointermove',event=>{
+        const b=card.getBoundingClientRect();
+        x=Math.max(0,Math.min(100,(event.clientX-b.left)/b.width*100));
+        y=Math.max(0,Math.min(100,(event.clientY-b.top)/b.height*100));
+        if(!pending) pending=requestAnimationFrame(()=>{
+          card.style.setProperty('--mt-pointer-x',x+'%');
+          card.style.setProperty('--mt-pointer-y',y+'%');
+          pending=0;
+        });
+      },{passive:true});
+      card.addEventListener('pointerleave',()=>{
+        card.style.setProperty('--mt-pointer-x','50%');
+        card.style.setProperty('--mt-pointer-y','38%');
+      });
+    });
+  }
+  reduced.addEventListener('change',()=>{
+    if(reduced.matches){revealObserver?.disconnect();revealAll();userStarted=false;}
+    syncVideo();
+  });
+  document.addEventListener('visibilitychange',syncVideo);
+  syncVideo();
 })();

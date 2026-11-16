@@ -2,6 +2,7 @@ from html import escape
 
 from ..common import AUTO, DATA, LINE, MATRIX, arrow, button, image_note, logo, screen
 import importlib
+from .motion import product_motion
 
 
 def _step_links(references):
@@ -41,6 +42,8 @@ def render():
     <a class="text-link" href="/guide?system=auto">查看自動下注教學 {arrow()}</a>
   </div>
 </section>
+
+{product_motion("auto")}
 
 <section class="portal-section" aria-labelledby="auto-settings-title">
   <div class="section-top">

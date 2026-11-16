@@ -2,6 +2,7 @@ from ..common import DATA, MATRIX, AUTO, LINE, logo, screen, button, arrow, imag
 from html import escape
 import importlib
 from .v2 import comparison, knowledge
+from .motion import home_motion
 
 BANNER_DESKTOP = '/manus-storage/async-images/5IpvgHPwOi5uABZyAx9lXZ/image-1.webp'
 BANNER_MOBILE = '/manus-storage/async-images/5IpvgHPwOi5uABZyAx9lXZ/image-2.webp'
@@ -14,6 +15,8 @@ def render():
 
 <div class="portal-direct-tools" aria-label="直接選擇工具"><a href="{MATRIX}" class="button">{logo()}多桌輔助 {arrow()}</a><a href="{AUTO}" class="button outline">{logo(True)}自動下注 {arrow()}</a></div>
 <nav class="portal-shortcuts" aria-label="首頁快速入口"><a href="/features"><span>MT MATRIX</span><b>多桌輔助</b>{arrow()}</a><a href="/auto"><span>MT AUTO</span><b>自動下注</b>{arrow()}</a><a href="/guide"><span>開始之前</span><b>操作教學</b>{arrow()}</a><a href="/contact"><span>需要協助</span><b>聯繫客服</b>{arrow()}</a></nav>
+
+{home_motion()}
 
 <section class="portal-section" id="toolbox" aria-labelledby="tools-title"><div class="section-top"><div><h2 id="tools-title">選擇你的工具</h2><p>多桌觀察與策略執行，兩套系統各自獨立。</p></div><a class="text-link" href="/guide">查看教學 {arrow()}</a></div><div class="portal-tool-grid">
 <article class="tool-tile"><div class="tool-tile-copy"><div class="product-heading">{logo()}<div><span>MT MATRIX</span><h3>多桌百家輔助</h3></div></div><p>把桌台、牌路與分析資訊集中查看。支援雷達、AI 綜合、四式算牌與終值奇偶。</p><div class="inline-actions">{button('進入系統', MATRIX)}<a href="/features" class="text-link">了解多桌功能 {arrow()}</a></div></div><div class="tool-tile-preview">{screen('matrix-assist', 'MT MATRIX 多桌百家輔助主面板')}</div></article>

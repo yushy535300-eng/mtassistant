@@ -1,15 +1,16 @@
 FROM rust:1.75-bookworm AS builder
 WORKDIR /app
-COPY Cargo.toml Cargo.lock ./
+COPY Cargo.toml Cargo.lock build.rs ./
 COPY sitegen ./sitegen
 COPY public ./public
 COPY docs ./docs
+COPY tests ./tests
 COPY build_site.py ./
 COPY src ./src
 RUN apt-get update && apt-get install -y --no-install-recommends python3 && rm -rf /var/lib/apt/lists/*
 ARG SITE_ORIGIN
 ARG ALLOW_INDEXING=false
-RUN SITE_ORIGIN="$SITE_ORIGIN" ALLOW_INDEXING="$ALLOW_INDEXING" python3 build_site.py && cargo build --release --locked
+RUN SITE_ORIGIN="$SITE_ORIGIN" ALLOW_INDEXING="$ALLOW_INDEXING" cargo build --release --locked
 
 FROM debian:bookworm-slim
 WORKDIR /app
