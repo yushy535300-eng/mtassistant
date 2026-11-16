@@ -91,3 +91,19 @@ for filename, checksum in new_cutouts.items():
     assert "/" + asset in embedded and filename in home, asset
 assert 'mt-new-dealer' not in home and 'png_style_cutout' not in home
 print("Homepage carousel: 11 source assets, five-second crossfade, intact video and installation routes OK.")
+
+# Original official ads are copied during build and served as embedded local assets.
+from sitegen.portal.ads import ASSETS, git_sha
+for name, (_, checksum) in ASSETS.items():
+    asset = "assets/scarab-ads/" + name
+    assert git_sha((PUBLIC / asset).read_bytes()) == checksum, asset
+    assert "/" + asset in embedded, asset
+for page in (home, matrix, auto, download):
+    assert 'data-ad-carousel="rail"' in page and 'data-ad-carousel="float"' in page
+    assert 'https://scarabheart.com/images/' not in page, "External artwork hotlink"
+    assert 'yc-ad-art' in page and 'class="sh-ad' not in page
+assert 'data-ad-carousel="billboard"' in home
+assert 'data-ad-carousel="content"' in matrix
+assert '.portal-rail{overflow:visible' in css
+assert 'overflow-y:auto;scrollbar-width:thin' not in css
+print("Local official Scarab Heart ads and responsive non-scrolling navigation OK.")

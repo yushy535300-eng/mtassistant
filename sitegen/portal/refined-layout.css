@@ -1,0 +1,70 @@
+/* Restrained, localized refinement of the original graphite/rose site. */
+body{background:#17151c}
+.portal-main{background:radial-gradient(ellipse at 94% 0,#62443425,transparent 34%),radial-gradient(ellipse at 3% 52%,#703c5220,transparent 36%),#19171f}
+.portal-banner .banner-art img{filter:brightness(1.13) saturate(1.06)}
+.portal-banner.has-scene-person::before{background:linear-gradient(90deg,#19131cf8 0%,#1d1520e0 32%,#241a255f 64%,#241a2508 100%)}
+.portal-banner .banner-light{inset:0;z-index:-2;opacity:.78;transform:none;background:radial-gradient(ellipse at 78% 15%,#ffd5a34d,transparent 47%),radial-gradient(ellipse at 79% 94%,#e85d9445,transparent 46%);animation:yc-light 8s ease-in-out infinite alternate}
+@keyframes yc-light{from{opacity:.44;transform:scale(1)}to{opacity:.94;transform:scale(1.045)}}
+.portal-banner.has-scene-person{border-color:#9c687b;box-shadow:0 15px 40px #09060f55,0 0 24px #b66f891c}
+.banner-label{color:#edc8aa!important}
+.banner-copy h1{color:#fff6f0;text-shadow:0 2px 18px #160b1b85}
+.portal-banner.has-scene-person>.mt-dealer-rotation{filter:drop-shadow(0 10px 17px #100a1655) drop-shadow(0 0 10px #d9967820)}
+.portal-section,.page-home .portal-home>.portal-section{margin-top:clamp(32px,3.5vw,49px)}
+.section-top h2{color:#fff6f8}.section-top .kicker{color:#e4bc9a}
+.section-top p,.section-top>div>p:not(.kicker){color:#d4c9d6;line-height:1.75}
+.portal-panel,.guide-entry,.contact-link{background:linear-gradient(145deg,#2b2731,#232129 75%);border-color:#594752}
+.portal-shortcuts{border-color:#56434e;background:#26222b}
+.portal-shortcuts a:nth-child(1) span{color:#8ed3d4}
+.portal-shortcuts a:nth-child(2) span{color:#cdb4ea}
+.portal-shortcuts a:nth-child(3) span{color:#eac39b}
+.portal-shortcuts a:nth-child(4) span{color:#efadcb}
+.page-home .tool-tile{background:radial-gradient(ellipse at 90% 0,#4f9eaa22,transparent 56%),linear-gradient(145deg,#2b3035,#25242c);border-color:#55757b}
+.page-home .tool-tile.auto{background:radial-gradient(ellipse at 90% 0,#c283a62b,transparent 56%),linear-gradient(145deg,#352c38,#28242d);border-color:#805b70}
+.page-home .tool-tile .product-heading span{color:#a8d7d9}
+.page-home .tool-tile.auto .product-heading span{color:#e6b4d0}
+.page-home .tool-tile-preview .screen{border-color:#8a9ca266;box-shadow:0 8px 20px #0c08142e}
+.portal-pagehead{border-color:#8c6073}
+.page-features .portal-pagehead{background:radial-gradient(ellipse at 78% 15%,#7bb5c144,transparent 60%),linear-gradient(115deg,#302a33,#222c35 70%,#3d454e)}
+.page-auto .portal-pagehead{background:radial-gradient(ellipse at 78% 15%,#ca719947,transparent 60%),linear-gradient(115deg,#362530,#29232d 70%,#593a4b)}
+.portal-pagehead::after{background:radial-gradient(ellipse,#f7c9a538,transparent 68%);width:54%;height:150%;top:-25%;right:-8%;transform:none;animation:yc-head-light 8s ease-in-out infinite alternate;z-index:0}
+@keyframes yc-head-light{from{opacity:.45;transform:translateX(-5%)}to{opacity:.9;transform:translateX(6%)}}
+.motion-paused .portal-banner .banner-light,.motion-paused .portal-pagehead::after,.stage-offscreen .banner-light,.stage-offscreen::after{animation-play-state:paused}
+@media(prefers-reduced-motion:reduce){.portal-banner .banner-light,.portal-pagehead::after{animation:none!important}}
+/* Desktop rail: no independent scroller. Fit the entire navigation, support and ad. */
+@media(min-width:981px){
+.portal-rail{overflow:visible;scrollbar-width:auto;padding:clamp(10px,2vh,20px) 12px 10px;gap:0}
+.portal-rail>.portal-brand{flex:none;padding:0 4px clamp(8px,1.6vh,19px);gap:8px}
+.portal-rail>.portal-brand .product-logo{width:34px;height:34px}
+.portal-rail>.rail-label{flex:none;padding:5px 9px;line-height:1.35}
+.portal-rail>nav{flex:none;gap:clamp(2px,.35vh,5px)}
+.portal-rail>nav>a{min-height:clamp(34px,5.25vh,46px);padding:5px 10px;font-size:13px;line-height:1.35;gap:9px}
+.portal-rail>nav>a svg{width:18px;height:18px}
+.portal-rail>.rail-support{flex:none;margin:clamp(8px,1.6vh,17px) 2px 8px;padding:9px 10px}
+.portal-rail .support-icon{display:none}
+.portal-rail>.rail-support strong{font-size:12px;line-height:1.4}
+.portal-rail>.rail-support p{font-size:11px;line-height:1.4;margin:3px 0 5px}
+.portal-rail>.rail-support .rail-contact[data-line-link]{min-height:34px;margin:6px 0 0;padding:5px 8px;font-size:12px;line-height:1.3}
+.portal-rail>.rail-foot{flex:none;margin-top:auto;padding:7px 5px 0;font-size:10px;line-height:1.35}
+.portal-rail>.rail-foot span{margin:2px 0 0}
+}
+@media(min-width:981px) and (max-height:730px){
+.portal-rail{padding:10px 10px 7px}
+.portal-rail>.portal-brand{padding-bottom:8px}.portal-rail>.portal-brand .product-logo{width:29px;height:29px}
+.portal-rail>.portal-brand b{font-size:14px}.portal-rail>.portal-brand small{font-size:9px;margin-top:1px}
+.portal-rail>nav{gap:2px}.portal-rail>nav>a{min-height:33px;padding:4px 8px}
+.portal-rail>.rail-support{margin:6px 1px 6px;padding:7px 8px}
+.portal-rail>.rail-support p{margin:2px 0 3px;font-size:10px}
+.portal-rail>.rail-support .rail-contact[data-line-link]{min-height:32px;margin-top:4px}
+}
+@media(min-width:981px) and (max-height:580px){
+.portal-rail{padding:8px 9px 6px}
+.portal-rail>nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2px}
+.portal-rail>nav>a{min-height:31px;font-size:11px;padding:4px 3px;gap:3px;white-space:nowrap}
+.portal-rail>nav>a svg{width:14px;height:14px}
+.portal-rail>.rail-support{padding:5px 7px;margin:5px 0}
+.portal-rail>.rail-support p{margin:0;font-size:10px}
+.portal-rail>.rail-support .rail-contact[data-line-link]{min-height:28px;margin-top:3px}
+.portal-rail>.rail-foot{font-size:9px;padding:4px 2px 0}
+}
+@media(min-width:981px) and (max-height:365px){.portal-rail{position:absolute;bottom:auto;min-height:100vh}.portal-rail>.rail-foot{margin-top:8px}}
+@media(max-width:640px){.portal-section,.page-home .portal-home>.portal-section{margin-top:30px}.portal-banner.has-scene-person::before{background:linear-gradient(90deg,#201721f2,#291e2b9a 53%,#241a2510)}}

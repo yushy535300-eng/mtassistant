@@ -4,6 +4,7 @@ import importlib
 from .v2 import comparison, knowledge
 from .dealers import person
 from .motion import home_videos
+from .ads import carousel as scarab_ad
 
 BANNER_DESKTOP = '/manus-storage/async-images/5IpvgHPwOi5uABZyAx9lXZ/image-1.webp'
 BANNER_MOBILE = '/manus-storage/async-images/5IpvgHPwOi5uABZyAx9lXZ/image-2.webp'
@@ -22,6 +23,7 @@ def render():
 <article class="tool-tile"><div class="tool-tile-copy"><div class="product-heading">{logo()}<div><span>MT MATRIX</span><h3>多桌百家輔助</h3></div></div><p>把桌台、牌路與分析資訊集中查看。支援雷達、AI 綜合、四式算牌與終值奇偶。</p><div class="inline-actions">{button('進入系統', MATRIX)}<a href="/features" class="text-link">了解多桌功能 {arrow()}</a></div></div><div class="tool-tile-preview">{screen('matrix-assist', 'MT MATRIX 多桌百家輔助主面板')}</div></article>
 <article class="tool-tile auto"><div class="tool-tile-copy"><div class="product-heading">{logo(True)}<div><span>MT AUTO</span><h3>百家自動下注</h3></div></div><p>確認配注策略、金額與停止條件，再查看執行狀態與紀錄。</p><div class="inline-actions">{button('進入系統', AUTO)}<a href="/auto" class="text-link">了解設定流程 {arrow()}</a></div></div><div class="tool-tile-preview">{screen('auto-running', 'MT AUTO 自動下注執行面板')}</div></article>
 </div></section>
+{scarab_ad('billboard', 0)}
 {home_videos()}
 {comparison()}
 
