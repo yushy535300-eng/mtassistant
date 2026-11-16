@@ -5,9 +5,9 @@ from ..common import asset_url
 
 PUBLIC = Path(__file__).resolve().parents[2] / 'public'
 PAGE_PERSON = {
-    'home': 'live6',
-    'features': 'live3',
-    'auto': 'live4',
+    'home': 'mt-real-01',
+    'features': 'mt-real-02',
+    'auto': 'mt-real-01',
     'guide': 'live5',
     'faq': 'live1',
     'contact': 'live2',
@@ -22,10 +22,15 @@ def person(name, location='hero', eager=False):
     for path in (full, mobile):
         if not (PUBLIC / path.lstrip('/')).is_file():
             raise FileNotFoundError('Transparent scene asset is not ready: ' + path)
+    sizes = {'mt-real-01': (415, 575), 'mt-real-02': (510, 545)}
+    width, height = sizes.get(name, (626, 626))
+    klass = 'brand-person' if location == 'brand' else f'scene-person scene-person-{location}'
+    if name in sizes:
+        klass += ' mt-original-dealer'
     return (
-        f'<picture class="scene-person scene-person-{location}" aria-hidden="true">'
+        f'<picture class="{klass}" aria-hidden="true">'
         f'<source media="(max-width:640px)" srcset="{asset_url(mobile)}">'
-        f'<img src="{asset_url(full)}" width="626" height="626" alt="" '
+        f'<img src="{asset_url(full)}" width="{width}" height="{height}" alt="" '
         f'aria-hidden="true" loading="{"eager" if eager else "lazy"}" '
         f'decoding="async" fetchpriority="low"></picture>'
     )

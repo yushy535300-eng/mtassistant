@@ -1,41 +1,13 @@
-/* V3.1: original screenshots, restrained premium motion, no fake live overlays. */
+/* MT original dealer cutouts: no separate photo gallery, video frames, or game UI showcase. */
 :root{--mt-rose:#e987b4;--mt-stroke:#624356}
 .portal-main{position:relative}
 .portal-banner,.portal-pagehead{border-color:#6b4359;box-shadow:0 14px 36px #09060d48}
 .portal-banner .banner-light{opacity:.65}
-.mt-motion-stage,.mt-product-scene{position:relative}
-.mt-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start}
-.mt-real-figure{margin:0;min-width:0;overflow:hidden;border:1px solid var(--mt-stroke);border-radius:13px;background:#1b1922;box-shadow:0 8px 24px #08060c38}
-.mt-real-shot{display:block;overflow:hidden;background:#101117;cursor:zoom-in}
-.mt-real-shot picture,.mt-real-shot img{display:block;width:100%;height:auto}
-.mt-real-shot img{object-fit:contain;filter:none;transform:none}
-.mt-real-figure figcaption{padding:12px 15px;display:flex;align-items:center;justify-content:space-between;gap:12px;color:#e9dfe8;font-size:13px;line-height:1.5}
-.mt-real-figure figcaption a{font-size:12px;color:#f0a4c9;white-space:nowrap}
-.mt-real-figure:focus-within{outline:2px solid var(--mt-rose);outline-offset:3px}
-.mt-video-details{margin-top:14px;border:1px solid #473746;border-radius:12px;background:#201c25;overflow:hidden}
-.mt-video-details summary{padding:14px 18px;min-height:52px;display:flex;align-items:center;gap:10px;cursor:pointer;list-style:none;color:#f3e7ee}
-.mt-video-details summary::-webkit-details-marker{display:none}
-.mt-video-details summary>span{color:var(--mt-rose);font-size:15px}
-.mt-video-details summary strong{font-size:14px;font-weight:500}
-.mt-video-details summary small{margin-left:auto;color:#c4b5c7;font-size:12px}
-.mt-video-details video{display:block;width:100%;max-height:520px;object-fit:contain;background:#0c0d12}
-.mt-video-details>p{padding:10px 16px;font-size:12px;color:#c0b5c5}
-.mt-product-layout{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);align-items:center;gap:26px;padding:18px;border:1px solid #513b4a;border-radius:15px;background:linear-gradient(135deg,#2a202c,#1b1b25)}
-.mt-product-copy{padding:8px 12px;min-width:0}
-.mt-product-copy h2{font-size:clamp(21px,2vw,30px);line-height:1.35;margin:9px 0 13px}
-.mt-product-copy p:not(.kicker){font-size:14px;line-height:1.9}
-.mt-product-copy .text-link{margin-top:15px;display:inline-flex}
-@media(pointer:fine){.mt-real-figure{transition:border-color .2s,box-shadow .2s}.mt-real-figure:hover{border-color:#d08bb0;box-shadow:0 10px 28px #08060c65}.portal-shortcuts a,.tool-tile,.button{transition:box-shadow .2s,border-color .2s}.portal-shortcuts a:hover,.tool-tile:hover{border-color:#b26c92;box-shadow:0 0 16px #d35d9020}}
-@media(max-width:640px){.mt-gallery{grid-template-columns:1fr;gap:12px}.mt-real-figure{border-radius:11px}.mt-real-figure figcaption{padding:10px 12px;font-size:12px}.mt-product-layout{grid-template-columns:1fr;gap:12px;padding:12px}.mt-product-copy{padding:4px}.mt-product-copy h2{font-size:22px}.mt-video-details summary{padding:12px}}
-@media(prefers-reduced-motion:reduce){.mt-real-figure,.portal-shortcuts a,.tool-tile,.button{transition:none!important}}
-
-/* Actual mobile recordings — clean charcoal/rose framing, no fake HUD. */
-.mt-recording{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:26px;align-items:center;margin-top:18px;padding:18px;border:1px solid #604457;border-radius:15px;background:linear-gradient(135deg,#28212d,#1c1b24 68%);box-shadow:0 9px 26px #09060c38}
-.mt-recording-media{display:flex;align-items:center;justify-content:center;min-width:0;min-height:0;background:#0c0d12;border:1px solid #4c364a;border-radius:12px;overflow:hidden;padding:8px}
-.mt-recording-media video{display:block;width:auto;max-width:100%;height:auto;max-height:420px;aspect-ratio:var(--recording-ratio);object-fit:contain;background:#0c0d12;border-radius:7px}
-.mt-recording-copy{min-width:0;padding:8px 14px}
-.mt-recording-copy h3{font-size:clamp(19px,2vw,26px);line-height:1.4;margin:10px 0 12px;color:#f7edf4}
-.mt-recording-copy p:not(.kicker){font-size:14px;line-height:1.8;color:#d3c9d5}
-.mt-recording-duration{display:block;margin:15px 0 7px;color:#bca9ba;font-size:12px}
-.mt-recording-copy .text-link{display:inline-flex;margin-top:10px}
-@media(max-width:640px){.mt-recording{grid-template-columns:1fr;gap:12px;padding:12px;margin-top:14px;border-radius:12px}.mt-recording-media video{max-height:410px}.mt-recording-copy{padding:5px 4px}.mt-recording-copy h3{font-size:19px}.mt-recording-copy p:not(.kicker){font-size:13px}}
+.scene-person.mt-original-dealer{filter:drop-shadow(0 10px 17px #0a07164d)}
+.scene-person.mt-original-dealer img{width:100%;height:auto;aspect-ratio:1;object-fit:contain;background:transparent}
+.scene-person.mt-original-dealer::before{background:radial-gradient(ellipse at 50% 75%,#b6438028,transparent 69%)}
+.brand-person.mt-original-dealer{width:198px;left:6px;bottom:-4px}
+.brand-person.mt-original-dealer img{display:block;width:100%;height:auto;object-fit:contain;background:transparent}
+@media(pointer:fine){.portal-shortcuts a,.tool-tile,.button{transition:box-shadow .2s,border-color .2s}.portal-shortcuts a:hover,.tool-tile:hover{border-color:#b26c92;box-shadow:0 0 16px #d35d9020}}
+@media(max-width:640px){.brand-person.mt-original-dealer{width:153px;left:-22px;bottom:0}.scene-person.mt-original-dealer{filter:drop-shadow(0 5px 10px #0a071635)}}
+@media(prefers-reduced-motion:reduce){.portal-shortcuts a,.tool-tile,.button{transition:none!important}}

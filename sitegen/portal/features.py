@@ -11,7 +11,6 @@ from ..common import (
     screen,
 )
 import importlib
-from .motion import product_motion
 
 
 def _link(label, url):
@@ -51,7 +50,6 @@ def render():
     </div>
   </section>
 
-  {product_motion("matrix")}
 
   <section class="portal-section" aria-labelledby="matrix-map-title">
     <div class="section-top">

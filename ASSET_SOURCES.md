@@ -21,3 +21,8 @@
 來源HTML的圖片alt、MT介紹標題已實際讀取對照，證據在`docs/MT_NEW_ASSET_CANDIDATES.md`、`docs/MT_SOURCE_OBSERVATION.md`。第三方Game+的MT標示不等於獨立官方身份驗證、御策代言、商用或肖像授權；這些仍未確認，正式商用前需取得許可或替換成使用者已授權素材。不導入其他代理、優惠、登入或遊戲入口。`mt-feature.webp`未使用，因無法確認其真人現場身份或排除合成。
 
 之前QIFZssPyOpL8IvxDiTwerQ的非人物牌桌／策略圖、極光和JZABzlVPZyUJo85Q8Hz3Lx的另套美術，以及旧的六人原圖輪播，均為歷史設計資料，不是本輪正在呈現的主視覺；不能拿舊資產說明或舊截圖當最新。所有用到的圖片都包含在自包含public資產中，正常建置不需要金鑰、下載外網或額外付費服務。
+
+
+## MT original dealer foregrounds — 2026-11-16
+
+The two user-supplied MT game screenshots were cropped and alpha-matted to retain only the original dealer subjects. Face, pose and clothing pixels are retained from the source; no synthetic replacement was used. The four desktop/mobile WebP files under `public/assets/dealers/mt-real-0*-cutout*.webp` have transparent backgrounds. The full-table screenshot and recording exhibition has been removed from the visible website; the original source media remain archived in `public/assets/mt-real/`.
