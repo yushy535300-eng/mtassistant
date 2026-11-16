@@ -102,19 +102,19 @@ if _published_manifest.exists():
 # External editorial photographs are sourced from specific Wikimedia Commons file pages.
 # Keep their attribution visible in article pages; product manuals retain real interface shots.
 PHOTO_ASSETS = {
-    "baccarat-basics": ("https://commons.wikimedia.org/wiki/Special:FilePath/Playing_Cards.JPG?width=960", "https://commons.wikimedia.org/wiki/File:Playing_Cards.JPG", "Imager Visioner", "Public domain"),
-    "banker-player-tie": ("https://commons.wikimedia.org/wiki/Special:FilePath/King_playing_card_and_casino_tokens_01.jpg?width=960", "https://commons.wikimedia.org/wiki/File:King_playing_card_and_casino_tokens_01.jpg", "victor vic", "CC BY-SA 2.0"),
-    "roadmap-explained": ("https://commons.wikimedia.org/wiki/Special:FilePath/Poker_in_a_casino_table.jpg?width=960", "https://commons.wikimedia.org/wiki/File:Poker_in_a_casino_table.jpg", "Antoine Taveneaux", "CC BY-SA 3.0"),
-    "streaks-and-misconceptions": ("https://commons.wikimedia.org/wiki/Special:FilePath/Playing_Cards.jpg?width=960", "https://commons.wikimedia.org/wiki/File:Playing_Cards.jpg", "Riles32807", "Public domain"),
-    "multi-table-overview": ("https://commons.wikimedia.org/wiki/Special:FilePath/Norwegian_Dawn_casino_1.JPG?width=960", "https://commons.wikimedia.org/wiki/File:Norwegian_Dawn_casino_1.JPG", "Wikimedia Commons contributor", "See file page"),
-    "baccarat-odds-basics": ("https://commons.wikimedia.org/wiki/Special:FilePath/Poker_Chips_with_Cards_and_Dice_(51803864625).jpg?width=960", "https://commons.wikimedia.org/wiki/File:Poker_Chips_with_Cards_and_Dice_(51803864625).jpg", "slgckgc", "CC BY 2.0"),
-    "responsible-limits": ("https://commons.wikimedia.org/wiki/Special:FilePath/CasinoChips.jpg?width=960", "https://commons.wikimedia.org/wiki/File:CasinoChips.jpg", "VegasCasinoKid", "CC BY-SA 3.0"),
-    "live-vs-online-baccarat": ("https://commons.wikimedia.org/wiki/Special:FilePath/King_playing_card_and_casino_tokens_02.jpg?width=960", "https://commons.wikimedia.org/wiki/File:King_playing_card_and_casino_tokens_02.jpg", "victor vic", "CC BY-SA 2.0"),
-    "baccarat-natural-eight-nine": ("https://commons.wikimedia.org/wiki/Special:FilePath/Cards_and_cash.jpg?width=960", "https://commons.wikimedia.org/wiki/File:Cards_and_cash.jpg", "Pixabay", "See file page"),
-    "baccarat-commission-variants": ("https://commons.wikimedia.org/wiki/Special:FilePath/CasinoCards.jpg?width=960", "https://commons.wikimedia.org/wiki/File:CasinoCards.jpg", "Wikimedia Commons contributors", "See file page"),
-    "baccarat-record-reading": ("https://commons.wikimedia.org/wiki/Special:FilePath/Gambling_chips.jpg?width=960", "https://commons.wikimedia.org/wiki/File:Gambling_chips.jpg", "Jamie Adams", "See file page"),
-    "baccarat-mobile-checklist": ("https://commons.wikimedia.org/wiki/Special:FilePath/Playing_Cards.JPG?width=960", "https://commons.wikimedia.org/wiki/File:Playing_Cards.JPG", "Imager Visioner", "Public domain"),
-}
+    "baccarat-basics": ("https://commons.wikimedia.org/wiki/Special:FilePath/BaccaratTables-Casino-MarinaBaySands-Singapore-20100507.jpg?width=960", "https://commons.wikimedia.org/wiki/File:BaccaratTables-Casino-MarinaBaySands-Singapore-20100507.jpg", "Wikimedia Commons（請見來源頁）", "授權條款見來源頁"),
+    "banker-player-tie": ("https://commons.wikimedia.org/wiki/Special:FilePath/King_playing_card_and_casino_tokens_01.jpg?width=960", "https://commons.wikimedia.org/wiki/File:King_playing_card_and_casino_tokens_01.jpg", "Wikimedia Commons（請見來源頁）", "授權條款見來源頁"),
+    "roadmap-explained": ("https://commons.wikimedia.org/wiki/Special:FilePath/Kartenschlitten.jpg?width=960", "https://commons.wikimedia.org/wiki/File:Kartenschlitten.jpg", "Wikimedia Commons（請見來源頁）", "授權條款見來源頁"),
+    "streaks-and-misconceptions": ("https://commons.wikimedia.org/wiki/Special:FilePath/Playing_Cards.JPG?width=960", "https://commons.wikimedia.org/wiki/File:Playing_Cards.JPG", "Wikimedia Commons（請見來源頁）", "授權條款見來源頁"),
+    "multi-table-overview": ("https://commons.wikimedia.org/wiki/Special:FilePath/Norwegian_Dawn_casino_1.JPG?width=960", "https://commons.wikimedia.org/wiki/File:Norwegian_Dawn_casino_1.JPG", "Wikimedia Commons（請見來源頁）", "授權條款見來源頁"),
+    "baccarat-odds-basics": ("https://commons.wikimedia.org/wiki/Special:FilePath/CasinoCards.jpg?width=960", "https://commons.wikimedia.org/wiki/File:CasinoCards.jpg", "Wikimedia Commons（請見來源頁）", "授權條款見來源頁"),
+    "responsible-limits": ("https://commons.wikimedia.org/wiki/Special:FilePath/Trente_et_Quarante_table_(dealer's_view).jpg?width=960", "https://commons.wikimedia.org/wiki/File:Trente_et_Quarante_table_(dealer's_view).jpg", "Wikimedia Commons（請見來源頁）", "授權條款見來源頁"),
+    "live-vs-online-baccarat": ("https://commons.wikimedia.org/wiki/Special:FilePath/Casino_for_you.jpg?width=960", "https://commons.wikimedia.org/wiki/File:Casino_for_you.jpg", "Wikimedia Commons（請見來源頁）", "授權條款見來源頁"),
+    "baccarat-natural-eight-nine": ("https://commons.wikimedia.org/wiki/Special:FilePath/Baccara_Palette.jpg?width=960", "https://commons.wikimedia.org/wiki/File:Baccara_Palette.jpg", "Wikimedia Commons（請見來源頁）", "授權條款見來源頁"),
+    "baccarat-commission-variants": ("https://commons.wikimedia.org/wiki/Special:FilePath/King_playing_card_and_casino_tokens_02.jpg?width=960", "https://commons.wikimedia.org/wiki/File:King_playing_card_and_casino_tokens_02.jpg", "Wikimedia Commons（請見來源頁）", "授權條款見來源頁"),
+    "baccarat-record-reading": ("https://commons.wikimedia.org/wiki/Special:FilePath/BaccaratTables-Casino-MarinaBaySands-Singapore-20100507.jpg?width=960", "https://commons.wikimedia.org/wiki/File:BaccaratTables-Casino-MarinaBaySands-Singapore-20100507.jpg", "Wikimedia Commons（請見來源頁）", "授權條款見來源頁"),
+    "baccarat-mobile-checklist": ("https://commons.wikimedia.org/wiki/Special:FilePath/MC_%E6%BE%B3%E9%96%80%E9%87%91%E6%B2%99_Sands_Macao_Casino_interior_%E7%99%BE%E5%AE%B6%E6%A8%82_Baccarate_cards_gamble_machine_terminals_dispaly_system_November_2016_Lnv_01.jpg?width=960", "https://commons.wikimedia.org/wiki/File:MC_%E6%BE%B3%E9%96%80%E9%87%91%E6%B2%99_Sands_Macao_Casino_interior_%E7%99%BE%E5%AE%B6%E6%A8%82_Baccarate_cards_gamble_machine_terminals_dispaly_system_November_2016_Lnv_01.jpg", "Wikimedia Commons（請見來源頁）", "授權條款見來源頁"),
+
 def editorial_image(a):
     source = PHOTO_ASSETS.get(a['slug'])
     if source:
