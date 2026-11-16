@@ -1,7 +1,8 @@
 from ..common import MATRIX, AUTO, LINE, THREADS, logo, arrow
 
-ROUTES = [('/', '首頁', 'home'), ('/features', '多桌輔助', 'layers'), ('/auto', '自動下注', 'play'), ('/guide', '操作教學', 'book'), ('/faq', '常見問題', 'help'), ('/contact', '客服中心', 'chat')]
+ROUTES = [('/', '首頁', 'home'), ('/features', '多桌輔助', 'layers'), ('/auto', '自動下注', 'play'), ('/guide', '操作教學', 'book'), ('/guide#download-install', '下載安裝', 'download'), ('/faq', '常見問題', 'help'), ('/contact', '客服中心', 'chat')]
 ICONS = {
+    'download': '<path d="M13 3v14m-6-6 6 6 6-6M4 19v5h18v-5"/>',
     'home': '<path d="M3 10 12 3l9 7v11h-6v-7H9v7H3z"/>',
     'layers': '<path d="m12 3 10 6-10 6L2 9zM2 14l10 6 10-6M2 19l10 6 10-6"/>',
     'play': '<rect x="3" y="3" width="18" height="18" rx="4"/><path d="m10 8 6 4-6 4z"/>',
@@ -24,7 +25,7 @@ def sidebar(route):
 
 
 def header(route):
-    tabs = ''.join(f'<a href="{url}" {"aria-current=page" if route == url else ""}>{label}</a>' for url, label, _ in ROUTES[:5])
+    tabs = ''.join(f'<a href="{url}" {"aria-current=page" if route == url else ""}>{label}</a>' for url, label, _ in ROUTES[:6])
     return f'''<a class="skip-link" href="#main">跳至主要內容</a><header class="portal-topbar" id="header"><div class="topbar-left"><button id="menuToggle" class="menu-toggle" aria-label="開啟選單" aria-controls="mobileNav" aria-expanded="false" type="button"><span></span><span></span><span></span></button><a class="mobile-brand" href="/">{logo()}<b>御策百家輔助</b></a><span class="topbar-caption">百家輔助 · 工具與操作支援</span></div><div class="topbar-actions"><a class="topbar-help" href="{LINE}">{icon('chat')}<span>LINE 客服</span></a><details class="launch-menu"><summary>工具入口 {arrow()}</summary><div><a href="{MATRIX}">{logo()}<span><b>MT MATRIX</b><small>多桌百家輔助</small></span>{arrow()}</a><a href="{AUTO}">{logo(True)}<span><b>MT AUTO</b><small>百家自動下注</small></span>{arrow()}</a></div></details></div><nav id="mobileNav" class="mobile-nav" aria-label="手機選單" hidden>{navlinks(route)}<a href="{LINE}">{icon('chat')}<span>LINE 客服</span></a></nav></header><nav class="portal-category" aria-label="快捷分類">{tabs}</nav>'''
 
 
