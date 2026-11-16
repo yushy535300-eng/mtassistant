@@ -14,8 +14,11 @@ PAGE_PERSON = {
 }
 
 
+HOME_DEALERS = ('mt-real-01', 'mt-real-02', 'live1', 'live2', 'live3', 'live4', 'live5', 'live6')
+
+
 def person(name, location='hero', eager=False):
-    if name not in PAGE_PERSON.values():
+    if name not in HOME_DEALERS:
         raise ValueError('Unknown scene asset')
     full = f'/assets/dealers/{name}-cutout.webp'
     mobile = f'/assets/dealers/{name}-cutout-mobile.webp'
@@ -57,7 +60,7 @@ def integrate(body, page):
         raise ValueError('Existing scene cannot be decorated: ' + page)
     foreground = person(PAGE_PERSON[page], page, eager=True)
     if page == 'home':
-        slides = ''.join(person(name, page, eager=True) for name in ('mt-real-01', 'mt-real-02'))
+        slides = ''.join(person(name, page, eager=True) for name in HOME_DEALERS)
         foreground = '<div class="scene-person scene-person-home mt-dealer-rotation" aria-hidden="true" data-dealer-rotation>' + slides + '</div>'
         return head + foreground + body[end:]
     # The first div is the existing title/description, never the action group.
