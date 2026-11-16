@@ -87,3 +87,13 @@
  .yc-ad-open{display:none!important}
 }
 @media(prefers-reduced-motion:reduce){.yc-ad-art[data-active],.yc-ad-flare,.yc-ad-halo{animation:none!important;transition:none!important}}
+
+/* User-approved Egyptian temple original. Keep all ad slot heights unchanged.
+   The portrait source remains fully visible and is never zoom-cropped. */
+@media(max-width:640px){
+ .yc-ad-slot-billboard .yc-ad-scene,.yc-ad-slot-content .yc-ad-scene{
+  background-image:linear-gradient(0deg,rgba(5,11,17,.92),rgba(7,14,21,.20)),url('/assets/scarab-ads/temple-mobile.webp');
+  background-color:#07111b;background-position:center,center;background-repeat:no-repeat;background-size:100% 100%,contain;opacity:1;
+ }
+ .yc-ad-slot-billboard .yc-ad-art,.yc-ad-slot-content .yc-ad-art{background-color:#07111b}
+}
