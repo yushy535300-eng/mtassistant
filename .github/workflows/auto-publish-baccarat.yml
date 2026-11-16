@@ -1,0 +1,39 @@
+name: Publish scheduled baccarat article
+on:
+  schedule:
+    # Every Wednesday 10:17 Asia/Taipei (UTC+8).
+    - cron: '17 2 * * 3'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: baccarat-editorial-publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Publish only vetted due posts
+        run: python scripts/publish_editorial.py
+      - name: Validate new article manifests
+        run: python -m json.tool sitegen/portal/editorial_published.json > /dev/null
+      - name: Commit changes when there is a new release
+        run: |
+          if git diff --quiet -- sitegen/portal/editorial_published.json; then
+            echo "No due article to publish."
+            exit 0
+          fi
+          git config user.name "yuce-editorial-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add sitegen/portal/editorial_published.json
+          git commit -m "Publish scheduled baccarat article"
+          git push
