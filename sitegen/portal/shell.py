@@ -17,26 +17,32 @@ def icon(name):
     return '<svg viewBox="0 0 26 28" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + ICONS[name] + '</svg>'
 
 
+# Unmodified LINE app trademark asset (source: LINE Corporation; hosted on Wikimedia Commons).
+# Official branding reference: https://www.line.me/en/logo
+def line_brand_icon():
+    return '<img class="line-official-icon" src="https://upload.wikimedia.org/wikipedia/commons/4/41/LINE_logo.svg" width="24" height="24" alt="" loading="lazy" decoding="async">'
+
+
 def navlinks(route, mobile=False):
     return ''.join(f'<a href="{url}" {"aria-current=page" if (route == url or (url == "/articles" and route.startswith("/articles/"))) else ""}>{icon(mark)}<span>{label}</span></a>' for url, label, mark in ROUTES)
 
 
 def sidebar(route):
-    return f'''<aside class="portal-rail" aria-label="網站導航"><a class="portal-brand" href="/">{logo()}<span><b>御策百家輔助</b><small>YUCE ASSIST</small></span></a><p class="rail-label">探索與操作</p><nav aria-label="主要導覽">{navlinks(route)}</nav><div class="rail-support"><span class="support-icon">{icon('chat')}</span><strong>需要操作協助？</strong><p>查看教學，或直接聯繫客服。</p><a href="{LINE}" class="rail-contact">LINE 客服 {arrow()}</a></div>{scarab_ad("rail", 2) if route != "/404" else ""}<div class="rail-foot"><span>兩套工具，各自獨立。</span><span>分析僅供輔助，請理性使用。</span></div></aside>'''
+    return f'''<aside class="portal-rail" aria-label="網站導航"><a class="portal-brand" href="/">{logo()}<span><b>御策百家輔助</b><small>YUCE ASSIST</small></span></a><p class="rail-label">探索與操作</p><nav aria-label="主要導覽">{navlinks(route)}</nav><div class="rail-support"><span class="support-icon">{icon('chat')}</span><strong>需要操作協助？</strong><p>查看教學，或直接聯繫客服。</p><a href="{LINE}" class="rail-contact">{line_brand_icon()}LINE 客服 {arrow()}</a></div>{scarab_ad("rail", 2) if route != "/404" else ""}<div class="rail-foot"><span>兩套工具，各自獨立。</span><span>分析僅供輔助，請理性使用。</span></div></aside>'''
 
 
 def header(route):
     tabs = ''.join(f'<a href="{url}" {"aria-current=page" if (route == url or (url == "/articles" and route.startswith("/articles/"))) else ""}>{label}</a>' for url, label, _ in ROUTES[:7])
-    return f'''<a class="skip-link" href="#main">跳至主要內容</a><header class="portal-topbar" id="header"><div class="topbar-left"><button id="menuToggle" class="menu-toggle" aria-label="開啟選單" aria-controls="mobileNav" aria-expanded="false" type="button"><span></span><span></span><span></span></button><a class="mobile-brand" href="/">{logo()}<b>御策百家輔助</b></a><span class="topbar-caption">百家輔助 · 工具與操作支援</span></div><div class="topbar-actions"><a class="topbar-help" href="{LINE}">{icon('chat')}<span>LINE 客服</span></a><details class="launch-menu"><summary>工具入口 {arrow()}</summary><div><a href="{MATRIX}">{logo()}<span><b>MT MATRIX</b><small>多桌百家輔助</small></span>{arrow()}</a><a href="{AUTO}">{logo(True)}<span><b>MT AUTO</b><small>百家自動下注</small></span>{arrow()}</a></div></details></div><nav id="mobileNav" class="mobile-nav" aria-label="手機選單" hidden>{navlinks(route)}<a href="{LINE}">{icon('chat')}<span>LINE 客服</span></a></nav></header><nav class="portal-category" aria-label="快捷分類">{tabs}</nav>'''
+    return f'''<a class="skip-link" href="#main">跳至主要內容</a><header class="portal-topbar" id="header"><div class="topbar-left"><button id="menuToggle" class="menu-toggle" aria-label="開啟選單" aria-controls="mobileNav" aria-expanded="false" type="button"><span></span><span></span><span></span></button><a class="mobile-brand" href="/">{logo()}<b>御策百家輔助</b></a><span class="topbar-caption">百家輔助 · 工具與操作支援</span></div><div class="topbar-actions"><a class="topbar-help" href="{LINE}">{line_brand_icon()}<span>LINE 客服</span></a><details class="launch-menu"><summary>工具入口 {arrow()}</summary><div><a href="{MATRIX}">{logo()}<span><b>MT MATRIX</b><small>多桌百家輔助</small></span>{arrow()}</a><a href="{AUTO}">{logo(True)}<span><b>MT AUTO</b><small>百家自動下注</small></span>{arrow()}</a></div></details></div><nav id="mobileNav" class="mobile-nav" aria-label="手機選單" hidden>{navlinks(route)}<a href="{LINE}">{line_brand_icon()}<span>LINE 客服</span></a></nav></header><nav class="portal-category" aria-label="快捷分類">{tabs}</nav>'''
 
 
 def footer():
-    return f'''<footer class="portal-footer"><div class="portal-footer-top"><a class="footer-brand" href="/">{logo()}<b>御策百家輔助</b></a><nav aria-label="頁尾導航"><a href="/features">多桌輔助</a><a href="/auto">自動下注</a><a href="/guide">操作教學</a><a href="/download">下載安裝</a><a href="/articles">文章專區</a><a href="/faq">常見問題</a><a href="/contact">客服中心</a></nav><div class="footer-social"><a href="{LINE}">LINE 客服 ↗</a><a href="{THREADS}">Threads · @hacklook__ ↗</a></div></div><p>牌路、分析與配注策略僅供輔助，不能保證預測下一局或獲利。請評估風險並遵守所在地法規；未成年人請勿參與。人物僅作情境裝飾，非御策代言或客服本人，圖片不是即時直播。</p><div class="portal-footer-bottom"><span>© 2026 御策百家輔助</span><span>多桌輔助 · 自動下注 · 操作支援</span></div></footer>'''
+    return f'''<footer class="portal-footer"><div class="portal-footer-top"><a class="footer-brand" href="/">{logo()}<b>御策百家輔助</b></a><nav aria-label="頁尾導航"><a href="/features">多桌輔助</a><a href="/auto">自動下注</a><a href="/guide">操作教學</a><a href="/download">下載安裝</a><a href="/articles">文章專區</a><a href="/faq">常見問題</a><a href="/contact">客服中心</a></nav><div class="footer-social"><a href="{LINE}">{line_brand_icon()}<span>LINE 客服 ↗</span></a><a href="{THREADS}">Threads · @hacklook__ ↗</a></div></div><p>牌路、分析與配注策略僅供輔助，不能保證預測下一局或獲利。請評估風險並遵守所在地法規；未成年人請勿參與。人物僅作情境裝飾，非御策代言或客服本人，圖片不是即時直播。</p><div class="portal-footer-bottom"><span>© 2026 御策百家輔助</span><span>多桌輔助 · 自動下注 · 操作支援</span></div></footer>'''
 
 
 def bottomnav(route):
     entries = [('/', '首頁', 'home'), ('/features', '多桌', 'layers'), ('/auto', '自動下注', 'play'), (LINE, 'LINE 客服', 'chat')]
-    return '<nav class="portal-bottom" aria-label="手機底部導航">' + ''.join(f'<a href="{url}" {"aria-current=page" if (route == url or (url == "/articles" and route.startswith("/articles/"))) else ""}>{icon(mark)}<span>{label}</span></a>' for url, label, mark in entries) + '</nav>'
+    return '<nav class="portal-bottom" aria-label="手機底部導航">' + ''.join(f'<a href="{url}" {"aria-current=page" if (route == url or (url == "/articles" and route.startswith("/articles/"))) else ""}>{line_brand_icon() if url == LINE else icon(mark)}<span>{label}</span></a>' for url, label, mark in entries) + '</nav>'
 
 
 def welcome():
@@ -51,7 +57,7 @@ def welcome():
       <h2 id="welcome-title" tabindex="-1" autofocus>了解御策，<br><span>從這裡開始。</span></h2>
       <p id="welcome-description">工具使用、帳號授權、操作協助，<br>透過 LINE 聯繫，了解適合你的工具。</p>
       <div class="welcome-actions">
-        <a href="{LINE}" class="button welcome-line"><span class="welcome-line-icon">{icon('chat')}</span><span class="welcome-line-label">聯繫 LINE 客服</span><span class="welcome-line-arrow">{arrow()}</span></a>
+        <a href="{LINE}" class="button welcome-line"><span class="welcome-line-icon">{line_brand_icon()}</span><span class="welcome-line-label">聯繫 LINE 客服</span><span class="welcome-line-arrow">{arrow()}</span></a>
         <button type="button" class="welcome-browse" data-welcome-close>先逛網站 {arrow()}</button>
       </div>
     </div>
