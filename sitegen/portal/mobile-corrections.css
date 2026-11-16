@@ -54,3 +54,15 @@
  html{scroll-padding-top:72px!important}
  #toolbox,#matrix-title,#auto-title,#guide-title,#mt-videos,#journal-home-title{scroll-margin-top:72px!important}
 }
+
+/* One information architecture: desktop left rail, phone hamburger + bottom navigation. */
+.portal-category{display:none!important}
+.page-home .atelier-section-nav{display:none!important}
+@media(min-width:981px){
+ .portal-main{min-width:0}
+ .portal-topbar{top:0}
+ #main{min-width:0}
+}
+@media(max-width:980px){
+ .portal-category,.page-home .atelier-section-nav{display:none!important}
+}
