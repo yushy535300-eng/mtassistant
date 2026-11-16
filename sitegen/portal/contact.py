@@ -1,3 +1,4 @@
+from .v2 import support
 from ..common import AUTO, LINE, MATRIX, THREADS, arrow, button, logo
 
 
@@ -61,6 +62,8 @@ def render():
     </article>
   </div>
 </section>
+
+{support()}
 
 <section class="portal-section" aria-labelledby="contact-checklist-title">
   <div class="section-top">
