@@ -110,5 +110,12 @@ jobs:
           for route,file in pages.items():
               with urllib.request.urlopen(base+route,timeout=30) as r:
                   assert r.status==200 and r.read()==pathlib.Path("public",file).read_bytes(), route
-          print("All six live pages and both guide states match the approved build")
+                  assert "noindex" not in r.headers.get("X-Robots-Tag",""), route
+          with urllib.request.urlopen(base+"/healthz",timeout=20) as r:
+              assert r.status==200 and r.read()==b"ok"
+          for p in sorted(pathlib.Path("public/assets").rglob("*")):
+              if p.is_file() and p.suffix != ".gz":
+                  with urllib.request.urlopen(base+"/"+p.relative_to("public").as_posix(),timeout=30) as r:
+                      assert r.status==200 and r.read()==p.read_bytes(), str(p)
+          print("All six live pages, both guide states, health and public assets match the approved build")
           PY
