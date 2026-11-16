@@ -133,7 +133,14 @@ assert 'premium-enter' in css and 'yc-section-enter' in css
 assert 'yc-letter-glint' not in css and 'yc-metal-sweep' not in css
 assert 'yc-art-title' in home and 'yuce-gold-title.svg' in home
 assert 'data-dealer-step="-1"' in home and 'data-dealer-step="1"' in home
-assert home.index('id="toolbox"') < home.index('class="portal-shortcuts yc-service-strip"') < home.index('aria-labelledby="guide-title"')
+# Homepage intentionally contains no duplicate section navigation, full tutorials, or FAQ.
+assert home.index('id="toolbox"') < home.index('id="journal-home-title"')
+assert 'class="portal-shortcuts yc-service-strip"' not in home
+assert 'aria-labelledby="guide-title"' not in home
+assert 'aria-labelledby="matrix-title"' not in home
+assert 'aria-labelledby="auto-title"' not in home
+assert home.count('class="editorial-card"') == 3
+assert home.count('data-ad-carousel="billboard"') == 1
 assert '/assets/brand/yuce-gold-title.svg' in embedded
 assert 'yc-ad-description' in home
 assert 'yc-ad-description' not in carousel('rail') and 'yc-ad-description' not in carousel('float')
