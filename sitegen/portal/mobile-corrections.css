@@ -43,3 +43,14 @@
   .portal-banner.has-scene-person>.mt-dealer-rotation>.scene-person{inset:0}
   .portal-banner.has-scene-person>.mt-dealer-rotation picture img{max-width:100%;max-height:100%;object-fit:contain;object-position:center bottom}
 }
+
+/* Phone navigation: remove two redundant horizontal menu strips.
+   Full site sections remain available in the hamburger menu; essential routes in bottom nav. */
+@media(max-width:640px){
+ .portal-category{display:none!important}
+ .page-home .atelier-section-nav{display:none!important}
+ .portal-topbar{top:0!important}
+ .mobile-nav{top:58px!important}
+ html{scroll-padding-top:72px!important}
+ #toolbox,#matrix-title,#auto-title,#guide-title,#mt-videos,#journal-home-title{scroll-margin-top:72px!important}
+}
