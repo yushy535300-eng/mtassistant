@@ -28,3 +28,14 @@
 @media(pointer:fine){.mt-real-figure{transition:border-color .2s,box-shadow .2s}.mt-real-figure:hover{border-color:#d08bb0;box-shadow:0 10px 28px #08060c65}.portal-shortcuts a,.tool-tile,.button{transition:box-shadow .2s,border-color .2s}.portal-shortcuts a:hover,.tool-tile:hover{border-color:#b26c92;box-shadow:0 0 16px #d35d9020}}
 @media(max-width:640px){.mt-gallery{grid-template-columns:1fr;gap:12px}.mt-real-figure{border-radius:11px}.mt-real-figure figcaption{padding:10px 12px;font-size:12px}.mt-product-layout{grid-template-columns:1fr;gap:12px;padding:12px}.mt-product-copy{padding:4px}.mt-product-copy h2{font-size:22px}.mt-video-details summary{padding:12px}}
 @media(prefers-reduced-motion:reduce){.mt-real-figure,.portal-shortcuts a,.tool-tile,.button{transition:none!important}}
+
+/* Actual mobile recordings — clean charcoal/rose framing, no fake HUD. */
+.mt-recording{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:26px;align-items:center;margin-top:18px;padding:18px;border:1px solid #604457;border-radius:15px;background:linear-gradient(135deg,#28212d,#1c1b24 68%);box-shadow:0 9px 26px #09060c38}
+.mt-recording-media{display:flex;align-items:center;justify-content:center;min-width:0;min-height:0;background:#0c0d12;border:1px solid #4c364a;border-radius:12px;overflow:hidden;padding:8px}
+.mt-recording-media video{display:block;width:auto;max-width:100%;height:auto;max-height:420px;aspect-ratio:var(--recording-ratio);object-fit:contain;background:#0c0d12;border-radius:7px}
+.mt-recording-copy{min-width:0;padding:8px 14px}
+.mt-recording-copy h3{font-size:clamp(19px,2vw,26px);line-height:1.4;margin:10px 0 12px;color:#f7edf4}
+.mt-recording-copy p:not(.kicker){font-size:14px;line-height:1.8;color:#d3c9d5}
+.mt-recording-duration{display:block;margin:15px 0 7px;color:#bca9ba;font-size:12px}
+.mt-recording-copy .text-link{display:inline-flex;margin-top:10px}
+@media(max-width:640px){.mt-recording{grid-template-columns:1fr;gap:12px;padding:12px;margin-top:14px;border-radius:12px}.mt-recording-media video{max-height:410px}.mt-recording-copy{padding:5px 4px}.mt-recording-copy h3{font-size:19px}.mt-recording-copy p:not(.kicker){font-size:13px}}
