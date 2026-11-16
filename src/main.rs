@@ -20,6 +20,8 @@ fn mime(path: &str) -> &'static str {
         "image/webp"
     } else if path.ends_with(".jpg") {
         "image/jpeg"
+    } else if path.ends_with(".mp4") {
+        "video/mp4"
     } else if path.ends_with(".woff2") {
         "font/woff2"
     } else if path.ends_with(".svg") {
@@ -31,6 +33,23 @@ fn mime(path: &str) -> &'static str {
     } else {
         "text/plain; charset=utf-8"
     }
+}
+fn parse_byte_range(value: &str, len: usize) -> Result<(usize, usize), ()> {
+    if len == 0 { return Err(()); }
+    let spec = value.strip_prefix("bytes=").ok_or(())?;
+    if spec.contains(',') { return Err(()); }
+    let (first, last) = spec.split_once('-').ok_or(())?;
+    if first.is_empty() {
+        let suffix = last.parse::<usize>().map_err(|_| ())?;
+        if suffix == 0 { return Err(()); }
+        let count = suffix.min(len);
+        return Ok((len - count, len - 1));
+    }
+    let start = first.parse::<usize>().map_err(|_| ())?;
+    if start >= len { return Err(()); }
+    let end = if last.is_empty() { len - 1 } else { last.parse::<usize>().map_err(|_| ())?.min(len - 1) };
+    if end < start { return Err(()); }
+    Ok((start, end))
 }
 fn send(stream: &mut TcpStream, status: &str, mime: &str, bytes: &[u8], head: bool, extra: &str) {
     let headers = format!("HTTP/1.1 {}\r\nContent-Type: {}\r\nContent-Length: {}\r\nConnection: close\r\nX-Content-Type-Options: nosniff\r\nReferrer-Policy: strict-origin-when-cross-origin\r\nPermissions-Policy: camera=(), microphone=(), geolocation=()\r\n{}\r\n", status, mime, bytes.len(), extra);
@@ -76,6 +95,10 @@ fn handle(mut stream: TcpStream) {
         lower.starts_with("accept-encoding:")
             && lower.contains("gzip")
             && !lower.contains("gzip;q=0")
+    });
+    let range_header = request.lines().find_map(|line| {
+        let (name, value) = line.split_once(':')?;
+        if name.eq_ignore_ascii_case("range") { Some(value.trim()) } else { None }
     });
     let (path, query) = target.split_once('?').unwrap_or((target, ""));
     let head = method == "HEAD";
@@ -191,17 +214,30 @@ fn handle(mut stream: TcpStream) {
         } else {
             ""
         };
-        send(
-            &mut stream,
-            "200 OK",
-            mime(selected),
-            &bytes,
-            head,
-            &format!(
-                "Cache-Control: {}\r\nVary: Accept-Encoding\r\n{}{}",
-                cache, robots, encoding
-            ),
+        let common_headers = format!(
+            "Cache-Control: {}\r\nVary: Accept-Encoding\r\n{}{}",
+            cache, robots, encoding
         );
+        if selected.ends_with(".mp4") {
+            let total = bytes.len();
+            if let Some(value) = range_header {
+                match parse_byte_range(value, total) {
+                    Ok((start, end)) => {
+                        send(&mut stream, "206 Partial Content", mime(selected), &bytes[start..=end], head,
+                            &format!("{}Accept-Ranges: bytes\r\nContent-Range: bytes {}-{}/{}\r\n", common_headers, start, end, total));
+                    }
+                    Err(_) => {
+                        send(&mut stream, "416 Range Not Satisfiable", mime(selected), b"", head,
+                            &format!("{}Accept-Ranges: bytes\r\nContent-Range: bytes */{}\r\n", common_headers, total));
+                    }
+                }
+            } else {
+                send(&mut stream, "200 OK", mime(selected), &bytes, head,
+                    &format!("{}Accept-Ranges: bytes\r\n", common_headers));
+            }
+        } else {
+            send(&mut stream, "200 OK", mime(selected), &bytes, head, &common_headers);
+        }
     } else {
         let fallback = b"<!doctype html><html><head><meta name=\"robots\" content=\"noindex\"></head><body><main><h1>404</h1><a href=\"/\">Home</a></main></body></html>";
         let embedded = assets::ASSETS
