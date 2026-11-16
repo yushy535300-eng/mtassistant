@@ -34,5 +34,16 @@ def home_videos():
         <div><p class="kicker">MT MATRIX / 實際操作</p><h2 id="mt-videos-title">真實程式操作，一次看懂。</h2><p>完整保留原始錄影，點擊播放，可調整音量及全螢幕觀看。</p></div>
         <a class="text-link" href="/features">查看多桌輔助 {arrow()}</a>
       </div>
-      <div class="mt-video-grid">{cards}</div>
+      <div class="mt-video-carousel" data-video-carousel aria-label="三部實際操作影片">
+        <div class="mt-video-grid" id="mt-video-track">{cards}</div>
+        <div class="mt-video-switch" aria-label="切換影片">
+          <button type="button" class="mt-video-arrow" data-video-prev aria-label="上一部影片">‹</button>
+          <span class="mt-video-indicators" role="group" aria-label="選擇影片">
+            <button type="button" data-video-index="0" aria-label="影片 1：登入與程式介面" aria-current="true">01</button>
+            <button type="button" data-video-index="1" aria-label="影片 2：多桌牌路實際操作">02</button>
+            <button type="button" data-video-index="2" aria-label="影片 3：實際牌局與模型">03</button>
+          </span>
+          <button type="button" class="mt-video-arrow" data-video-next aria-label="下一部影片">›</button>
+        </div>
+      </div>
     </section>'''
