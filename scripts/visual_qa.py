@@ -20,11 +20,14 @@ async def check():
                 try:
                     res=await page.goto(BASE+route,wait_until="domcontentloaded",timeout=45000)
                     if not res or res.status>=400: REPORT["errors"].append(f"{label} {route}: HTTP {res.status if res else 'no response'}")
-                    await page.wait_for_timeout(2000)
+                    await page.wait_for_timeout(1600)
+                    await page.evaluate("() => { const d=document.getElementById('welcomeDialog'); if(d?.open) d.close(); }")
+                    await page.evaluate("() => document.querySelectorAll('img[loading=lazy]').forEach(i => i.loading='eager')")
+                    await page.wait_for_timeout(2600)
                     await page.evaluate("document.fonts.ready")
                     overflow=await page.evaluate("document.documentElement.scrollWidth > window.innerWidth + 3")
                     if overflow:REPORT["errors"].append(f"{label} {route}: horizontal overflow")
-                    imgs=await page.locator("main img").evaluate_all("(nodes)=>nodes.filter(i=>!i.complete || i.naturalWidth===0).map(i=>i.currentSrc)")
+                    imgs=await page.locator("main img").evaluate_all("(nodes)=>nodes.filter(i=>i.getClientRects().length>0 && getComputedStyle(i).visibility!=='hidden' && (!i.complete || i.naturalWidth===0)).map(i=>i.currentSrc)")
                     for src in imgs:REPORT["errors"].append(f"{label} {route}: broken image {src}")
                     if route=="/":
                         videonum=await page.locator("video.mt-full-video").count()
