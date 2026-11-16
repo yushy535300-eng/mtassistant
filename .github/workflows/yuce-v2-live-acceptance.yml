@@ -1,0 +1,103 @@
+name: Yuce V2 preview live acceptance
+on:
+  push:
+    branches:
+      - qa/yuce-v2-20261116
+permissions:
+  contents: read
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Install browser
+        run: |
+          python -m pip install --quiet playwright
+          python -m playwright install chromium --with-deps
+      - name: Verify online preview and responsive behavior
+        env:
+          BASE: https://yuce-v2-preview.onrender.com
+        run: |
+          mkdir -p evidence
+          python - <<'PY'
+          import os,json,time,urllib.request
+          from pathlib import Path
+          from playwright.sync_api import sync_playwright
+          base=os.environ["BASE"]
+          routes=[("home","/"),("features","/features"),("auto","/auto"),("guide-matrix","/guide?system=matrix"),("guide-auto","/guide?system=auto"),("faq","/faq"),("contact","/contact")]
+          checks=[]
+          def check(name,result,detail=""):
+              checks.append({"name":name,"passed":bool(result),"detail":str(detail)})
+              print(("PASS " if result else "FAIL ")+name+" "+str(detail),flush=True)
+          for attempt in range(12):
+              try:
+                  with urllib.request.urlopen(base+"/healthz",timeout=30) as r:
+                      if r.status==200 and r.read().decode().strip()=="ok":break
+              except Exception as e:
+                  print("Health retry",attempt,str(e),flush=True)
+                  time.sleep(5)
+          else: raise RuntimeError("Preview health check failed")
+          check("Preview health",True)
+          with sync_playwright() as p:
+              browser=p.chromium.launch()
+              for width,height in [(1440,900),(440,956)]:
+                  ctx=browser.new_context(viewport={"width":width,"height":height},reduced_motion="reduce")
+                  for name,path in routes:
+                      page=ctx.new_page(); errors=[]; failed=[]
+                      page.on("pageerror",lambda e:errors.append(str(e)))
+                      page.on("response",lambda r:failed.append(str(r.status)+" "+r.url) if r.status>=400 and r.url.startswith(base) else None)
+                      prefix=str(width)+" "+name
+                      url=base+path+("&" if "?" in path else "?")+"capture=1&welcome=0"
+                      try:
+                          r=page.goto(url,wait_until="load",timeout=60000)
+                          page.locator("h1").wait_for(timeout=15000)
+                          page.evaluate("document.fonts.ready")
+                          page.wait_for_timeout(250)
+                          check(prefix+" HTTP 200",r.status==200,r.status)
+                          check(prefix+" noindex","noindex" in r.headers.get("x-robots-tag",""))
+                          check(prefix+" no horizontal overflow",page.evaluate("document.documentElement.scrollWidth <= innerWidth+1"))
+                          check(prefix+" original person",page.evaluate("() => {const i=document.querySelector('.has-scene-person .scene-person img');return !!i&&i.complete&&i.naturalWidth>0&&i.getBoundingClientRect().width>90}"))
+                          check(prefix+" no hero overlap",page.evaluate("() => {const h=document.querySelector('.has-scene-person'),p=h.querySelector('.scene-person').getBoundingClientRect();return [...h.querySelectorAll('h1,p:not(.banner-label),a')].every(e=>{const r=e.getBoundingClientRect();return Math.min(p.right,r.right)-Math.max(p.left,r.left)<=2||Math.min(p.bottom,r.bottom)-Math.max(p.top,r.top)<=2})}"))
+                          check(prefix+" images loaded",page.evaluate("() => [...document.images].filter(i=>i.getAttribute('src')&&!i.closest('[hidden]')&&i.getBoundingClientRect().width>0).every(i=>i.complete&&i.naturalWidth>0)"))
+                          page.evaluate("scrollTo(0,0)")
+                          page.screenshot(path=f"evidence/{width}-{name}.png",animations="disabled")
+                          if name=="home":
+                              check(prefix+" two comparison products",page.locator(".v2-product").count()==2)
+                              page.locator("#tab-parity").click()
+                              check(prefix+" screenshot tab",page.locator("#focus-parity").is_visible())
+                              page.locator("#focus-parity [data-image]").first.click()
+                              check(prefix+" image viewer",page.locator("#imageViewer").is_visible())
+                              page.locator("#viewerClose").click()
+                          if name.startswith("guide"):
+                              check(prefix+" guide steps",page.locator("#guide-panel-matrix .guide-step-panel").count()==5 and page.locator("#guide-panel-auto .guide-step-panel").count()==6)
+                              check(prefix+" guide selected",page.locator("#guide-panel-"+("auto" if name=="guide-auto" else "matrix")).is_visible())
+                          if name=="faq":
+                              page.locator("#faqSearch").fill("授權")
+                              check(prefix+" search",page.locator("details.faq-item:visible").count()>0)
+                          if name=="contact":
+                              page.locator("#v2-system").select_option("MT AUTO")
+                              page.locator("#v2-issue").fill("測試內容")
+                              page.locator("#v2-support-form button").click()
+                              check(prefix+" local support summary","MT AUTO" in page.locator("#v2-summary").input_value() and "測試內容" in page.locator("#v2-summary").input_value())
+                          if width==440 and name=="home":
+                              page.locator("#menuToggle").click()
+                              check(prefix+" mobile menu",page.locator("#mobileNav").is_visible())
+                              page.locator("#menuToggle").click()
+                          check(prefix+" no JS errors",not errors,errors)
+                          check(prefix+" no failed own requests",not failed,failed)
+                      except Exception as e:
+                          check(prefix+" browser interaction",False,e)
+                      finally: page.close()
+                  ctx.close()
+              browser.close()
+          report={"passed":sum(c["passed"] for c in checks),"total":len(checks),"checks":checks}
+          Path("evidence/live-acceptance.json").write_text(json.dumps(report,ensure_ascii=False,indent=2))
+          print("FINAL",report["passed"],"/",report["total"],flush=True)
+          assert report["passed"]==report["total"],"Live acceptance failures"
+          PY
+      - name: Upload screenshots and test report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: yuce-v2-live-acceptance
+          path: evidence/
