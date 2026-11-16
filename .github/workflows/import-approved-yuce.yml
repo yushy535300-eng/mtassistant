@@ -1,0 +1,114 @@
+name: Import approved Yuce release and deploy
+on:
+  push:
+    branches:
+      - release/yuce-b531f5a-20261116
+    paths:
+      - yuce-production-b531f5a.zip
+permissions:
+  contents: write
+concurrency:
+  group: yuce-approved-release-b531f5a
+  cancel-in-progress: false
+jobs:
+  validate-and-release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Checkout release upload
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Verify approved archive
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "a1c8f569e70abeed27cf8e185dac9d95795bea40acb4517ce7450e0e6938411e  yuce-production-b531f5a.zip" | sha256sum -c -
+          cp yuce-production-b531f5a.zip "$RUNNER_TEMP/yuce-production.zip"
+      - name: Import on top of verified production history
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          test "$(git rev-parse origin/main)" = "6998d68ba856e43fe9205874aa209e0458fb64c8"
+          git checkout --detach origin/main
+          git rm -r --ignore-unmatch public src sitegen
+          python3 - <<'PY'
+          import os, zipfile, pathlib
+          p = pathlib.Path(os.environ["RUNNER_TEMP"]) / "yuce-production.zip"
+          with zipfile.ZipFile(p) as z:
+              for n in z.namelist():
+                  path = pathlib.PurePosixPath(n)
+                  assert not path.is_absolute() and '..' not in path.parts and '.git' not in path.parts, n
+              assert z.testzip() is None
+              z.extractall('.')
+          PY
+          SITE_ORIGIN=https://mtassistant-oozm.onrender.com ALLOW_INDEXING=true python3 build_site.py
+          cargo build --release --locked
+      - name: Verify Rust release and production routes before publishing
+        shell: bash
+        run: |
+          set -euo pipefail
+          PORT=3000 DEV_FILES=false ALLOW_INDEXING=true ./target/release/mtassistant-official > "$RUNNER_TEMP/yuce-server.log" 2>&1 &
+          pid=$!
+          trap 'kill "$pid" 2>/dev/null || true' EXIT
+          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:3000/healthz && break; sleep 1; done
+          python3 - <<'PY'
+          import urllib.request, pathlib, json
+          from urllib.error import HTTPError
+          root = pathlib.Path("public")
+          base = "http://127.0.0.1:3000"
+          pages = {"/":"index.html","/features":"pages/features.html","/auto":"pages/auto.html","/guide":"pages/guide.html","/guide?system=auto":"pages/guide-auto.html","/faq":"pages/faq.html","/contact":"pages/contact.html"}
+          for route, file in pages.items():
+              with urllib.request.urlopen(base+route, timeout=10) as r:
+                  assert r.status == 200 and r.read() == (root/file).read_bytes(), route
+                  assert "noindex" not in r.headers.get("X-Robots-Tag",""), route
+          for path in sorted(root.rglob("*")):
+              if path.is_file() and path.suffix != ".gz":
+                  with urllib.request.urlopen(base+"/"+path.relative_to(root).as_posix(), timeout=15) as r:
+                      assert r.status == 200 and r.read() == path.read_bytes(), str(path)
+          for route in ("/mt","/features/","/auto/","/guide/","/faq/","/contact/","/guide/matrix","/guide/auto"):
+              with urllib.request.urlopen(base+route, timeout=10) as r: assert r.status == 200, route
+          for route in ("/does-not-exist","/.env"):
+              try: urllib.request.urlopen(base+route, timeout=10)
+              except HTTPError as e: assert e.code == 404, route
+              else: raise AssertionError(route)
+          print("All generated pages, local assets, legacy routes and 404 checks passed")
+          PY
+      - name: Fast-forward approved source to main
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          test "$(git rev-parse origin/main)" = "6998d68ba856e43fe9205874aa209e0458fb64c8"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Deploy approved Yuce release b531f5a (six-page dealer scenes)"
+          git push origin HEAD:main
+          echo "Production commit: $(git rev-parse HEAD)" >> "$GITHUB_STEP_SUMMARY"
+      - name: Verify Render serves the new production version
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import urllib.request, pathlib, time
+          base = "https://mtassistant-oozm.onrender.com"
+          expected = pathlib.Path("public/index.html").read_bytes()
+          for attempt in range(60):
+              try:
+                  with urllib.request.urlopen(base+"/",timeout=20) as r:
+                      if r.status == 200 and r.read() == expected:
+                          print("New version verified on Render")
+                          break
+              except Exception as exc:
+                  print(type(exc).__name__)
+              time.sleep(10)
+          else:
+              raise SystemExit("Render has not served the approved new version within the verification window")
+          pages = {"/features":"pages/features.html","/auto":"pages/auto.html","/guide":"pages/guide.html","/guide?system=auto":"pages/guide-auto.html","/faq":"pages/faq.html","/contact":"pages/contact.html"}
+          for route,file in pages.items():
+              with urllib.request.urlopen(base+route,timeout=30) as r:
+                  assert r.status==200 and r.read()==pathlib.Path("public",file).read_bytes(), route
+          print("All six live pages and both guide states match the approved build")
+          PY
