@@ -10,6 +10,23 @@ BANNER_DESKTOP = '/manus-storage/async-images/5IpvgHPwOi5uABZyAx9lXZ/image-1.web
 BANNER_MOBILE = '/manus-storage/async-images/5IpvgHPwOi5uABZyAx9lXZ/image-2.webp'
 
 
+def product_preview(system):
+    """Render original internal screens with working, keyboard-accessible tabs."""
+    items = (
+        [('matrix-assist', '分析主面板'), ('four-formulas', '四式算牌'), ('parity-model', '終值奇偶')]
+        if system == 'matrix' else
+        [('auto-running', '執行面板'), ('auto-strategy', '配注設定'), ('auto-limits', '停止條件')]
+    )
+    tabs, panels = [], []
+    for index, (name, label) in enumerate(items):
+        key = f'product-{system}-{index}'
+        selected = 'true' if index == 0 else 'false'
+        tabs.append(f'<button type="button" id="tab-{key}" data-tab="{key}" role="tab" aria-controls="{key}" aria-selected="{selected}" tabindex="{0 if index == 0 else -1}">{label}</button>')
+        hidden = '' if index == 0 else ' hidden'
+        panels.append(f'<div id="{key}" role="tabpanel" aria-labelledby="tab-{key}"{hidden}>{screen(name, label + "・真實程式內部介面", eager=index == 0)}</div>')
+    return '<div class="yc-product-viewer"><div class="yc-viewer-caption"><span class="yc-status-dot" aria-hidden="true"></span>程式內部介面<span>原始截圖</span></div><div class="focus-tabs yc-product-tabs" role="tablist" aria-label="' + ('多桌輔助' if system == 'matrix' else '自動下注') + '實際操作介面">' + ''.join(tabs) + '</div><div class="yc-product-stage">' + ''.join(panels) + '</div></div>'
+
+
 def render():
     questions = ''.join(f'<details class="faq-item"><summary>{escape(q)}</summary><p>{escape(a)}</p></details>' for _, q, a in DATA['questions'][:3])
     return f'''<div class="portal-home">
@@ -20,8 +37,8 @@ def render():
 
 
 <section class="portal-section yc-tool-showcase" id="toolbox" aria-labelledby="tools-title"><div class="section-top"><div><h2 id="tools-title">御策雙核心系統</h2><p>多桌觀察與策略執行，兩套系統各自獨立。</p></div><a class="text-link" href="/guide">查看教學 {arrow()}</a></div><div class="portal-tool-grid">
-<article class="tool-tile"><div class="tool-tile-copy"><div class="product-heading">{logo()}<div><span>MT MATRIX</span><h3>多桌百家輔助</h3></div></div><p>把桌台、牌路與分析資訊集中查看。支援雷達、AI 綜合、四式算牌與終值奇偶。</p><div class="inline-actions">{button('進入系統', MATRIX)}<a href="/features" class="text-link">了解多桌功能 {arrow()}</a></div></div><div class="tool-tile-preview">{screen('matrix-assist', 'MT MATRIX 多桌百家輔助主面板')}</div></article>
-<article class="tool-tile auto"><div class="tool-tile-copy"><div class="product-heading">{logo(True)}<div><span>MT AUTO</span><h3>百家自動下注</h3></div></div><p>確認配注策略、金額與停止條件，再查看執行狀態與紀錄。</p><div class="inline-actions">{button('進入系統', AUTO)}<a href="/auto" class="text-link">了解設定流程 {arrow()}</a></div></div><div class="tool-tile-preview">{screen('auto-running', 'MT AUTO 自動下注執行面板')}</div></article>
+<article class="tool-tile"><div class="tool-tile-copy"><div class="product-heading">{logo()}<div><span>MT MATRIX</span><h3>多桌百家輔助</h3></div></div><p>把桌台、牌路與分析資訊集中查看。支援雷達、AI 綜合、四式算牌與終值奇偶。</p><div class="inline-actions">{button('進入系統', MATRIX)}<a href="/features" class="text-link">了解多桌功能 {arrow()}</a></div></div><div class="tool-tile-preview">{product_preview('matrix')}</div></article>
+<article class="tool-tile auto"><div class="tool-tile-copy"><div class="product-heading">{logo(True)}<div><span>MT AUTO</span><h3>百家自動下注</h3></div></div><p>確認配注策略、金額與停止條件，再查看執行狀態與紀錄。</p><div class="inline-actions">{button('進入系統', AUTO)}<a href="/auto" class="text-link">了解設定流程 {arrow()}</a></div></div><div class="tool-tile-preview">{product_preview('auto')}</div></article>
 </div></section>
 <nav class="portal-shortcuts yc-service-strip" aria-label="首頁快速入口"><a href="/features"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="3" y="5" width="26" height="19" rx="2"/><path d="M10 29h12M16 24v5M8 18l5-5 4 3 7-8"/></svg><span class="yc-shortcut-copy"><b>多桌監控</b><small>多桌牌路・雷達分析</small></span></a><a href="/auto"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="16" cy="16" r="10"/><circle cx="16" cy="16" r="4"/><path d="M16 2v6m0 16v6M2 16h6m16 0h6"/></svg><span class="yc-shortcut-copy"><b>策略設定</b><small>配注條件・執行紀錄</small></span></a><a href="/guide"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M16 6c-5-3-10-3-13-1v21c4-2 9-2 13 1 4-3 9-3 13-1V5c-3-2-8-2-13 1Zm0 0v21"/></svg><span class="yc-shortcut-copy"><b>操作教學</b><small>完整步驟・快速上手</small></span></a><a href="/contact"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M5 17v-3a11 11 0 0 1 22 0v3M5 16H3v9h6v-9H5Zm22 0h-4v9h6v-9h-2Zm0 9c0 3-4 4-9 4"/></svg><span class="yc-shortcut-copy"><b>專人客服</b><small>LINE 聯繫・操作支援</small></span></a></nav>
 <section class="portal-section" aria-labelledby="guide-title"><div class="section-top"><div><h2 id="guide-title">操作教學</h2><p>兩套工具各自的教學，不混用入口與流程。</p></div><a class="text-link" href="/guide">完整操作教學 {arrow()}</a></div><div class="two-column"><a class="guide-entry" href="/guide?system=matrix"><span class="guide-number">05</span><div>{logo()}<h3>MT MATRIX 教學</h3><p>帳號授權 → 平台連線 → 模型 → 四式 → 奇偶</p></div>{arrow()}</a><a class="guide-entry" href="/guide?system=auto"><span class="guide-number">06</span><div>{logo(True)}<h3>MT AUTO 教學</h3><p>連線 → 配注 → 金額 → 時間 → 停止 → 執行</p></div>{arrow()}</a></div></section>

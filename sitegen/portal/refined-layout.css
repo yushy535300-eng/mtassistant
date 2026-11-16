@@ -192,3 +192,49 @@ a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{o
 .portal-pagehead,.portal-pagehead.has-scene-person{min-height:0;border-radius:12px}.portal-pagehead h1{font-size:26px}.page-download .install-pagehead{min-height:0}
 }
 @media(prefers-reduced-motion:reduce){.portal-banner .banner-light,.portal-pagehead::after,.yc-art-title::after,.yc-section-enter,.page-home .tool-tile::after{animation:none!important}.page-home .tool-tile:hover,.guide-entry:hover,.mt-video-card:hover{transform:none}}
+
+/* Real internal-product browsers: no login cards and no invented application UI. */
+.page-home .tool-tile{align-items:start;grid-template-columns:minmax(0,.88fr) minmax(0,1.12fr)}
+.page-home .tool-tile-copy{align-self:center}
+.yc-product-viewer{min-width:0;border:1px solid #8f7044;border-radius:10px;background:#111312;overflow:hidden;box-shadow:0 10px 28px #0008,inset 0 1px #ffe6b522}
+.yc-viewer-caption{display:flex;align-items:center;gap:6px;padding:8px 10px;color:#f4d7a0;font-size:10px;letter-spacing:.04em;background:linear-gradient(110deg,#342817,#171713);border-bottom:1px solid #685134}
+.yc-viewer-caption>span:last-child{margin-left:auto;font-size:9px;color:#cbb994}
+.yc-status-dot{display:inline-block;width:5px;height:5px;border-radius:50%;background:#e6bd72;box-shadow:0 0 7px #e7b962}
+.yc-product-tabs{display:flex;gap:3px;padding:6px;margin:0;border-bottom:1px solid #493c29;border-radius:0;background:#181713}
+.yc-product-tabs [role=tab]{flex:1;min-width:0;min-height:30px;padding:5px 3px;border-radius:5px;font-size:10px;line-height:1.4;white-space:normal}
+.yc-product-stage{padding:10px;min-height:206px;display:grid;align-items:center;background:radial-gradient(ellipse at 50% 20%,#d4b16d0d,transparent 80%),#0e1112}
+.page-home .tool-tile-preview .yc-product-stage .screen{border-color:#3c4443;background:#101a20;box-shadow:none;border-radius:5px}
+.page-home .tool-tile-preview .yc-product-stage .screen img{height:190px;object-fit:contain;filter:none;transform:none}
+.page-home .tool-tile-preview .yc-product-stage .screen-zoom{font-size:9px;padding:5px;background:#171a18;color:#e6d1a9}
+.page-home .tool-tile.auto .yc-product-stage .screen{max-width:190px!important}
+.yc-product-stage [hidden]{display:none!important}
+/* Gilded sweep is rendered CSS, not a flattened screenshot of the website. */
+.button{position:relative;isolation:isolate;overflow:hidden}
+.button>span,.button>svg{position:relative;z-index:1}
+.button::before{content:"";position:absolute;inset:-80% -40%;pointer-events:none;background:linear-gradient(110deg,transparent 42%,#fff5cf66 49%,transparent 56%);transform:translateX(-100%);opacity:.8}
+.portal-banner::after{background:linear-gradient(100deg,transparent 30%,#ffdf9b8a 48%,transparent 66%) top left/250% 1px no-repeat,linear-gradient(280deg,transparent 30%,#ffdf9b8a 48%,transparent 66%) bottom right/250% 1px no-repeat}
+@media(prefers-reduced-motion:no-preference){
+.button::before{animation:yc-button-sweep 6s ease-in-out infinite}
+@keyframes yc-button-sweep{0%,60%{transform:translateX(-100%)}90%,100%{transform:translateX(100%)}}
+.portal-banner::after{animation:yc-frame-sweep 7s linear infinite}
+@keyframes yc-frame-sweep{from{background-position:200% 0,-100% 100%}to{background-position:-100% 0,200% 100%}}
+.motion-paused .button::before,.motion-paused .portal-banner::after,.yc-effect-offscreen::after{animation-play-state:paused!important}
+}
+.mt-video-meta>span:first-child{color:#e7bd79}.mt-video-caption h3{color:#ffe4b3}.mt-video-caption p{color:#d1c3aa}
+@media(hover:hover){.mt-video-card:hover{border-color:#d6ad68;box-shadow:0 14px 34px #09060380}}
+@media(max-width:1180px) and (min-width:981px){.page-home .tool-tile{grid-template-columns:1fr}.page-home .tool-tile-preview .yc-product-stage .screen img{height:185px}}
+@media(max-width:640px){
+.page-home .tool-tile{grid-template-columns:1fr;gap:14px;padding:17px}
+.page-home .tool-tile .product-heading h3{font-size:24px}
+.page-home .tool-tile-copy>p{font-size:13px}
+.page-home .tool-tile .inline-actions{gap:10px}
+.page-home .tool-tile .button{min-height:40px;font-size:13px;padding:8px 16px}
+.page-home .tool-tile .text-link{font-size:12px;min-height:36px}
+.yc-product-stage{min-height:245px;padding:12px}
+.page-home .tool-tile-preview .yc-product-stage .screen img{height:235px}
+.yc-product-tabs [role=tab]{min-height:39px;font-size:12px}
+.yc-viewer-caption{font-size:11px;padding:9px 10px}
+.yc-viewer-caption>span:last-child{font-size:10px}
+.page-home .tool-tile.auto .yc-product-stage .screen{max-width:220px!important}
+}
+@media(prefers-reduced-motion:reduce){.button::before,.portal-banner::after{animation:none!important}}

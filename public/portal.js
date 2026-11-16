@@ -70,7 +70,7 @@
         const protectedText = Math.max(0, Math.min(1, (x / width - .45) * 5));
         const alpha = point.brightness * edge * depthFade * protectedText;
         if (alpha <= .01) return;
-        ctx.fillStyle = point.tint ? `rgba(214,246,239,${alpha})` : `rgba(255,218,198,${alpha})`;
+        ctx.fillStyle = point.tint ? `rgba(255,222,151,${alpha})` : `rgba(230,177,90,${alpha})`;
         ctx.beginPath();
         ctx.arc(x, y, point.radius * perspective, 0, Math.PI * 2);
         ctx.fill();
@@ -83,7 +83,7 @@
     if (paused || reduced.matches || document.hidden || capture || !stages.some(stage => stage.visible)) {
       previous = 0; request = 0; return;
     }
-    if (!previous || now - previous >= 32) {
+    if (!previous || now - previous >= 15) {
       const delta = previous ? Math.min((now - previous) / 1000, .08) : 0;
       elapsed += delta; previous = now; paint(elapsed);
     }
