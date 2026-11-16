@@ -23,11 +23,35 @@ def local(name):
 def target(slot, key):
     return BASE + "/?" + urlencode({"utm_source":"yuce", "utm_medium":"display", "utm_campaign":"scarabheart_brand", "utm_content":slot+"_"+key})
 def creative(key, slot, active):
-    description = '<span class="yc-ad-description">ATG・RSG 電子遊戲輔助</span>' if slot == "billboard" else ""
-    summary = '<span class="yc-ad-summary">聖甲之心專注於 ATG、RSG 電子遊戲輔助，整合選房分析、遊戲訊號與輔助操作，協助使用者整理資訊、熟悉工具。</span>' if slot in ('billboard','content') else '<span class="yc-ad-summary compact">選房分析・遊戲訊號・輔助操作</span>'
-    campaign = {'royal':'探索聖甲之心的完整功能','emerald':'資訊整理，從這裡開始','sapphire':'認識你的電子遊戲輔助工具'}[key]
+    # Each placement has its own content hierarchy; the original mark and URLs remain untouched.
+    copy = {
+        'royal': ('先看資訊，再選擇操作', '選房分析・遊戲訊號・輔助操作'),
+        'emerald': ('多一份資訊，操作更清楚', 'ATG・RSG 電子遊戲輔助'),
+        'sapphire': ('認識聖甲之心的核心功能', '分析、訊號與輔助功能集中了解'),
+    }
+    headline, subhead = copy[key]
+    short = slot in ('rail', 'float')
+    features = '' if short else '<span class="yc-ad-features"><span>選房分析</span><span>遊戲訊號</span><span>輔助操作</span></span>'
+    explanation = '' if short else '<span class="yc-ad-summary">主打 ATG、RSG 電子遊戲的智慧輔助系統。</span>'
+    return (
+        f'<a class="yc-ad-art yc-ad-{key} yc-ad-placement-{slot}" data-ad-slide="{key}" '
+        f'href="{escape(target(slot,key),quote=True)}" target="_blank" rel="noopener noreferrer sponsored" '
+        f'{"data-active" if active else "hidden"} aria-label="聖甲之心－前往官方網站">'
+        '<span class="yc-ad-scene" aria-hidden="true"></span>'
+        '<span class="yc-ad-grain" aria-hidden="true"></span>'
+        '<span class="yc-ad-flare" aria-hidden="true"></span>'
+        '<span class="yc-ad-halo" aria-hidden="true"></span>'
+        f'<span class="yc-ad-emblem"><img src="{local("logo.png")}" width="420" height="354" alt="" loading="lazy" decoding="async"></span>'
+        '<span class="yc-ad-content">'
+        '<span class="yc-ad-brand">SCARAB HEART · ATG / RSG</span>'
+        '<strong>聖甲之心</strong>'
+        f'<span class="yc-ad-campaign">{headline}</span>'
+        f'<span class="yc-ad-description">{subhead}</span>'
+        f'{features}{explanation}'
+        '<span class="yc-ad-cta">探索官方功能 <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 10h13m-5-5 5 5-5 5"/></svg></span>'
+        '</span><span class="yc-ad-corners" aria-hidden="true"></span></a>'
+    )
 
-    return f'<a class="yc-ad-art yc-ad-{key}" data-ad-slide="{key}" href="{escape(target(slot,key),quote=True)}" target="_blank" rel="noopener noreferrer sponsored" {"data-active" if active else "hidden"} aria-label="聖甲之心－前往官網"><span class="yc-ad-scene" aria-hidden="true"></span><span class="yc-ad-grain" aria-hidden="true"></span><span class="yc-ad-flare" aria-hidden="true"></span><span class="yc-ad-halo" aria-hidden="true"></span><span class="yc-ad-emblem"><img src="{local("logo.png")}" width="420" height="354" alt="" loading="lazy" decoding="async"></span><span class="yc-ad-content"><span class="yc-ad-brand">SCARAB HEART</span><strong>聖甲之心</strong>{description}<span class="yc-ad-campaign">{campaign}</span>{summary}<span class="yc-ad-cta">前往官網 <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 10h13m-5-5 5 5-5 5"/></svg></span></span><span class="yc-ad-corners" aria-hidden="true"></span></a>'
 def carousel(slot, start=0, floating=False):
     order = CAMPAIGNS[start % len(CAMPAIGNS):] + CAMPAIGNS[:start % len(CAMPAIGNS)]
     slides = "".join(creative(key,slot,i==0) for i,key in enumerate(order))

@@ -1,0 +1,89 @@
+/* Scarab Heart: art-directed ad placements. This stylesheet is the final cascade layer.
+   First-party logo and sanctuary are kept unmodified. */
+.yc-ad{--ad-paper:#f8e9c8;--ad-muted:#dfcda9}
+.yc-ad-art{display:block;position:relative;background:#10130f;color:var(--ad-paper);overflow:hidden}
+.yc-ad-stage{background:#10130f;overflow:hidden;border:1px solid #76603a;border-radius:12px}
+.yc-ad-art::before{background:linear-gradient(90deg,rgba(9,13,12,.97) 0%,rgba(10,15,12,.87) 48%,rgba(13,21,15,.18) 100%);z-index:-2}
+.yc-ad-scene{opacity:.56;background-size:cover;background-position:center}
+.yc-ad-grain{opacity:.16}
+.yc-ad-halo{opacity:.28;box-shadow:none;z-index:-1}
+.yc-ad-flare{opacity:.18}
+.yc-ad-corners{border:0;opacity:.32}
+.yc-ad-emblem{display:flex;justify-content:center;align-items:center;overflow:visible;filter:none;z-index:1;min-width:0}
+.yc-ad-emblem img{display:block;width:100%;height:100%;object-fit:contain;object-position:center;transform:none;filter:drop-shadow(0 7px 17px #0008);image-rendering:auto}
+.yc-ad-content{z-index:2;gap:10px;min-width:0;text-align:left}
+.yc-ad-brand{font-size:11px;letter-spacing:.17em;color:#c3a56c;white-space:normal;font-weight:600}
+.yc-ad-content strong{font-family:var(--yc-display,var(--font));font-weight:700;font-size:clamp(29px,3.4vw,47px);line-height:1.22;letter-spacing:.08em;color:#f5dfaa;text-shadow:0 3px 16px #000a;white-space:normal}
+.yc-ad-campaign{display:block;font-size:clamp(16px,1.45vw,21px);line-height:1.45;font-weight:600;color:#fff7eb;overflow-wrap:anywhere}
+.yc-ad-description{display:block;font-size:clamp(13px,1.05vw,16px);line-height:1.55;letter-spacing:0;color:#ddcda9}
+.yc-ad-summary{display:block;font-size:14px;line-height:1.6;color:#d6d2c8;max-width:42ch}
+.yc-ad-features{display:flex;flex-wrap:wrap;gap:7px}
+.yc-ad-features span{color:#f0dcad;background:#d6b36f15;border:1px solid #bd9d6166;border-radius:30px;padding:3px 11px;font-size:12px;line-height:1.5}
+.yc-ad-cta{font-size:15px;padding:9px 17px;min-height:40px;border:1px solid #e7d49b;border-radius:24px;box-shadow:none;white-space:normal}
+.yc-ad-art:hover .yc-ad-cta{transform:none;filter:brightness(1.05)}
+.yc-ad-controls{min-height:30px;height:auto}
+.yc-ad-controls>button{width:32px;height:30px;font-size:23px}
+.yc-ad-dots button{width:9px;height:9px}
+.yc-ad-label{font-size:12px}
+.yc-ad-slot-billboard,.yc-ad-slot-content{max-width:1080px;margin-block:32px}
+.yc-ad-slot-billboard .yc-ad-stage{height:340px;aspect-ratio:auto}
+.yc-ad-slot-content .yc-ad-stage{height:260px;aspect-ratio:auto}
+.yc-ad-slot-billboard .yc-ad-art,.yc-ad-slot-content .yc-ad-art{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(185px,.75fr);align-items:center;padding:24px clamp(25px,4vw,52px);gap:15px}
+.yc-ad-slot-billboard .yc-ad-content,.yc-ad-slot-content .yc-ad-content{position:relative;inset:auto;transform:none;grid-column:1;grid-row:1;width:auto;max-width:100%;align-items:flex-start}
+.yc-ad-slot-billboard .yc-ad-emblem,.yc-ad-slot-content .yc-ad-emblem,
+.yc-ad-slot-billboard .yc-ad-emerald .yc-ad-emblem,.yc-ad-slot-content .yc-ad-emerald .yc-ad-emblem{position:relative;inset:auto;transform:none;grid-column:2;grid-row:1;width:100%;height:75%;max-width:250px;max-height:230px;justify-self:center}
+.yc-ad-slot-billboard .yc-ad-halo,.yc-ad-slot-content .yc-ad-halo{left:78%;top:50%;width:23%;max-width:260px}
+.yc-ad-slot-billboard .yc-ad-content strong{font-size:clamp(36px,3.8vw,54px)}
+.yc-ad-slot-content .yc-ad-content strong{font-size:clamp(30px,3.2vw,42px)}
+.yc-ad-slot-content .yc-ad-brand{font-size:10px}
+.yc-ad-slot-content .yc-ad-campaign{font-size:17px}
+.yc-ad-slot-content .yc-ad-summary{display:none}
+.yc-ad-slot-content .yc-ad-features span{font-size:11px}
+.yc-ad-slot-rail{margin:14px 0 12px}
+.yc-ad-slot-rail .yc-ad-stage{height:202px}
+.yc-ad-slot-rail .yc-ad-art{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:13px 10px 11px}
+.yc-ad-slot-rail .yc-ad-emblem,
+.yc-ad-slot-rail .yc-ad-emerald .yc-ad-emblem{position:relative;inset:auto;transform:none;flex:0 0 69px;width:94px;height:69px;max-width:100%}
+.yc-ad-slot-rail .yc-ad-content{position:relative;inset:auto;transform:none;width:100%;gap:4px;align-items:center;text-align:center}
+.yc-ad-slot-rail .yc-ad-content strong{font-size:21px;line-height:1.2}
+.yc-ad-slot-rail .yc-ad-brand,.yc-ad-slot-rail .yc-ad-description,
+.yc-ad-slot-rail .yc-ad-features,.yc-ad-slot-rail .yc-ad-summary{display:none}
+.yc-ad-slot-rail .yc-ad-campaign{font-size:11px;line-height:1.35}
+.yc-ad-slot-rail .yc-ad-cta{font-size:12px;padding:5px 11px;min-height:30px}
+.yc-ad-slot-rail .yc-ad-halo{left:50%;top:32%;width:77px}
+.yc-ad-slot-float{width:260px;right:15px;bottom:16px;padding:5px;border-radius:12px}
+.yc-ad-slot-float .yc-ad-stage{height:174px;aspect-ratio:auto}
+.yc-ad-slot-float .yc-ad-art{display:grid;grid-template-columns:90px minmax(0,1fr);align-items:center;gap:6px;padding:12px 8px}
+.yc-ad-slot-float .yc-ad-emblem,.yc-ad-slot-float .yc-ad-emerald .yc-ad-emblem{position:relative;inset:auto;transform:none;width:85px;height:96px;grid-column:1;grid-row:1}
+.yc-ad-slot-float .yc-ad-content{position:relative;inset:auto;transform:none;width:100%;grid-column:2;grid-row:1;align-items:flex-start;gap:5px;text-align:left}
+.yc-ad-slot-float .yc-ad-content strong{font-size:21px;line-height:1.24}
+.yc-ad-slot-float .yc-ad-campaign{font-size:11px}
+.yc-ad-slot-float .yc-ad-brand,.yc-ad-slot-float .yc-ad-description,.yc-ad-slot-float .yc-ad-summary,.yc-ad-slot-float .yc-ad-features{display:none}
+.yc-ad-slot-float .yc-ad-cta{font-size:11px;padding:5px 8px;min-height:30px}
+.yc-ad-slot-float .yc-ad-halo{left:20%;top:47%;width:25%}
+.yc-ad-window-actions button{min-width:32px;min-height:32px}
+.yc-ad-art:focus-visible{outline:3px solid #e9c985;outline-offset:-4px}
+@media(min-width:981px) and (max-height:750px){.yc-ad-slot-rail .yc-ad-stage{height:168px}.yc-ad-slot-rail .yc-ad-emblem{flex-basis:48px;height:48px;width:72px}.yc-ad-slot-rail .yc-ad-content strong{font-size:18px}.yc-ad-slot-rail .yc-ad-campaign{display:none}}
+@media(max-width:980px){.yc-ad-slot-rail{display:none!important}}
+@media(max-width:640px){
+ .yc-ad-slot-billboard,.yc-ad-slot-content{margin:26px 12px}
+ .yc-ad-slot-billboard .yc-ad-stage{height:395px;aspect-ratio:auto}
+ .yc-ad-slot-content .yc-ad-stage{height:345px;aspect-ratio:auto}
+ .yc-ad-slot-billboard .yc-ad-art,.yc-ad-slot-content .yc-ad-art{display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start;padding:20px;gap:0}
+ .yc-ad-slot-billboard .yc-ad-emblem,.yc-ad-slot-content .yc-ad-emblem,
+ .yc-ad-slot-billboard .yc-ad-emerald .yc-ad-emblem,.yc-ad-slot-content .yc-ad-emerald .yc-ad-emblem{position:absolute;left:auto;right:12px;top:13px;bottom:auto;transform:none;width:43%;height:43%;max-width:none;max-height:none;opacity:1}
+ .yc-ad-slot-billboard .yc-ad-content,.yc-ad-slot-content .yc-ad-content{position:relative;inset:auto;transform:none;max-width:100%;width:100%;gap:8px;align-items:flex-start}
+ .yc-ad-slot-billboard .yc-ad-content strong,.yc-ad-slot-content .yc-ad-content strong{font-size:clamp(30px,8vw,38px);letter-spacing:.06em}
+ .yc-ad-slot-billboard .yc-ad-campaign,.yc-ad-slot-content .yc-ad-campaign{font-size:16px;line-height:1.4;max-width:100%}
+ .yc-ad-slot-billboard .yc-ad-description,.yc-ad-slot-content .yc-ad-description{font-size:13px;max-width:100%}
+ .yc-ad-slot-billboard .yc-ad-brand,.yc-ad-slot-content .yc-ad-brand{font-size:10px}
+ .yc-ad-slot-billboard .yc-ad-summary,.yc-ad-slot-content .yc-ad-summary{display:none}
+ .yc-ad-slot-billboard .yc-ad-features,.yc-ad-slot-content .yc-ad-features{gap:5px}
+ .yc-ad-slot-billboard .yc-ad-features span,.yc-ad-slot-content .yc-ad-features span{font-size:11px;padding:3px 8px}
+ .yc-ad-slot-billboard .yc-ad-cta,.yc-ad-slot-content .yc-ad-cta{font-size:14px;min-height:40px;padding:8px 14px;margin-top:2px}
+ .yc-ad-slot-billboard .yc-ad-art::before,.yc-ad-slot-content .yc-ad-art::before{background:linear-gradient(0deg,#0a100ffb 0%,#0b120fe9 38%,#0c1510a8 68%,#11190d44 100%)}
+ .yc-ad-slot-billboard .yc-ad-halo,.yc-ad-slot-content .yc-ad-halo{left:76%;top:24%;width:38%}
+ .yc-ad-slot-float{display:none!important}
+ .yc-ad-open{display:none!important}
+}
+@media(prefers-reduced-motion:reduce){.yc-ad-art[data-active],.yc-ad-flare,.yc-ad-halo{animation:none!important;transition:none!important}}
