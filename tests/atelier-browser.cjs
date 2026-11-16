@@ -14,7 +14,7 @@ const filename=r=>r==='/'?'home':r.slice(1).replaceAll('/','-');
   const list=[430,768,1440].includes(width)?routes:['/','/features','/auto','/articles/matrix-workflow'];
   for(const route of list){
    const response=await page.goto(BASE+route+(route.includes('?')?'&':'?')+'welcome=0',{waitUntil:'networkidle'});await page.evaluate(()=>document.fonts.ready);
-   const info=await page.evaluate(()=>({width:innerWidth,documentWidth:document.documentElement.scrollWidth,h1:document.querySelectorAll('h1').length,badImages:[...document.images].filter(i=>{const r=i.getBoundingClientRect();return r.width&&r.height&&r.top<innerHeight&&r.bottom>0&&(!i.complete||!i.naturalWidth)}).map(i=>i.getAttribute('src'))}));
+   const info=await page.evaluate(()=>({width:innerWidth,documentWidth:document.documentElement.scrollWidth,overflow:[...document.querySelectorAll('body *')].map(e=>({tag:e.tagName,cls:e.className,r:e.getBoundingClientRect().right})).filter(e=>e.r>document.documentElement.clientWidth+1).slice(-18),h1:document.querySelectorAll('h1').length,badImages:[...document.images].filter(i=>{const r=i.getBoundingClientRect();return r.width&&r.height&&r.top<innerHeight&&r.bottom>0&&(!i.complete||!i.naturalWidth)}).map(i=>i.getAttribute('src'))}));
    const ok=response.status()===200&&info.documentWidth<=width+1&&info.h1===1&&!info.badImages.length;
    result.layouts.push({route,width,passed:ok,...info});if(!ok)result.errors.push('Layout '+width+' '+route+': '+JSON.stringify(info));
    if([430,1440].includes(width))await page.evaluate(async()=>{document.querySelectorAll('img').forEach(i=>{i.loading='eager';});await Promise.all([...document.images].map(i=>i.decode().catch(()=>{})));});
