@@ -5,7 +5,7 @@
   transition:background-color .18s ease,border-color .18s ease,box-shadow .18s ease,transform .18s ease;
 }
 .button { border:1px solid rgba(255,255,255,.18);font-size:14px;font-weight:500;box-shadow:0 2px 9px #0003; }
-.button:not(.outline) { background:linear-gradient(180deg,#d52369,#be205e); }
+.button:not(.outline) { background:var(--accent);color:#232719; }
 .button.outline { background:#29212d;border-color:#89728b;color:#fff; }
 .button:hover { box-shadow:0 5px 18px #0005;border-color:#ffa7d0;color:#fff; }
 .button:active,.launch-menu summary:active,.faq-filter:active { transform:translateY(1px); }
