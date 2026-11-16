@@ -5,6 +5,7 @@ on:
       - release/yuce-b531f5a-20261116
     paths:
       - yuce-production-b531f5a.zip
+      - release-parts/**
 permissions:
   contents: write
 concurrency:
@@ -23,8 +24,12 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          echo "a1c8f569e70abeed27cf8e185dac9d95795bea40acb4517ce7450e0e6938411e  yuce-production-b531f5a.zip" | sha256sum -c -
-          cp yuce-production-b531f5a.zip "$RUNNER_TEMP/yuce-production.zip"
+          if test -f yuce-production-b531f5a.zip; then
+            cp yuce-production-b531f5a.zip "$RUNNER_TEMP/yuce-production.zip"
+          else
+            cat release-parts/part-01.bin release-parts/part-02.bin release-parts/part-03.bin release-parts/part-04.bin > "$RUNNER_TEMP/yuce-production.zip"
+          fi
+          echo "a1c8f569e70abeed27cf8e185dac9d95795bea40acb4517ce7450e0e6938411e  $RUNNER_TEMP/yuce-production.zip" | sha256sum -c -
       - name: Import on top of verified production history
         shell: bash
         run: |
